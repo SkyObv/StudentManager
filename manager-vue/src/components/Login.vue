@@ -1,15 +1,15 @@
 <script>
 /* eslint-disable vue/multi-word-component-names */
-
 export default {
   name:"Login",
   data() {
     return {
-      userType: 'student',                                           // 用户类型：student, teacher, admin
+      identity: '',                                                  // 用户类型：student, teacher, admin
       loginForm:{                                                    // 登入表单
         username: '',
         password: '',
       },
+      rememberMe: false,                                             // 记住我选项
       // 表单验证规则
       rules: {
         username: [
@@ -18,15 +18,48 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 8, message: '密码不能为空', trigger: 'blur' }
+          { min: 1, message: '密码不能为空', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
-    handleLogin(){
-      console.log('登录')
-      console.log(this.loginForm + " " + this.userType)
+    // 登入
+    Login(){
+      // 检查是否选择了用户类型
+      if (!this.identity) {
+        this.$message.warning('请选择用户类型')
+        return
+      }
+      this.$axios.post(`${this.$settings.Host}/login/`,
+          {'username':this.loginForm.username, 'password':this.loginForm.password,'identity':this.identity}).then(response => {
+        if (this.rememberMe){
+          localStorage.token = response.data.access
+          localStorage.refresh = response.data.refresh
+          localStorage.identity = response.data.identity
+          localStorage.name = response.data.name
+        }
+        else {
+          sessionStorage.token = response.data.access
+          sessionStorage.refresh = response.data.refresh
+          sessionStorage.identity = response.data.identity
+          sessionStorage.name = response.data.name
+        }
+
+        this.$message.success("登入成功")
+        if (response.data.identity === 'student'){
+          this.$router.push({name: 'Students'})
+        }
+        if (response.data.identity === 'teacher'){
+          this.$router.push({name: 'Teachers'})
+        }
+        if (response.data.identity === 'admin'){
+          this.$router.push({name: 'Admin'})
+        }
+      }).catch(error => {
+        console.log(error)
+        this.$message.error("用户名、密码或角色不匹配")
+      })
     }
   }
 }
@@ -45,7 +78,7 @@ export default {
       
       <!-- 用户类型选择 -->
       <div class="user-type-section">
-        <el-radio-group v-model="userType" size="medium">
+        <el-radio-group v-model="identity" size="medium">
           <el-radio-button label="student">学生</el-radio-button>
           <el-radio-button label="teacher">教师</el-radio-button>
           <el-radio-button label="admin">管理者</el-radio-button>
@@ -72,11 +105,14 @@ export default {
           ></el-input>
         </el-form-item>
         <el-form-item>
+          <el-checkbox v-model="rememberMe" class="remember-me">记住我</el-checkbox>
+        </el-form-item>
+        <el-form-item>
           <el-button 
             type="primary" 
             class="login-button" 
             size="medium"
-            @click="handleLogin"
+            @click="Login"
           >
             登录
           </el-button>
@@ -180,5 +216,19 @@ export default {
 :deep(.el-input__inner:focus) {
   border-color: #667eea;
   box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.remember-me {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+:deep(.el-checkbox__input.is-checked .el-checkbox__inner) {
+  background-color: #667eea;
+  border-color: #667eea;
+}
+
+:deep(.el-checkbox__inner:hover) {
+  border-color: #667eea;
 }
 </style>

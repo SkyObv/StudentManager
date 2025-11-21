@@ -4,9 +4,12 @@ import settings from "@/settings";                                   // 导入�
 import ElementUI from 'element-ui';                                  // 导入element-ui组件
 import 'element-ui/lib/theme-chalk/index.css';                       // 导入element-ui组件样式表
 import router from "@/routers/index";                                // 导入路由
+import axios from 'axios';                                           // 导入前端请求模块
 
 Vue.config.productionTip = false
 Vue.prototype.$settings = settings;
+Vue.prototype.$axios = axios;
+axios.defaults.withCredentials = true;
 Vue.use(ElementUI);
 
 new Vue({
