@@ -34,6 +34,12 @@ export default {
 
 <template>
   <div class="login-container">
+    <!-- 背景视频 -->
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source src="/staticVoid/登入背景视频.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+    
     <div class="login-form-wrapper">
       <h2 class="login-title">统一登录系统</h2>
       
@@ -45,21 +51,19 @@ export default {
           <el-radio-button label="admin">管理者</el-radio-button>
         </el-radio-group>
       </div>
-      
       <!-- 登录表单 -->
       <el-form :model="loginForm" class="login-form" :rules="rules" ref="loginFormRef">
         <el-form-item prop="username">
           <el-input 
-            v-model="loginForm.username"
+            v-model="loginForm.username" 
             placeholder="请输入账号" 
             prefix-icon="el-icon-user" 
             size="medium"
           ></el-input>
         </el-form-item>
-        
         <el-form-item prop="password">
           <el-input 
-            v-model="loginForm.password"
+            v-model="loginForm.password" 
             type="password" 
             placeholder="请输入密码" 
             prefix-icon="el-icon-lock" 
@@ -67,7 +71,6 @@ export default {
             show-password
           ></el-input>
         </el-form-item>
-        
         <el-form-item>
           <el-button 
             type="primary" 
@@ -89,18 +92,43 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景视频样式 */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 视频遮罩层，增强文字可读性 */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .login-form-wrapper {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: 40px;
   width: 100%;
   max-width: 450px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .login-form-wrapper:hover {
