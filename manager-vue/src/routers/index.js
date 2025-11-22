@@ -21,7 +21,7 @@ export default new Router({
       // 管理员登入页面
     {
       path: "/admin",
-      name: "Admin",
+      name: "AdminComp",
       component: Admin
     },
       // 老师页面

@@ -31,7 +31,7 @@ export default {
         this.$message.warning('请选择用户类型')
         return
       }
-      this.$axios.post(`${this.$settings.Host}/login/`,
+      this.$axios.post(`${this.$settings.Host}/apps/login/`,
           {'username':this.loginForm.username, 'password':this.loginForm.password,'identity':this.identity}).then(response => {
         if (this.rememberMe){
           localStorage.token = response.data.access
@@ -54,7 +54,7 @@ export default {
           this.$router.push({name: 'Teachers'})
         }
         if (response.data.identity === 'admin'){
-          this.$router.push({name: 'Admin'})
+          this.$router.push({name: 'AdminComp'})
         }
       }).catch(error => {
         console.log(error)
