@@ -1,0 +1,343 @@
+INFO 2025-11-21 20:10:54,001 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:10:55,384 basehttp 213 "GET / HTTP/1.1" 200 12004
+WARNING 2025-11-21 20:10:55,561 log 253 Not Found: /favicon.ico
+WARNING 2025-11-21 20:10:55,562 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2212
+INFO 2025-11-21 20:11:02,409 basehttp 213 "GET /admin HTTP/1.1" 301 0
+INFO 2025-11-21 20:11:02,415 basehttp 213 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-11-21 20:11:02,454 basehttp 213 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4187
+INFO 2025-11-21 20:11:02,689 basehttp 213 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-11-21 20:11:02,694 basehttp 213 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2025-11-21 20:11:02,696 basehttp 213 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-11-21 20:11:02,697 basehttp 213 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-11-21 20:11:02,697 basehttp 213 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2025-11-21 20:11:02,698 basehttp 213 "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2025-11-21 20:11:02,702 basehttp 213 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-11-21 20:11:10,530 basehttp 213 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-11-21 20:11:10,543 basehttp 213 "GET /admin/ HTTP/1.1" 200 6534
+INFO 2025-11-21 20:11:10,569 basehttp 213 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-11-21 20:11:10,580 basehttp 213 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-11-21 20:11:10,581 basehttp 213 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-11-21 20:11:14,313 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9441
+INFO 2025-11-21 20:11:14,342 basehttp 213 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-11-21 20:11:14,343 basehttp 213 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-11-21 20:11:14,344 basehttp 213 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-11-21 20:11:14,344 basehttp 213 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-11-21 20:11:14,349 basehttp 213 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-11-21 20:11:14,350 basehttp 213 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-11-21 20:11:14,350 basehttp 213 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-11-21 20:11:14,352 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:11:14,353 basehttp 213 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-11-21 20:11:14,354 basehttp 213 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-11-21 20:11:14,363 basehttp 213 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-11-21 20:11:14,376 basehttp 213 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-11-21 20:11:24,146 basehttp 213 "GET /admin/users/user/add/ HTTP/1.1" 200 20583
+INFO 2025-11-21 20:11:24,171 basehttp 213 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-11-21 20:11:24,171 basehttp 213 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-11-21 20:11:24,171 basehttp 213 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-11-21 20:11:24,172 basehttp 213 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-11-21 20:11:24,176 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:11:24,182 basehttp 213 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2025-11-21 20:11:24,184 basehttp 213 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-11-21 20:11:24,231 basehttp 213 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-11-21 20:11:24,232 basehttp 213 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-11-21 20:11:55,204 basehttp 213 "GET /admin/users/user/add/ HTTP/1.1" 200 20583
+INFO 2025-11-21 20:11:55,258 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:12:22,050 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9441
+INFO 2025-11-21 20:12:22,077 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:12:23,280 basehttp 213 "GET /admin/users/ HTTP/1.1" 200 5431
+INFO 2025-11-21 20:12:25,056 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9441
+INFO 2025-11-21 20:12:25,085 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:12:57,766 basehttp 213 "GET /admin/users/user/add/ HTTP/1.1" 200 20583
+INFO 2025-11-21 20:12:57,794 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:13:03,797 basehttp 213 "GET /admin/auth/group/add/?_to_field=id&_popup=1 HTTP/1.1" 200 7303
+INFO 2025-11-21 20:13:03,827 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:13:03,846 basehttp 213 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+INFO 2025-11-21 20:13:03,847 basehttp 213 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-11-21 20:13:03,877 basehttp 213 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+INFO 2025-11-21 20:13:03,878 basehttp 213 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-11-21 20:14:50,185 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-21 20:14:50,616 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:18:19,891 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 20:18:21,228 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:18:34,138 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-21 20:18:34,665 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:19:42,037 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 20:19:42,588 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:20:11,199 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 20:21:39,764 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:22:54,964 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-21 20:22:55,366 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-21 20:22:56,446 log 253 Not Found: /
+WARNING 2025-11-21 20:22:56,447 basehttp 213 "GET / HTTP/1.1" 404 2400
+INFO 2025-11-21 20:23:02,463 basehttp 213 "GET /login HTTP/1.1" 301 0
+WARNING 2025-11-21 20:23:02,589 log 253 Method Not Allowed: /login/
+WARNING 2025-11-21 20:23:02,590 basehttp 213 "GET /login/ HTTP/1.1" 405 7594
+INFO 2025-11-21 20:23:02,767 basehttp 213 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-11-21 20:23:02,770 basehttp 213 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-11-21 20:23:02,771 basehttp 213 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-11-21 20:23:02,773 basehttp 213 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-11-21 20:23:02,792 basehttp 213 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-11-21 20:23:02,795 basehttp 213 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-11-21 20:23:02,796 basehttp 213 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-11-21 20:23:02,801 basehttp 213 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-11-21 20:23:02,806 basehttp 213 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-11-21 20:23:02,806 basehttp 213 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-11-21 20:23:02,811 basehttp 213 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-11-21 20:23:02,824 basehttp 213 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-11-21 20:23:15,052 basehttp 213 "POST /login/ HTTP/1.1" 200 8049
+INFO 2025-11-21 20:23:44,119 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-21 20:23:45,336 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:27:55,164 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-21 20:27:55,581 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 20:29:47,900 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-21 20:29:48,625 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-21 20:30:54,500 log 253 Not Found: /
+WARNING 2025-11-21 20:30:54,501 basehttp 213 "GET / HTTP/1.1" 404 2400
+WARNING 2025-11-21 20:31:03,443 log 253 Method Not Allowed: /login/
+WARNING 2025-11-21 20:31:03,443 basehttp 213 "GET /login/ HTTP/1.1" 405 7594
+INFO 2025-11-21 20:31:13,904 basehttp 213 "POST /login/ HTTP/1.1" 200 8049
+INFO 2025-11-21 20:31:44,360 basehttp 213 "POST /login/ HTTP/1.1" 200 8049
+INFO 2025-11-21 20:33:06,839 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-21 20:33:07,622 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-21 20:33:08,665 log 253 Not Found: /
+WARNING 2025-11-21 20:33:08,665 basehttp 213 "GET / HTTP/1.1" 404 2400
+WARNING 2025-11-21 20:33:19,231 log 253 Method Not Allowed: /login/
+WARNING 2025-11-21 20:33:19,231 basehttp 213 "GET /login/ HTTP/1.1" 405 7496
+INFO 2025-11-21 20:33:26,354 basehttp 213 "POST /login/ HTTP/1.1" 200 8186
+INFO 2025-11-21 20:33:26,382 basehttp 213 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,384 basehttp 213 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,387 basehttp 213 "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,387 basehttp 213 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,388 basehttp 213 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,389 basehttp 213 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,389 basehttp 213 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,389 basehttp 213 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,390 basehttp 213 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,390 basehttp 213 "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:33:26,393 basehttp 213 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-21 20:34:25,642 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-21 20:34:26,188 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-21 20:38:33,516 log 253 Not Found: /
+WARNING 2025-11-21 20:38:33,517 basehttp 213 "GET / HTTP/1.1" 404 2641
+INFO 2025-11-21 20:38:39,526 basehttp 213 "GET /admin/ HTTP/1.1" 200 6534
+INFO 2025-11-21 20:38:42,050 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9441
+INFO 2025-11-21 20:38:42,158 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:38:58,060 basehttp 213 "GET /admin/users/user/?o=2 HTTP/1.1" 200 9723
+INFO 2025-11-21 20:38:58,086 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:38:58,150 basehttp 213 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-11-21 20:39:01,942 basehttp 213 "GET /admin/users/user/?o=-2 HTTP/1.1" 200 9727
+INFO 2025-11-21 20:39:01,968 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:39:15,894 basehttp 213 "POST /admin/users/user/?o=-2 HTTP/1.1" 200 7868
+INFO 2025-11-21 20:39:15,915 basehttp 213 "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+INFO 2025-11-21 20:39:20,016 basehttp 213 "POST /admin/users/user/?o=-2 HTTP/1.1" 302 0
+INFO 2025-11-21 20:39:20,022 basehttp 213 "GET /admin/users/user/?o=-2 HTTP/1.1" 302 0
+INFO 2025-11-21 20:39:20,034 basehttp 213 "GET /admin/login/?next=/admin/users/user/%3Fo%3D-2 HTTP/1.1" 200 4357
+INFO 2025-11-21 20:39:20,069 basehttp 213 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-11-21 20:39:58,914 basehttp 213 "POST /admin/login/?next=/admin/users/user/%3Fo%3D-2 HTTP/1.1" 302 0
+INFO 2025-11-21 20:39:58,925 basehttp 213 "GET /admin/users/user/?o=-2 HTTP/1.1" 200 9727
+INFO 2025-11-21 20:39:58,954 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:40:03,745 basehttp 213 "GET /admin/users/user/?o=3.-2 HTTP/1.1" 200 10093
+INFO 2025-11-21 20:40:03,769 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:40:07,970 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9441
+INFO 2025-11-21 20:40:07,994 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:40:09,681 basehttp 213 "GET /admin/auth/group/ HTTP/1.1" 200 8150
+INFO 2025-11-21 20:40:09,708 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:40:11,482 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9441
+INFO 2025-11-21 20:40:11,507 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:40:18,443 basehttp 213 "GET /admin/users/user/add/ HTTP/1.1" 200 21227
+INFO 2025-11-21 20:40:18,491 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 20:40:57,137 basehttp 213 "POST /admin/users/user/add/ HTTP/1.1" 302 0
+INFO 2025-11-21 20:40:57,147 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9948
+INFO 2025-11-21 20:40:57,180 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:27:29,501 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+INFO 2025-11-21 21:27:36,317 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+WARNING 2025-11-21 21:27:51,219 log 253 Method Not Allowed: /login/
+WARNING 2025-11-21 21:27:51,219 basehttp 213 "GET /login/ HTTP/1.1" 405 7496
+INFO 2025-11-21 21:27:51,264 basehttp 213 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,266 basehttp 213 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,267 basehttp 213 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,268 basehttp 213 "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,270 basehttp 213 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,270 basehttp 213 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,271 basehttp 213 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,271 basehttp 213 "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,272 basehttp 213 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,274 basehttp 213 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,274 basehttp 213 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-21 21:27:51,305 basehttp 213 "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2025-11-21 21:28:54,863 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+INFO 2025-11-21 21:28:57,032 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+INFO 2025-11-21 21:28:58,241 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+INFO 2025-11-21 21:29:05,411 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+INFO 2025-11-21 21:29:30,731 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+WARNING 2025-11-21 21:29:48,125 log 253 Method Not Allowed: /login/
+WARNING 2025-11-21 21:29:48,126 basehttp 213 "GET /login/ HTTP/1.1" 405 7496
+WARNING 2025-11-21 21:29:56,710 log 253 Unauthorized: /login/
+WARNING 2025-11-21 21:29:56,711 basehttp 213 "POST /login/ HTTP/1.1" 401 7581
+INFO 2025-11-21 21:30:20,590 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9762
+INFO 2025-11-21 21:30:20,658 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:30:22,208 basehttp 213 "GET /admin/users/user/3/change/ HTTP/1.1" 200 21456
+INFO 2025-11-21 21:30:22,237 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+WARNING 2025-11-21 21:30:50,306 log 253 Unauthorized: /login/
+WARNING 2025-11-21 21:30:50,307 basehttp 213 "POST /login/ HTTP/1.1" 401 7581
+INFO 2025-11-21 21:31:23,746 basehttp 213 "POST /login/ HTTP/1.1" 200 8186
+INFO 2025-11-21 21:31:39,875 basehttp 213 "POST /admin/users/user/3/change/ HTTP/1.1" 302 0
+INFO 2025-11-21 21:31:39,887 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9939
+INFO 2025-11-21 21:31:39,918 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+WARNING 2025-11-21 21:31:44,508 log 253 Unauthorized: /login/
+WARNING 2025-11-21 21:31:44,508 basehttp 213 "POST /login/ HTTP/1.1" 401 7581
+WARNING 2025-11-21 21:31:55,280 log 253 Unauthorized: /login/
+WARNING 2025-11-21 21:31:55,281 basehttp 213 "POST /login/ HTTP/1.1" 401 7581
+INFO 2025-11-21 21:32:17,318 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 368
+INFO 2025-11-21 21:33:27,618 basehttp 213 "GET /admin/users/user/2/change/ HTTP/1.1" 200 21576
+INFO 2025-11-21 21:33:27,686 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:33:55,183 basehttp 213 "POST /admin/users/user/2/change/ HTTP/1.1" 302 0
+INFO 2025-11-21 21:33:55,195 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9948
+INFO 2025-11-21 21:33:55,224 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:34:03,715 basehttp 213 "GET /admin/users/user/3/change/ HTTP/1.1" 200 21444
+INFO 2025-11-21 21:34:03,742 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:35:25,877 basehttp 213 "GET /admin/password_change/ HTTP/1.1" 200 7766
+INFO 2025-11-21 21:35:30,106 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9764
+INFO 2025-11-21 21:35:30,134 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:35:40,111 basehttp 213 "GET /admin/users/user/3/change/ HTTP/1.1" 200 21444
+INFO 2025-11-21 21:35:40,140 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:35:44,784 basehttp 213 "GET /admin/users/user/3/delete/ HTTP/1.1" 200 7724
+INFO 2025-11-21 21:35:46,554 basehttp 213 "POST /admin/users/user/3/delete/ HTTP/1.1" 302 0
+INFO 2025-11-21 21:35:46,566 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9590
+INFO 2025-11-21 21:35:46,593 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:35:48,147 basehttp 213 "GET /admin/users/user/add/ HTTP/1.1" 200 21227
+INFO 2025-11-21 21:35:48,173 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:36:30,500 basehttp 213 "POST /admin/users/user/add/ HTTP/1.1" 302 0
+INFO 2025-11-21 21:36:30,512 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 9947
+INFO 2025-11-21 21:36:30,550 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-21 21:36:32,563 basehttp 213 "GET /admin/users/user/4/change/ HTTP/1.1" 200 21429
+INFO 2025-11-21 21:36:32,591 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+WARNING 2025-11-21 21:39:30,541 log 253 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-21 21:39:30,542 basehttp 213 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2803
+INFO 2025-11-21 21:39:30,627 basehttp 213 "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+INFO 2025-11-21 21:39:35,621 basehttp 213 "POST /login/ HTTP/1.1" 200 8147
+WARNING 2025-11-21 21:39:35,654 log 253 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-11-21 21:39:35,655 basehttp 213 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2803
+INFO 2025-11-21 21:46:04,308 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 21:46:05,754 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 21:50:21,148 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 21:50:21,644 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 21:50:44,981 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 21:50:45,497 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 21:51:02,406 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 21:51:29,000 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 21:52:37,676 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 21:52:38,178 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 21:52:53,959 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 21:53:03,092 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 21:53:06,065 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+WARNING 2025-11-21 21:56:00,600 log 253 Method Not Allowed: /login/
+WARNING 2025-11-21 21:56:00,601 basehttp 213 "GET /login/ HTTP/1.1" 405 45
+WARNING 2025-11-21 21:56:05,007 log 253 Bad Request: /login/
+WARNING 2025-11-21 21:56:05,007 basehttp 213 "POST /login/ HTTP/1.1" 400 81
+INFO 2025-11-21 21:56:23,622 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+WARNING 2025-11-21 21:56:23,626 log 253 Bad Request: /login/
+WARNING 2025-11-21 21:56:23,627 basehttp 213 "POST /login/ HTTP/1.1" 400 87
+WARNING 2025-11-21 21:56:56,876 log 253 Bad Request: /login/
+WARNING 2025-11-21 21:56:56,876 basehttp 213 "POST /login/ HTTP/1.1" 400 87
+WARNING 2025-11-21 21:57:27,728 log 253 Unauthorized: /login/
+WARNING 2025-11-21 21:57:27,729 basehttp 213 "POST /login/ HTTP/1.1" 401 63
+INFO 2025-11-21 21:57:38,711 basehttp 213 "POST /login/ HTTP/1.1" 200 633
+INFO 2025-11-21 21:57:45,298 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 21:58:42,558 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:00:52,935 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 22:00:58,174 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 22:03:04,365 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-11-21 22:03:05,573 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:03:13,972 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:03:21,816 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-21 22:03:22,416 basehttp 213 "POST /login/ HTTP/1.1" 200 633
+INFO 2025-11-21 22:09:44,403 basehttp 213 "POST /login/ HTTP/1.1" 200 633
+INFO 2025-11-21 22:19:59,782 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:20:01,341 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:20:44,775 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:20:45,507 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:21:04,620 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:21:05,022 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:21:10,561 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:21:10,968 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:21:25,905 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:21:26,325 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:22:03,314 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:22:04,260 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:22:59,060 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:22:59,668 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:23:59,572 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:24:00,121 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-21 22:24:05,456 log 253 Bad Request: /login/
+WARNING 2025-11-21 22:24:05,456 basehttp 213 "POST /login/ HTTP/1.1" 400 41
+ERROR 2025-11-21 22:24:24,102 log 253 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework_simplejwt\views.py", line 46, in post
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 448, in run_validation
+    assert value is not None, '.validate() should return the validated data'
+           ^^^^^^^^^^^^^^^^^
+AssertionError: .validate() should return the validated data
+ERROR 2025-11-21 22:24:24,105 basehttp 213 "POST /login/ HTTP/1.1" 500 107589
+INFO 2025-11-21 22:25:25,518 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:25:26,121 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:26:22,935 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:26:23,420 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:27:04,511 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:27:05,033 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:27:22,085 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:27:22,633 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:27:33,431 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:27:33,912 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:27:48,922 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:27:49,402 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:28:06,469 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:28:06,975 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:28:16,768 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-21 22:28:17,264 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 22:28:27,852 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+WARNING 2025-11-21 22:28:37,460 log 253 Unauthorized: /login/
+WARNING 2025-11-21 22:28:37,461 basehttp 213 "POST /login/ HTTP/1.1" 401 52
+INFO 2025-11-21 22:32:54,255 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-21 22:32:55,463 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 23:20:11,818 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-21 23:20:23,430 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+WARNING 2025-11-21 23:20:23,444 log 253 Unauthorized: /login/
+WARNING 2025-11-21 23:20:23,444 basehttp 213 "POST /login/ HTTP/1.1" 401 52
+WARNING 2025-11-21 23:20:27,552 log 253 Unauthorized: /login/
+WARNING 2025-11-21 23:20:27,553 basehttp 213 "POST /login/ HTTP/1.1" 401 52
+INFO 2025-11-21 23:20:29,367 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-21 23:21:53,041 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-21 23:36:52,624 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-21 23:47:12,678 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+WARNING 2025-11-21 23:47:18,813 log 253 Bad Request: /login/
+WARNING 2025-11-21 23:47:18,813 basehttp 213 "POST /login/ HTTP/1.1" 400 81
+INFO 2025-11-21 23:48:28,428 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-21 23:48:54,769 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-21 23:53:16,397 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-21 23:57:17,903 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-22 00:00:56,272 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-22 00:01:21,998 basehttp 213 "POST /login/ HTTP/1.1" 200 524
