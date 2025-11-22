@@ -341,3 +341,166 @@ INFO 2025-11-21 23:53:16,397 basehttp 213 "POST /login/ HTTP/1.1" 200 524
 INFO 2025-11-21 23:57:17,903 basehttp 213 "POST /login/ HTTP/1.1" 200 524
 INFO 2025-11-22 00:00:56,272 basehttp 213 "POST /login/ HTTP/1.1" 200 524
 INFO 2025-11-22 00:01:21,998 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-22 16:23:39,871 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:24:12,602 basehttp 213 "OPTIONS /login/ HTTP/1.1" 200 0
+INFO 2025-11-22 16:24:13,288 basehttp 213 "POST /login/ HTTP/1.1" 200 524
+INFO 2025-11-22 16:29:39,150 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:29:39,764 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:29:58,385 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:29:58,746 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:30:36,804 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:30:37,192 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:31:10,143 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:31:10,516 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:34:58,776 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:34:59,172 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:36:40,634 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:36:41,009 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:38:17,294 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:38:17,656 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:38:58,753 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:38:59,107 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:40:34,498 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:40:34,880 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-22 16:43:24,838 log 253 Not Found: /
+WARNING 2025-11-22 16:43:24,839 basehttp 213 "GET / HTTP/1.1" 404 2641
+WARNING 2025-11-22 16:43:24,965 log 253 Not Found: /favicon.ico
+WARNING 2025-11-22 16:43:24,966 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2692
+INFO 2025-11-22 16:43:31,437 basehttp 213 "GET /admin/ HTTP/1.1" 200 8265
+INFO 2025-11-22 16:43:31,467 basehttp 213 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,469 basehttp 213 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,472 basehttp 213 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,472 basehttp 213 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,472 basehttp 213 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,472 basehttp 213 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,481 basehttp 213 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,483 basehttp 213 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,484 basehttp 213 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-11-22 16:43:31,521 basehttp 213 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-11-22 16:43:33,908 basehttp 213 "GET /admin/ HTTP/1.1" 200 8265
+INFO 2025-11-22 16:44:25,250 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\admin.py changed, reloading.
+INFO 2025-11-22 16:44:25,720 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:45:39,935 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\admin.py changed, reloading.
+INFO 2025-11-22 16:45:40,351 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:45:43,417 basehttp 213 "GET /admin/ HTTP/1.1" 200 8901
+INFO 2025-11-22 16:45:44,511 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 8347
+INFO 2025-11-22 16:45:44,542 basehttp 213 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,546 basehttp 213 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,550 basehttp 213 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,550 basehttp 213 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,550 basehttp 213 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,551 basehttp 213 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,553 basehttp 213 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,553 basehttp 213 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,554 basehttp 213 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,557 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:44,565 basehttp 213 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:44,572 basehttp 213 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:46,017 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9866
+INFO 2025-11-22 16:45:46,042 basehttp 213 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:46,042 basehttp 213 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:46,047 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:46,050 basehttp 213 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:46,056 basehttp 213 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:50,069 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:45:50,083 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 10278
+INFO 2025-11-22 16:45:50,107 basehttp 213 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-11-22 16:45:50,112 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:51,383 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9866
+INFO 2025-11-22 16:45:51,409 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:53,061 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:45:53,073 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 10673
+INFO 2025-11-22 16:45:53,103 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:53,715 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9866
+INFO 2025-11-22 16:45:53,743 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:55,415 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:45:55,428 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 11074
+INFO 2025-11-22 16:45:55,455 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:56,060 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9866
+INFO 2025-11-22 16:45:56,086 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:45:58,037 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:45:58,050 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 11475
+INFO 2025-11-22 16:45:58,079 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:49:20,443 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-22 16:49:21,058 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:50:29,043 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializers.py changed, reloading.
+INFO 2025-11-22 16:50:29,472 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:51:48,989 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-22 16:51:49,401 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-22 16:53:22,419 log 253 Not Found: /
+WARNING 2025-11-22 16:53:22,420 basehttp 213 "GET / HTTP/1.1" 404 2309
+WARNING 2025-11-22 16:53:32,897 log 253 Not Found: /apps/
+WARNING 2025-11-22 16:53:32,897 basehttp 213 "GET /apps/ HTTP/1.1" 404 2934
+WARNING 2025-11-22 16:53:44,328 log 253 Method Not Allowed: /apps/admin/optins
+WARNING 2025-11-22 16:53:44,328 basehttp 213 "GET /apps/admin/optins HTTP/1.1" 405 3956
+INFO 2025-11-22 16:53:44,364 basehttp 213 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,365 basehttp 213 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,367 basehttp 213 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,368 basehttp 213 "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,369 basehttp 213 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,369 basehttp 213 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,369 basehttp 213 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,371 basehttp 213 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,371 basehttp 213 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,372 basehttp 213 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,372 basehttp 213 "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2025-11-22 16:53:44,378 basehttp 213 "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2025-11-22 16:54:39,316 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-22 16:54:39,903 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:55:17,614 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-22 16:55:18,062 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:55:19,401 basehttp 213 "GET /apps/admin/optins HTTP/1.1" 200 5429
+INFO 2025-11-22 16:56:35,900 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-22 16:56:36,344 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 16:57:35,497 basehttp 213 "GET /admin/ HTTP/1.1" 200 10425
+INFO 2025-11-22 16:57:37,002 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 8347
+INFO 2025-11-22 16:57:37,035 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:57:38,282 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9670
+INFO 2025-11-22 16:57:38,308 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:57:50,164 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:57:50,177 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 10278
+INFO 2025-11-22 16:57:50,207 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:57:52,462 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9670
+INFO 2025-11-22 16:57:52,487 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:57:58,828 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:57:58,840 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 10673
+INFO 2025-11-22 16:57:58,867 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:58:00,541 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9670
+INFO 2025-11-22 16:58:00,566 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:58:30,424 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:58:30,436 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 11080
+INFO 2025-11-22 16:58:30,465 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:58:34,244 basehttp 213 "GET /admin/users/adminoptions/add/ HTTP/1.1" 200 9670
+INFO 2025-11-22 16:58:34,274 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-22 16:58:43,624 basehttp 213 "POST /admin/users/adminoptions/add/ HTTP/1.1" 302 0
+INFO 2025-11-22 16:58:43,635 basehttp 213 "GET /admin/users/adminoptions/ HTTP/1.1" 200 11475
+INFO 2025-11-22 16:58:43,663 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+WARNING 2025-11-22 16:59:08,728 log 253 Not Found: /
+WARNING 2025-11-22 16:59:08,729 basehttp 213 "GET / HTTP/1.1" 404 2309
+WARNING 2025-11-22 16:59:16,171 log 253 Not Found: /apps/
+WARNING 2025-11-22 16:59:16,171 basehttp 213 "GET /apps/ HTTP/1.1" 404 2934
+INFO 2025-11-22 16:59:22,740 basehttp 213 "GET /apps/admin/optins HTTP/1.1" 200 5485
+INFO 2025-11-22 17:00:59,317 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-22 17:00:59,973 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-22 17:05:58,458 basehttp 213 "GET /apps/admin/optins HTTP/1.1" 301 0
+INFO 2025-11-22 17:05:58,490 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:05:58,497 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:24:07,347 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:41:53,463 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:41:56,370 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:12,170 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:12,221 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:12,268 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:12,288 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:12,332 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:12,370 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:27,043 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:46:46,037 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:50:15,863 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:51:09,957 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 17:51:13,883 basehttp 213 "GET /apps/admin/optins/ HTTP/1.1" 200 121
+INFO 2025-11-22 18:18:59,508 basehttp 213 "OPTIONS /apps/login/ HTTP/1.1" 200 0
+INFO 2025-11-22 18:19:00,138 basehttp 213 "POST /apps/login/ HTTP/1.1" 200 524
+INFO 2025-11-22 19:58:02,791 basehttp 213 "POST /apps/login/ HTTP/1.1" 200 524
+INFO 2025-11-22 19:59:35,952 basehttp 213 "POST /apps/login/ HTTP/1.1" 200 524
+INFO 2025-11-22 20:10:58,652 basehttp 213 "POST /apps/login/ HTTP/1.1" 200 524

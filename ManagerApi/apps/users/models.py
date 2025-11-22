@@ -8,7 +8,7 @@ IDENTITY = (
     ('admin', '管理员'),
 )
 
-# 用户模型类
+# 用户模型类('admin','teacher','student')
 class User(AbstractUser):
     """用户模型类"""
     IDENTITY_STUDENT = 'student'
@@ -21,4 +21,17 @@ class User(AbstractUser):
     class Meta:
         db_table = 'users'
         verbose_name = '用户'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+# 管理员选项
+class AdminOptions(models.Model):
+    options = models.CharField(max_length=100, unique=True ,verbose_name='管理员选项')
+    is_show = models.BooleanField(default=True, verbose_name='是否显示')
+
+    class Meta:
+        db_table = 'admin_options'
+        verbose_name = '管理员选项'
         verbose_name_plural = verbose_name

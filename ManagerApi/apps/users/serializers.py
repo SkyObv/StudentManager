@@ -2,10 +2,11 @@
 # 添加自定义字段到token
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from .models import User
+from .models import User, AdminOptions
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
 
+# 自定义登入序列化器
 class CustomTokenObtainSerializer(TokenObtainPairSerializer):
     identity = serializers.CharField(write_only=True, required=True)
 
@@ -45,3 +46,9 @@ class CustomTokenObtainSerializer(TokenObtainPairSerializer):
             'identity': user.identity
         }
         return data
+
+# 管理员视图序列化器
+class AdminOptionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdminOptions
+        fields = ['options']
