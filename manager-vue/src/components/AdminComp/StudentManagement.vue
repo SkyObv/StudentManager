@@ -8,6 +8,15 @@ export default {
       page_count:null,                                               // 总页数
       students:[],                                                   // 学生列表
       count:null,                                                    // 学生总数
+      editingId: null,                                               // 当前编辑的学生ID
+      editData: {},                                                  // 编辑时的临时数据
+      teachers: [                                                    // 静态老师数据
+        {id: 1, name: '张老师'},
+        {id: 2, name: '李老师'},
+        {id: 3, name: '王老师'},
+        {id: 4, name: '赵老师'},
+        {id: 5, name: '刘老师'}
+      ]
     }
   },
   created() {
@@ -30,6 +39,43 @@ export default {
         behavior: 'smooth'
         });
       })
+    },
+    // 开始编辑
+    startEdit(student) {
+      this.editingId = student.id                                    // 使用可用的唯一标识
+      this.editData = {
+        username: student.username,
+        name: student.name,
+        teacherId: student.class_ban?.teacher?.id || 1
+      };
+    },
+    // 保存编辑
+    saveEdit(student) {
+      // 这里使用静态数据模拟保存操作
+      const index = this.students.findIndex(s => (s.id || s.username || s.name) === (student.id || student.username || student.name));
+      if (index !== -1) {
+        // 更新学生数据
+        this.students[index].username = this.editData.username;
+        this.students[index].name = this.editData.name;
+        // 更新老师信息
+        const selectedTeacher = this.teachers.find(t => t.id === this.editData.teacherId);
+        if (selectedTeacher) {
+          if (!this.students[index].class_ban) {
+            this.students[index].class_ban = {};
+          }
+          if (!this.students[index].class_ban.teacher) {
+            this.students[index].class_ban.teacher = {};
+          }
+          this.students[index].class_ban.teacher.name = selectedTeacher.name;
+        }
+      }
+      // 结束编辑状态
+      this.cancelEdit();
+    },
+    // 取消编辑
+    cancelEdit() {
+      this.editingId = null;
+      this.editData = {};
     }
   }
 }
@@ -99,10 +145,10 @@ export default {
             </th>
             <th>学号</th>
             <th>姓名</th>
+            <th>性别</th>
             <th>年级</th>
             <th>班级</th>
-            <th>性别</th>
-            <th>出生日期</th>
+            <th>老师</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -110,19 +156,65 @@ export default {
         <tbody>
           <!-- 示例数据行，实际使用时将由数据驱动 -->
           <tr class="table-row" v-for="(student,index) in students" :key="index">
+             <!-- 每行的复选框 -->
             <td class="table-checkbox">
               <input type="checkbox" class="row-checkbox" />
             </td>
-            <td>{{student.username}}</td>
-            <td>{{student.name}}</td>
-            <td>初一</td>
-            <td>初一(1)班</td>
-            <td>男</td>
-            <td>2010-09-15</td>
+            <!-- 学号列：根据编辑状态显示输入框或文本 -->
+            <td>
+              <template v-if="editingId === student.id">
+                <input type="text" v-model="editData.username" class="edit-input" placeholder="学号" />
+              </template>
+              <template v-else>
+                {{student.username}}
+              </template>
+            </td>
+            <!-- 姓名列：根据编辑状态显示输入框或文本 -->
+            <td>
+              <template v-if="editingId === student.id">
+                <input type="text" v-model="editData.name" class="edit-input" placeholder="姓名" />
+              </template>
+              <template v-else>
+                {{student.name}}
+              </template>
+            </td>
+            <!-- 性别列 -->
+            <td>
+              <template v-if="editingId === student.id">
+                <input type="text" v-model="editData.name" class="edit-input" placeholder="姓名" />
+              </template>
+              <template v-else>
+                {{student.gender}}
+              </template>
+            </td>
+            <!-- 年级列 -->
+            <td>{{ student.class_ban.name }}</td>
+            <!-- 班级列 -->
+            <td>{{ student.class_ban.grade}}</td>
+            <!-- 老师列：根据编辑状态显示下拉框或文本 -->
+            <td>
+              <template v-if="editingId === student">
+                <select v-model="editData.teacherId" class="edit-select">
+                  <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">
+                    {{ teacher.name }}
+                  </option>
+                </select>
+              </template>
+              <template v-else>
+                {{ student.class_ban.teacher.name }}
+              </template>
+            </td>
+            <!-- 操作列：根据编辑状态显示按钮或文本 -->
             <td class="action-buttons">
-              <button class="btn-view">查看</button>
-              <button class="btn-edit">编辑</button>
-              <button class="btn-delete">删除</button>
+              <template v-if="editingId === student.id">
+                <button class="btn-save" @click="saveEdit(student)">保存</button>
+                <button class="btn-cancel" @click="cancelEdit">取消</button>
+              </template>
+              <template v-else>
+                <button class="btn-view">查看</button>
+                <button class="btn-edit" @click="startEdit(student)">编辑</button>
+                <button class="btn-delete">删除</button>
+              </template>
             </td>
           </tr>
         </tbody>
@@ -342,6 +434,24 @@ export default {
   cursor: pointer;
 }
 
+/* 编辑输入框和下拉框样式 */
+.edit-input,
+.edit-select {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #3b82f6;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.edit-input:focus,
+.edit-select:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
 /* 操作按钮样式 */
 .action-buttons {
   display: flex;
@@ -351,7 +461,9 @@ export default {
 
 .btn-view,
 .btn-edit,
-.btn-delete {
+.btn-delete,
+.btn-save,
+.btn-cancel {
   padding: 4px 12px;
   border-radius: 4px;
   font-size: 13px;
@@ -386,6 +498,24 @@ export default {
 .btn-delete:hover {
   background-color: #fecaca;
 }
+
+.btn-save {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.btn-save:hover {
+  background-color: #bbf7d0;
+}
+
+.btn-cancel {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.btn-cancel:hover {
+    background-color: #e5e7eb;
+  }
 
 /* 分页样式 */
 .pagination-section {
