@@ -36,7 +36,8 @@ class User(AbstractUser):
 class Student(AbstractUser):
     """学生模型类"""
     name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
-    gender = models.CharField(max_length=10, choices=(('male', '男'), ('female', '女')), default='male', verbose_name='性别')
+    gender = models.CharField(max_length=10, choices=(('男', '男'), ('女', '女'), ('未知', '未知')), default='未知', verbose_name='性别')
+    class_ban = models.ForeignKey('ClassBan', verbose_name='班级', on_delete=models.CASCADE, null=True,blank=True)
 
     groups = models.ManyToManyField(
         Group,
@@ -89,5 +90,19 @@ class Teacher(AbstractUser):
         verbose_name = '教师用户'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
+# 班级模型
+class ClassBan(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name='班级序号')
+    grade = models.CharField(max_length=10,
+                             choices=(('初一', '初一'), ('初二', '初二'), ('初三', '初三'), ('未知', '未知')),
+                             default='未知', verbose_name='所属年级')
+    teacher = models.ForeignKey('Teacher', verbose_name='任课老师', on_delete=models.CASCADE)
+    class Meta:
+        db_table = 'class_bans'
+        verbose_name = '班级'
+        verbose_name_plural = verbose_name
     def __str__(self):
         return self.name
