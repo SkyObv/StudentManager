@@ -6,7 +6,7 @@ export default {
       option:0,                                                      // 选择标志
       name:'',                                                       // 用户名
       first_name:'',                                                 // 性
-      identity:'',                                                   // 用户类型
+      user_type:'',                                                   // 用户类型
       token:'',                                                      // 登入令牌
       refresh:'',                                                    // 刷新令牌
     }
@@ -22,7 +22,7 @@ export default {
     getUser(){
       this.name = localStorage.getItem('name') || sessionStorage.getItem('name')
       this.first_name = this.name.charAt(0)
-      this.identity = localStorage.getItem('identity') || sessionStorage.getItem('identity')
+      this.user_type = localStorage.getItem('user_type') || sessionStorage.getItem('user_type')
       this.token = localStorage.getItem('token') || sessionStorage.getItem('token')
       this.refresh = localStorage.getItem('refresh') || sessionStorage.getItem('refresh')
       if (!this.token){
@@ -34,7 +34,7 @@ export default {
     quit(){
       localStorage.clear();
       sessionStorage.clear();
-      this.$router.push('/');
+      this.$router.push({name: 'Login'})
       this.$message.success("退出成功！")
     }
   }
@@ -124,7 +124,7 @@ export default {
             </div>
             <div class="user-details">
               <div class="username">{{ name }}</div>
-              <div class="user-role">{{ identity }}</div>
+              <div class="user-role">{{ user_type }}</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>

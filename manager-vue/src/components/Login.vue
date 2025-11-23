@@ -4,7 +4,7 @@ export default {
   name:"Login",
   data() {
     return {
-      identity: '',                                                  // 用户类型：student, teacher, admin
+      identity: '',                                                  // 用户类型：student, teacher, admins
       loginForm:{                                                    // 登入表单
         username: '',
         password: '',
@@ -23,6 +23,10 @@ export default {
       }
     }
   },
+  created() {
+    sessionStorage.clear();
+    localStorage.clear();
+  },
   methods: {
     // 登入
     Login(){
@@ -31,29 +35,29 @@ export default {
         this.$message.warning('请选择用户类型')
         return
       }
-      this.$axios.post(`${this.$settings.Host}/apps/login/`,
-          {'username':this.loginForm.username, 'password':this.loginForm.password,'identity':this.identity}).then(response => {
+      this.$axios.post(`${this.$settings.Host}/users/login/`,
+          {'username':this.loginForm.username, 'password':this.loginForm.password,'user_type':this.identity}).then(response => {
         if (this.rememberMe){
           localStorage.token = response.data.access
           localStorage.refresh = response.data.refresh
-          localStorage.identity = response.data.identity
+          localStorage.user_type = response.data.user_type
           localStorage.name = response.data.name
         }
         else {
           sessionStorage.token = response.data.access
           sessionStorage.refresh = response.data.refresh
-          sessionStorage.identity = response.data.identity
+          sessionStorage.user_type = response.data.user_type
           sessionStorage.name = response.data.name
         }
 
         this.$message.success("登入成功")
-        if (response.data.identity === 'student'){
-          this.$router.push({name: 'Students'})
+        if (response.data.user_type === 'student'){
+          this.$router.push({name: 'StudentComp'})
         }
-        if (response.data.identity === 'teacher'){
-          this.$router.push({name: 'Teachers'})
+        if (response.data.user_type === 'teacher'){
+          this.$router.push({name: 'TeacherComp'})
         }
-        if (response.data.identity === 'admin'){
+        if (response.data.user_type === 'admin'){
           this.$router.push({name: 'AdminComp'})
         }
       }).catch(error => {
