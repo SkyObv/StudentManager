@@ -1,37 +1,93 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
 # Create your models here.
-IDENTITY = (
-    ('student', '学生'),
-    ('teacher', '教师'),
-    ('admin', '管理员'),
-)
-
-# 用户模型类('admin','teacher','student')
+# 用户模型类('admins','teacher','student')
 class User(AbstractUser):
     """用户模型类"""
-    IDENTITY_STUDENT = 'student'
-    IDENTITY_TEACHER = 'teacher'
-    IDENTITY_ADMIN = 'admin'
-
     name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
-    identity = models.CharField(max_length=128,choices=IDENTITY, verbose_name='身份')
+
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        related_name="admin_users",  # 唯一的反向关系名
+        related_query_name="admin_user",
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name="admin_users",  # 唯一的反向关系名
+        related_query_name="admin_user",
+    )
 
     class Meta:
         db_table = 'users'
-        verbose_name = '用户'
+        verbose_name = '管理员用户'
         verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.name
 
-# 管理员选项
-class AdminOptions(models.Model):
-    options = models.CharField(max_length=100, unique=True ,verbose_name='管理员选项')
-    is_show = models.BooleanField(default=True, verbose_name='是否显示')
+# 学生模型
+class Student(AbstractUser):
+    """学生模型类"""
+    name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
+    gender = models.CharField(max_length=10, choices=(('male', '男'), ('female', '女')), default='male', verbose_name='性别')
+
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        related_name="student_users", # 唯一的反向关系名
+        related_query_name="student_user",
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name="student_users", # 唯一的反向关系名
+        related_query_name="student_user",
+    )
 
     class Meta:
-        db_table = 'admin_options'
-        verbose_name = '管理员选项'
+        db_table = 'students'
+        verbose_name = '学生用户'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+class Teacher(AbstractUser):
+    """教师模型类"""
+    name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
+
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        related_name="teacher_users", # 唯一的反向关系名
+        related_query_name="teacher_user",
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name="teacher_users", # 唯一的反向关系名
+        related_query_name="teacher_user",
+    )
+
+    class Meta:
+        db_table = 'teachers'
+        verbose_name = '教师用户'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name

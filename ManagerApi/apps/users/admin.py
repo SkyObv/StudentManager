@@ -1,10 +1,55 @@
 from django.contrib import admin
-from .models import User, AdminOptions
+from django.contrib.auth.admin import UserAdmin
+from .models import User, Student, Teacher
+
 # Register your models here.
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['id','username','identity']
+class UserAdmin(UserAdmin):
+    list_display = ['id','username','password','is_active','name']
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        # 在“个人信息”分组里，加上 'name' 字段
+        ('个人信息', {'fields': ('name', 'email')}),
+        ('权限', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            # 在 'fields' 元组里，加上 'name'
+            'fields': ('username', 'name', 'password1', 'password2'),
+        }),
+    )
 
-@admin.register(AdminOptions)
-class AdminOptionsAdmin(admin.ModelAdmin):
-    list_display = ['id','options','is_show']
+@admin.register(Student)
+class StudentAdmin(UserAdmin):
+    list_display = ['id','username','password','is_active','name']
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        # 在“个人信息”分组里，加上 'name' 字段
+        ('个人信息', {'fields': ('name', 'email')}),
+        ('权限', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            # 在 'fields' 元组里，加上 'name'
+            'fields': ('username', 'name', 'password1', 'password2'),
+        }),
+    )
+
+@admin.register(Teacher)
+class TeacherAdmin(UserAdmin):
+    list_display = ['id','username','password','is_active','name']
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        # 在“个人信息”分组里，加上 'name' 字段
+        ('个人信息', {'fields': ('name', 'email')}),
+        ('权限', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            # 在 'fields' 元组里，加上 'name'
+            'fields': ('username', 'name', 'password1', 'password2'),
+        }),
+    )
