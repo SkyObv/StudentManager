@@ -3,10 +3,12 @@ export default {
   name: 'StudentManagement',
   data() {
     return {
-      request_url:`${this.$settings.Host}/admin_manager/getStuidents/`,
       page:1,                                                        // 当前页码
+      filter_group:'全部',                                            // 筛选年级
+      filter_ban:null,                                               // 筛选班级
       page_count:null,                                               // 总页数
       students:[],                                                   // 学生列表
+      classBan:[],                                                   // 班级列表
       count:null,                                                    // 学生总数
       editingId: null,                                               // 当前编辑的学生ID
       editData: {},                                                  // 编辑时的临时数据
@@ -20,17 +22,33 @@ export default {
     }
   },
   created() {
-    this.getStudents()
+    this.getClasses();
+    this.getStudents();
   },
   methods:{
     // 页码切换
     changePage(index){
       if(index === this.page){return "page-btn page-btn-active"}else {return "page-btn"}
     },
-    // 获取学生列表
+    // 级条件筛选样式切换
+    getFilterStudent(index){
+      if (this.filter_group === index){return "grade-btn grade-btn-all"}else {return "grade-btn"}
+    },
+    // 年级条件筛选获取学生
+    changeGrade(index){
+      this.filter_group = index
+      this.getClasses()
+      this.getStudents()
+    },
+    // 获取学生列表(index==跳转的页码)
     getStudents(index){
-      if (index){this.request_url = `${this.$settings.Host}/admin_manager/getStuidents/?page=${index}`;this.page =  index}
-      this.$axios.get(this.request_url).then(res => {
+      let request_url = `${this.$settings.Host}/admin_manager/getStuidents/?page=${this.page}`
+      if (index){
+        request_url = `${this.$settings.Host}/admin_manager/getStuidents/?page=${index}`;this.page =  index
+      }
+      if(this.filter_group!=='全部'){request_url = `${request_url}`+ `&grade=${this.filter_group}`}
+      if(this.filter_ban){request_url = `${request_url}`+ `&class_ban=${this.filter_ban}`}
+      this.$axios.get(request_url).then(res => {
         this.students = res.data.results
         this.count = res.data.count
         this.page_count = Math.ceil(res.data.count / 20)
@@ -38,6 +56,17 @@ export default {
         top: 0,
         behavior: 'smooth'
         });
+      })
+    },
+    // 获取所有班级
+    getClasses(){
+      let request_url = `${this.$settings.Host}/admin_manager/getClassBans/`
+      if(this.filter_group!=='全部'){request_url = `${request_url}`+ `?grade=${this.filter_group}`}
+      this.$axios.get(request_url).then(res => {
+        this.classBan = res.data.results
+      }).catch(err => {
+        console.log(err)
+        this.$message.error("获取班级列表失败")
       })
     },
     // 开始编辑
@@ -52,23 +81,9 @@ export default {
     // 保存编辑
     saveEdit(student) {
       // 这里使用静态数据模拟保存操作
-      const index = this.students.findIndex(s => (s.id || s.username || s.name) === (student.id || student.username || student.name));
-      if (index !== -1) {
-        // 更新学生数据
-        this.students[index].username = this.editData.username;
-        this.students[index].name = this.editData.name;
-        // 更新老师信息
-        const selectedTeacher = this.teachers.find(t => t.id === this.editData.teacherId);
-        if (selectedTeacher) {
-          if (!this.students[index].class_ban) {
-            this.students[index].class_ban = {};
-          }
-          if (!this.students[index].class_ban.teacher) {
-            this.students[index].class_ban.teacher = {};
-          }
-          this.students[index].class_ban.teacher.name = selectedTeacher.name;
-        }
-      }
+      console.log(this.editingId)
+      console.log(this.editData)
+      console.log(student)
       // 结束编辑状态
       this.cancelEdit();
     },
@@ -95,10 +110,10 @@ export default {
         <div class="filter-group">
           <label class="filter-label">年级：</label>
           <div class="grade-buttons">
-            <button class="grade-btn">初一</button>
-            <button class="grade-btn">初二</button>
-            <button class="grade-btn">初三</button>
-            <button class="grade-btn grade-btn-all">全部</button>
+            <button :class="getFilterStudent('初一')" @click="changeGrade('初一')">初一</button>
+            <button :class="getFilterStudent('初二')" @click="changeGrade('初二')">初二</button>
+            <button :class="getFilterStudent('初三')" @click="changeGrade('初三')">初三</button>
+            <button :class="getFilterStudent('全部')" @click="changeGrade('全部')">全部</button>
           </div>
         </div>
 
@@ -108,15 +123,7 @@ export default {
           <div class="class-selector">
             <select class="class-dropdown">
               <option value="all">全部班级</option>
-              <option value="1-1">初一(1)班</option>
-              <option value="1-2">初一(2)班</option>
-              <option value="1-3">初一(3)班</option>
-              <option value="2-1">初二(1)班</option>
-              <option value="2-2">初二(2)班</option>
-              <option value="2-3">初二(3)班</option>
-              <option value="3-1">初三(1)班</option>
-              <option value="3-2">初三(2)班</option>
-              <option value="3-3">初三(3)班</option>
+              <option value="1-1" v-for="(ban, index) in classBan" :key="index">{{ ban.name }}</option>
             </select>
           </div>
         </div>
@@ -149,6 +156,7 @@ export default {
             <th>年级</th>
             <th>班级</th>
             <th>老师</th>
+            <th>是否毕业</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -181,7 +189,7 @@ export default {
             <!-- 性别列 -->
             <td>
               <template v-if="editingId === student.id">
-                <input type="text" v-model="editData.name" class="edit-input" placeholder="姓名" />
+                <input type="text" v-model="editData.gender" class="edit-input" placeholder="姓名" />
               </template>
               <template v-else>
                 {{student.gender}}
@@ -193,7 +201,7 @@ export default {
             <td>{{ student.class_ban.grade}}</td>
             <!-- 老师列：根据编辑状态显示下拉框或文本 -->
             <td>
-              <template v-if="editingId === student">
+              <template v-if="editingId === student.id">
                 <select v-model="editData.teacherId" class="edit-select">
                   <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">
                     {{ teacher.name }}
@@ -202,6 +210,18 @@ export default {
               </template>
               <template v-else>
                 {{ student.class_ban.teacher.name }}
+              </template>
+            </td>
+            <!-- 是否毕业列：根据编辑状态显示下拉框 -->
+            <td>
+              <template v-if="editingId === student.id">
+                <select v-model="editData.is_active" class="edit-select">
+                  <option value="true">是</option>
+                  <option value="false">否</option>
+                </select>
+              </template>
+              <template v-else>
+                {{ student.is_active }}
               </template>
             </td>
             <!-- 操作列：根据编辑状态显示按钮或文本 -->
