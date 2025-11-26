@@ -12,13 +12,6 @@ export default {
       count:null,                                                    // 学生总数
       editingId: null,                                               // 当前编辑的学生ID
       editData: {},                                                  // 编辑时的临时数据
-      teachers: [                                                    // 静态老师数据
-        {id: 1, name: '张老师'},
-        {id: 2, name: '李老师'},
-        {id: 3, name: '王老师'},
-        {id: 4, name: '赵老师'},
-        {id: 5, name: '刘老师'}
-      ]
     }
   },
   created() {
@@ -73,17 +66,27 @@ export default {
     startEdit(student) {
       this.editingId = student.id                                    // 使用可用的唯一标识
       this.editData = {
-        username: student.username,
-        name: student.name,
-        teacherId: student.class_ban?.teacher?.id || 1
+        username: student.username,                                  // 学号
+        name: student.name,                                          // 姓名
+        gender: student.gender,                                      // 性别
+        class_ban: student.class_ban.id,                             // 班级
+        is_active: student.is_active,                                // 毕业状态
       };
     },
     // 保存编辑
     saveEdit(student) {
-      // 这里使用静态数据模拟保存操作
-      console.log(this.editingId)
-      console.log(this.editData)
       console.log(student)
+      if(this.editData.is_active === "是"){this.editData.is_active = true}
+      else {this.editData.is_active =  false}
+      let url = `${this.$settings.Host}/admin_manager/student/${this.editingId}/update`
+      this.$axios.put(url, this.editData).then(res => {
+        console.log(res)
+        this.$message.success("保存成功")
+        window.location.reload();
+      }).catch(err => {
+        console.log(err)
+        this.$message.error("保存失败")
+      })
       // 结束编辑状态
       this.cancelEdit();
     },
@@ -189,35 +192,38 @@ export default {
             <!-- 性别列 -->
             <td>
               <template v-if="editingId === student.id">
-                <input type="text" v-model="editData.gender" class="edit-input" placeholder="姓名" />
+                <select v-model="editData.gender" class="edit-select">
+                  <option value="男">男</option>
+                  <option value="女">女</option>
+                </select>
               </template>
               <template v-else>
                 {{student.gender}}
               </template>
             </td>
             <!-- 年级列 -->
-            <td>{{ student.class_ban.name }}</td>
-            <!-- 班级列 -->
             <td>{{ student.class_ban.grade}}</td>
-            <!-- 老师列：根据编辑状态显示下拉框或文本 -->
+            <!-- 班级列 -->
             <td>
               <template v-if="editingId === student.id">
-                <select v-model="editData.teacherId" class="edit-select">
-                  <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">
-                    {{ teacher.name }}
+                <select v-model="editData.class_ban" class="edit-select">
+                  <option v-for="class_ban in classBan" :key="class_ban.name" :value="class_ban.id">
+                    {{ class_ban.name }}班-{{ class_ban.grade }}-{{ class_ban.teacher.name }}
                   </option>
                 </select>
               </template>
               <template v-else>
-                {{ student.class_ban.teacher.name }}
+                {{ student.class_ban.name }}
               </template>
             </td>
+            <!-- 老师列：根据编辑状态显示下拉框或文本 -->
+            <td>{{ student.class_ban.teacher.name }}</td>
             <!-- 是否毕业列：根据编辑状态显示下拉框 -->
             <td>
               <template v-if="editingId === student.id">
                 <select v-model="editData.is_active" class="edit-select">
-                  <option value="true">是</option>
-                  <option value="false">否</option>
+                  <option value="是">是</option>
+                  <option value="否">否</option>
                 </select>
               </template>
               <template v-else>
@@ -651,3 +657,5 @@ export default {
   }
 }
 </style>
+
+

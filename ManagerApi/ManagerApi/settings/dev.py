@@ -45,14 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'django_filters',
     'users',
-    'admin_manager',
 ]
 # 添加自定义认证后端 (实现多表登录的关键)
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'users.serializers.MultiModelAuthBackend',                       # 你的自定义后端
 ]
+
 # rest_framewor配置
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [                              # 添加jwt认证
@@ -60,7 +60,11 @@ REST_FRAMEWORK = {
     ],
     # 配置分页类
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20                                                  # 返回的数据
+    'PAGE_SIZE': 20,                                                 # 返回的数据
+    # 添加过滤器
+    'DEFAULT_FILTER_BACKENDS': [
+            'django_filters.rest_framework.DjangoFilterBackend',
+        ]
 }
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),              # 访问token有效期

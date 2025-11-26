@@ -1,108 +1,82 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
-# 用户模型类('admins','teacher','student')
+# 用户模型
 class User(AbstractUser):
-    """用户模型类"""
-    name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
-
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name='groups',
-        blank=True,
-        help_text='The groups this user belongs to.',
-        related_name="admin_users",  # 唯一的反向关系名
-        related_query_name="admin_user",
+    """用户模型"""
+    USER_TYPE = (
+        ('student','学生'),
+        ('teacher','教师'),
+        ('admin','管理员'),
     )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name='user permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_name="admin_users",  # 唯一的反向关系名
-        related_query_name="admin_user",
+    # 用户类型
+    user_type = models.CharField(max_length=10,verbose_name='用户类型',choices=USER_TYPE,default='student')
+    # 学生关联老师字段
+    teacher_id = models.ForeignKey(
+        'self',
+        verbose_name='指导教师',
+        null=True,                                                   # 数据库允许为NULL
+        blank=True,                                                  # 允许为空
+        on_delete=models.SET_NULL,                                   # 指定删除时，关联对象设置为NULL
+        related_name='students',                                     # 反向查询
+        limit_choices_to={'user_type': 'teacher'}                    # 限制可选项为教师类型
     )
-
-    class Meta:
-        db_table = 'users'
-        verbose_name = '管理员用户'
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.name
-
-# 学生模型
-class Student(AbstractUser):
-    """学生模型类"""
-    name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
-    gender = models.CharField(max_length=10, choices=(('男', '男'), ('女', '女'), ('未知', '未知')), default='未知', verbose_name='性别')
-    class_ban = models.ForeignKey('ClassBan', verbose_name='班级', on_delete=models.CASCADE, null=True,blank=True)
-
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name='groups',
-        blank=True,
-        help_text='The groups this user belongs to.',
-        related_name="student_users", # 唯一的反向关系名
-        related_query_name="student_user",
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name='user permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_name="student_users", # 唯一的反向关系名
-        related_query_name="student_user",
+    # 学生用户关联宿舍门号
+    house_number = models.ForeignKey(
+        'Hostel',
+        verbose_name='宿舍门牌号',
+        null=True,                                                   # 允许为NULL
+        blank=True,                                                  # 允许为空
+        on_delete=models.SET_NULL,                                   # 删除时设置为NULL
+        related_name='students_house',                               # 反向查询
     )
 
     class Meta:
-        db_table = 'students'
-        verbose_name = '学生用户'
+        verbose_name = '用户'
         verbose_name_plural = verbose_name
-
     def __str__(self):
-        return self.name
+        return self.last_name + self.first_name
 
-class Teacher(AbstractUser):
-    """教师模型类"""
-    name = models.CharField(max_length=100, unique=False, default='待设置姓名', verbose_name='姓名')
-
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name='groups',
-        blank=True,
-        help_text='The groups this user belongs to.',
-        related_name="teacher_users", # 唯一的反向关系名
-        related_query_name="teacher_user",
+# 宿舍模型
+class Hostel(models.Model):
+    """宿舍模型"""
+    hostel_number = models.CharField(max_length=30,verbose_name='宿舍门牌号')
+    floor = models.ForeignKey(
+        'Floor',
+        verbose_name='宿舍楼',
+        on_delete=models.CASCADE,                                    # 级联删除
+        related_name='hostels',                                      # 反向查询楼层
     )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name='user permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_name="teacher_users", # 唯一的反向关系名
-        related_query_name="teacher_user",
+    # 宿舍床位数
+    capacity = models.PositiveIntegerField(
+        verbose_name='床位数',
+        default=6
     )
-
+    is_deleted = models.BooleanField(default=False,verbose_name='是否删除')
     class Meta:
-        db_table = 'teachers'
-        verbose_name = '教师用户'
+        verbose_name = '宿舍'
         verbose_name_plural = verbose_name
-
+        # 联合唯一约束：在同一个宿舍楼内，门牌号不能重复
+        unique_together = ('floor', 'hostel_number')
     def __str__(self):
-        return self.name
+        return f"{self.floor.floor_name}-{self.hostel_number}"
+    # 宿舍床位数动态计算,虚拟字段
+    @property
+    def student_count(self):
+        # students_house' 是我们在 User 模型中定义的 related_name
+        return self.students_house.count()
+    # 宿舍床铺是否已满
+    @property
+    def is_full(self):
+        return self.student_count >= self.capacity
 
-# 班级模型
-class ClassBan(models.Model):
-    name = models.CharField(max_length=100, unique=True, verbose_name='班级序号')
-    grade = models.CharField(max_length=10,
-                             choices=(('初一', '初一'), ('初二', '初二'), ('初三', '初三'), ('未知', '未知')),
-                             default='未知', verbose_name='所属年级')
-    teacher = models.ForeignKey('Teacher', verbose_name='任课老师', on_delete=models.CASCADE)
+# 宿舍楼模型
+class Floor(models.Model):
+    """宿舍楼模型"""
+    floor_name = models.CharField(max_length=20,verbose_name='宿舍楼名称',unique=True)
+    is_deleted = models.BooleanField(default=False, verbose_name='是否删除')
     class Meta:
-        db_table = 'class_bans'
-        verbose_name = '班级'
+        verbose_name = '宿舍楼'
         verbose_name_plural = verbose_name
     def __str__(self):
-        return self.name
+        return self.floor_name
