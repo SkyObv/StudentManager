@@ -30,6 +30,8 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,                                   # 删除时设置为NULL
         related_name='students_house',                               # 反向查询
     )
+    # 用户性别
+    gender = models.CharField(max_length=10,verbose_name='性别',choices=(('male','男'),('female','女')),default='male')
 
     class Meta:
         verbose_name = '用户'
@@ -52,6 +54,8 @@ class Hostel(models.Model):
         verbose_name='床位数',
         default=6
     )
+    # 用户性别
+    gender = models.CharField(max_length=10, verbose_name='性别', choices=(('male', '男'), ('female', '女')),default='male')
     is_deleted = models.BooleanField(default=False,verbose_name='是否删除')
     class Meta:
         verbose_name = '宿舍'
@@ -69,8 +73,12 @@ class Hostel(models.Model):
     @property
     def is_full(self):
         return self.student_count >= self.capacity
+    # 是否有人
+    @property
+    def have_people(self):
+        return self.student_count > 0
 
-# 宿舍楼模型
+# 楼层模型
 class Floor(models.Model):
     """宿舍楼模型"""
     floor_name = models.CharField(max_length=20,verbose_name='宿舍楼名称',unique=True)

@@ -18,7 +18,7 @@ class HostelSerializer(serializers.ModelSerializer):
     is_full = serializers.SerializerMethodField()                    # 宿舍是否已满，虚拟字段，动态计算
     class Meta:
         model = Hostel
-        fields = ['hostel_number','floor','student_count','is_full']
+        fields = ['hostel_number','floor','student_count','is_full','gender']
     def get_student_count(self, obj):
         """获取宿舍人数"""
         return obj.student_count
@@ -32,7 +32,7 @@ class Hoste_StudentSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['id', 'name']
+        fields = ['id', 'name','gender']
     def get_name(self, obj):
         """获取学生的姓名"""
         return obj.last_name + obj.first_name
@@ -44,13 +44,27 @@ class HostelStudentSerializer(HostelSerializer):
     )
     class Meta:
         model = Hostel
-        fields = ['hostel_number','floor','student_count','is_full','students']
+        fields = ['hostel_number','floor','student_count','is_full','gender','students']
 
 # 宿舍楼信息序列化器
 class FloorSerializer(serializers.ModelSerializer):
+    # 房间总数
+    rooms = serializers.SerializerMethodField()
+    # 有人的房间数
+    have_people_rooms = serializers.SerializerMethodField()
+    # 宿舍信息获取
     class Meta:
         model = Floor
-        fields = '__all__'
+        fields = ['id','floor_name','rooms','have_people_rooms']
+    def get_rooms(self, obj):
+        """获取房间总数"""
+        return obj.hostels.filter(is_deleted=False).count()
+    def get_have_people_rooms(self, obj):
+        """获取有人的房间数"""
+        return obj.hostels.filter(
+            is_deleted=False,
+            students_house__isnull=False
+        ).distinct().count()
 
 # 学生用户信息序列化器
 class GetAllStudentsSerializer(serializers.ModelSerializer):
@@ -67,3 +81,4 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
     def get_name(self, obj):
         """获取学生的姓名"""
         return obj.last_name + obj.first_name
+

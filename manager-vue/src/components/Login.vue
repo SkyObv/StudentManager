@@ -36,7 +36,7 @@ export default {
         return
       }
       this.$axios.post(`${this.$settings.Host}/users/login/`,
-          {'username':this.loginForm.username, 'password':this.loginForm.password,'user_type':this.identity}).then(response => {
+          {'username':this.loginForm.username, 'password':this.loginForm.password}).then(response => {
         if (this.rememberMe){
           localStorage.token = response.data.access
           localStorage.refresh = response.data.refresh
@@ -49,15 +49,13 @@ export default {
           sessionStorage.user_type = response.data.user_type
           sessionStorage.name = response.data.name
         }
-
+        // 学生页面
         this.$message.success("登入成功")
         if (response.data.user_type === 'student'){
           this.$router.push({name: 'StudentComp'})
         }
-        if (response.data.user_type === 'teacher'){
-          this.$router.push({name: 'TeacherComp'})
-        }
-        if (response.data.user_type === 'admin'){
+        // 管理者页面
+        if (response.data.user_type === 'teacher' || response.data.user_type === 'admin'){
           this.$router.push({name: 'AdminComp'})
         }
       }).catch(error => {

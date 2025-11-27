@@ -499,3 +499,697 @@ INFO 2025-11-26 17:44:26,519 autoreload 667 Watching for file changes with StatR
 INFO 2025-11-26 17:44:29,039 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 269
 INFO 2025-11-26 17:49:51,811 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 46
 INFO 2025-11-26 17:50:15,001 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 269
+INFO 2025-11-27 13:21:23,760 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 13:23:04,900 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-11-27 13:23:05,504 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-11-27 13:24:21,636 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-11-27 13:24:22,238 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+WARNING 2025-11-27 13:24:22,260 log 253 Not Found: /admin_manager/getClassBans/
+WARNING 2025-11-27 13:24:22,260 log 253 Not Found: /admin_manager/getStuidents/
+WARNING 2025-11-27 13:24:22,261 basehttp 213 "GET /admin_manager/getClassBans/ HTTP/1.1" 404 2409
+WARNING 2025-11-27 13:24:22,261 basehttp 213 "GET /admin_manager/getStuidents/?page=1 HTTP/1.1" 404 2416
+INFO 2025-11-27 13:38:13,363 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 46
+INFO 2025-11-27 13:51:33,363 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 13:51:34,004 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 13:52:47,811 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 13:52:48,299 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 13:53:35,985 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 13:53:36,433 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 13:55:22,664 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 13:55:23,352 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 13:55:28,304 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 20
+INFO 2025-11-27 13:59:11,507 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 13:59:12,029 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:03:23,176 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-27 14:03:23,657 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-11-27 14:04:02,638 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'have_people_rooms' was declared on serializer FloorSerializer, but has not been included in the 'fields' option.
+ERROR 2025-11-27 14:04:02,644 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 143899
+INFO 2025-11-27 14:04:31,403 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:04:31,889 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-11-27 14:04:33,088 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 62, in get_rooms
+    return obj.hostels.fileter(is_deleted=False).count()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RelatedManager' object has no attribute 'fileter'. Did you mean: 'filter'?
+ERROR 2025-11-27 14:04:33,095 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 129543
+INFO 2025-11-27 14:04:42,738 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:04:43,271 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-11-27 14:04:43,855 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 62, in get_rooms
+    return obj.hostels.fileter(is_deleted=False).count()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RelatedManager' object has no attribute 'fileter'. Did you mean: 'filter'?
+ERROR 2025-11-27 14:04:43,863 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 129549
+ERROR 2025-11-27 14:04:47,604 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 62, in get_rooms
+    return obj.hostels.fileter(is_deleted=False).count()
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RelatedManager' object has no attribute 'fileter'. Did you mean: 'filter'?
+ERROR 2025-11-27 14:04:47,607 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 129549
+INFO 2025-11-27 14:05:41,368 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:05:41,887 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:05:43,433 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 30
+WARNING 2025-11-27 14:05:54,914 log 253 Not Found: /
+WARNING 2025-11-27 14:05:54,915 basehttp 213 "GET / HTTP/1.1" 404 2310
+WARNING 2025-11-27 14:05:55,047 log 253 Not Found: /favicon.ico
+WARNING 2025-11-27 14:05:55,047 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2361
+INFO 2025-11-27 14:06:04,698 basehttp 213 "GET /admin/ HTTP/1.1" 200 11222
+INFO 2025-11-27 14:06:04,726 basehttp 213 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,726 basehttp 213 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,728 basehttp 213 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,728 basehttp 213 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,729 basehttp 213 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,729 basehttp 213 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,735 basehttp 213 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,737 basehttp 213 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:04,737 basehttp 213 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,037 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 11222
+INFO 2025-11-27 14:06:07,068 basehttp 213 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,071 basehttp 213 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,071 basehttp 213 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,072 basehttp 213 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,072 basehttp 213 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,072 basehttp 213 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,075 basehttp 213 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,075 basehttp 213 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,075 basehttp 213 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,080 basehttp 213 "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,081 basehttp 213 "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,083 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:06:07,086 basehttp 213 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,096 basehttp 213 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,096 basehttp 213 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:06:07,972 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 12404
+INFO 2025-11-27 14:06:07,998 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:06:30,909 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:06:31,368 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-11-27 14:07:14,069 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'have_people_rooms' was declared on serializer FloorSerializer, but has not been included in the 'fields' option.
+ERROR 2025-11-27 14:07:14,076 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 143899
+INFO 2025-11-27 14:11:14,003 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:11:14,521 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-11-27 14:11:19,585 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'have_people_rooms' was declared on serializer FloorSerializer, but has not been included in the 'fields' option.
+ERROR 2025-11-27 14:11:19,589 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 143899
+INFO 2025-11-27 14:12:17,954 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:12:18,430 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-11-27 14:12:25,514 log 253 Internal Server Error: /users/floors/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'have_people_rooms' was declared on serializer FloorSerializer, but has not been included in the 'fields' option.
+ERROR 2025-11-27 14:12:25,518 basehttp 213 "GET /users/floors/ HTTP/1.1" 500 143899
+INFO 2025-11-27 14:13:15,579 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:13:16,046 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:13:21,745 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:13:36,424 basehttp 213 "GET /admin/users/hostel/add/ HTTP/1.1" 200 12352
+INFO 2025-11-27 14:13:36,453 basehttp 213 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:13:36,459 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:13:36,459 basehttp 213 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:13:36,476 basehttp 213 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-11-27 14:13:36,480 basehttp 213 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-11-27 14:13:39,558 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 12404
+INFO 2025-11-27 14:13:39,586 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:13:41,242 basehttp 213 "GET /admin/users/hostel/add/ HTTP/1.1" 200 12352
+INFO 2025-11-27 14:13:41,267 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:13:46,494 basehttp 213 "POST /admin/users/hostel/add/ HTTP/1.1" 302 0
+INFO 2025-11-27 14:13:46,512 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13078
+INFO 2025-11-27 14:13:46,541 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:13:46,551 basehttp 213 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-11-27 14:13:49,462 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:15:55,996 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:15:56,435 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:23:21,790 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-27 14:23:22,245 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:26:16,872 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:26:32,992 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 351
+INFO 2025-11-27 14:26:39,842 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:38:56,871 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 351
+INFO 2025-11-27 14:41:45,334 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 14:41:46,048 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:41:49,228 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 431
+WARNING 2025-11-27 14:44:31,827 log 253 Method Not Allowed: /users/login/
+WARNING 2025-11-27 14:44:31,827 basehttp 213 "GET /users/login/ HTTP/1.1" 405 45
+INFO 2025-11-27 14:44:46,581 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:45:10,623 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:45:34,427 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:45:55,567 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:46:56,058 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:46:59,495 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 14:47:56,478 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 14:47:56,968 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:48:07,765 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 14:48:08,201 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:48:09,306 basehttp 213 "GET /admin/users/floor/add/ HTTP/1.1" 200 10009
+INFO 2025-11-27 14:48:09,349 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 14:48:29,509 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 14:48:29,967 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:48:31,375 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 14:48:31,818 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:49:00,438 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 14:49:00,877 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:54:27,472 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-11-27 14:54:28,007 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 14:55:16,555 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 14:55:17,035 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-27 14:55:33,857 log 253 Not Found: /create/floor/
+WARNING 2025-11-27 14:55:33,858 basehttp 213 "GET /create/floor/ HTTP/1.1" 404 2367
+INFO 2025-11-27 14:56:32,806 basehttp 213 "OPTIONS /create/floor/ HTTP/1.1" 200 0
+WARNING 2025-11-27 14:56:32,810 log 253 Not Found: /create/floor/
+WARNING 2025-11-27 14:56:32,810 basehttp 213 "POST /create/floor/ HTTP/1.1" 404 2368
+WARNING 2025-11-27 14:57:52,608 log 253 Not Found: /create/floor/
+WARNING 2025-11-27 14:57:52,608 basehttp 213 "POST /create/floor/ HTTP/1.1" 404 2368
+INFO 2025-11-27 14:58:25,017 basehttp 213 "OPTIONS /users/create/floor/ HTTP/1.1" 200 0
+WARNING 2025-11-27 14:58:25,033 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 14:58:25,034 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 68
+INFO 2025-11-27 15:00:09,646 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 18
+INFO 2025-11-27 15:00:20,888 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 103
+INFO 2025-11-27 15:10:41,129 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 15:10:41,614 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:12:28,990 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 15:12:29,449 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:15:04,598 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 15:15:05,052 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:15:46,204 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 15:15:46,685 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:15:54,144 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 15:15:54,566 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:16:10,359 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 15:16:10,819 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:17:16,711 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 15:17:17,146 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-27 15:17:25,963 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 15:17:25,963 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 68
+WARNING 2025-11-27 15:18:14,862 log 253 Method Not Allowed: /users/delete/2/floor
+WARNING 2025-11-27 15:18:14,862 basehttp 213 "GET /users/delete/2/floor HTTP/1.1" 405 45
+WARNING 2025-11-27 15:18:19,456 log 253 Method Not Allowed: /users/delete/2/floor
+WARNING 2025-11-27 15:18:19,456 basehttp 213 "POST /users/delete/2/floor HTTP/1.1" 405 46
+INFO 2025-11-27 15:18:48,751 basehttp 213 "OPTIONS /users/delete/2/floor HTTP/1.1" 200 0
+INFO 2025-11-27 15:18:48,758 basehttp 213 "DELETE /users/delete/2/floor HTTP/1.1" 200 45
+INFO 2025-11-27 15:19:03,156 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 15:19:07,811 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 11556
+INFO 2025-11-27 15:19:07,845 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:19:12,496 basehttp 213 "GET /admin/users/floor/2/change/ HTTP/1.1" 200 10201
+INFO 2025-11-27 15:19:12,533 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:19:14,523 basehttp 213 "POST /admin/users/floor/2/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 15:19:14,547 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 11740
+INFO 2025-11-27 15:19:14,573 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:19:40,468 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-11-27 15:19:40,899 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:21:07,137 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 15:21:07,567 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:23:00,198 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\admin.py changed, reloading.
+INFO 2025-11-27 15:23:00,642 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:23:00,848 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 11742
+INFO 2025-11-27 15:23:00,874 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:25:16,795 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13186
+INFO 2025-11-27 15:25:16,831 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:25:18,137 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 11742
+INFO 2025-11-27 15:25:18,164 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:25:18,533 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 15437
+INFO 2025-11-27 15:25:18,561 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:25:18,577 basehttp 213 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-11-27 15:25:18,871 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 11742
+INFO 2025-11-27 15:25:18,896 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:26:32,952 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 15:26:33,390 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:27:12,214 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 18
+INFO 2025-11-27 15:27:28,323 basehttp 213 "OPTIONS /users/delete/3/floor HTTP/1.1" 200 0
+INFO 2025-11-27 15:27:28,329 basehttp 213 "DELETE /users/delete/3/floor HTTP/1.1" 200 45
+WARNING 2025-11-27 15:27:35,850 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 15:27:35,850 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 68
+INFO 2025-11-27 15:27:50,976 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:27:51,007 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:30:39,359 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 15:30:39,885 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-27 15:30:42,727 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 15:30:42,728 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 68
+INFO 2025-11-27 15:30:52,020 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:30:52,051 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:31:14,099 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 103
+WARNING 2025-11-27 15:41:22,430 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 15:41:22,430 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 68
+INFO 2025-11-27 15:45:53,690 basehttp 213 "OPTIONS /users/delete/1/floor HTTP/1.1" 200 0
+INFO 2025-11-27 15:45:53,709 basehttp 213 "DELETE /users/delete/1/floor HTTP/1.1" 200 45
+INFO 2025-11-27 15:45:58,473 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 52
+INFO 2025-11-27 15:46:04,208 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 431
+INFO 2025-11-27 15:46:37,034 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 15:46:37,508 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:46:37,901 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 431
+INFO 2025-11-27 15:46:50,080 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 431
+INFO 2025-11-27 15:47:25,684 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:47:25,717 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:27,705 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13243
+INFO 2025-11-27 15:47:27,730 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:28,951 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13243
+INFO 2025-11-27 15:47:28,976 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:31,380 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 15437
+INFO 2025-11-27 15:47:31,406 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:37,210 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:47:37,237 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:38,208 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13243
+INFO 2025-11-27 15:47:38,233 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:41,247 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13243
+INFO 2025-11-27 15:47:41,269 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:54,567 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:47:54,593 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:56,447 basehttp 213 "GET /admin/users/floor/1/change/ HTTP/1.1" 200 10201
+INFO 2025-11-27 15:47:56,473 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:47:57,816 basehttp 213 "POST /admin/users/floor/1/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 15:47:57,838 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12287
+INFO 2025-11-27 15:47:57,864 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:51:04,415 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 15:51:04,861 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:51:37,711 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 15:51:38,167 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 15:51:43,576 basehttp 213 "DELETE /users/delete/1/floor HTTP/1.1" 200 71
+INFO 2025-11-27 15:51:49,922 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:51:49,954 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:51:51,684 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13243
+INFO 2025-11-27 15:51:51,710 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:05,615 basehttp 213 "GET /admin/users/hostel/3/change/ HTTP/1.1" 200 13294
+INFO 2025-11-27 15:52:05,646 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:07,109 basehttp 213 "POST /admin/users/hostel/3/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 15:52:07,135 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13429
+INFO 2025-11-27 15:52:07,159 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:07,947 basehttp 213 "GET /admin/users/hostel/2/change/ HTTP/1.1" 200 13294
+INFO 2025-11-27 15:52:07,971 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:09,010 basehttp 213 "POST /admin/users/hostel/2/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 15:52:09,026 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13429
+INFO 2025-11-27 15:52:09,049 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:09,603 basehttp 213 "GET /admin/users/hostel/1/change/ HTTP/1.1" 200 13294
+INFO 2025-11-27 15:52:09,629 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:10,934 basehttp 213 "POST /admin/users/hostel/1/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 15:52:10,949 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13429
+INFO 2025-11-27 15:52:10,974 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:13,349 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 15:52:13,374 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:16,278 basehttp 213 "GET /admin/users/floor/1/change/ HTTP/1.1" 200 10201
+INFO 2025-11-27 15:52:16,303 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 15:52:17,756 basehttp 213 "POST /admin/users/floor/1/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 15:52:17,778 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12287
+INFO 2025-11-27 15:52:17,806 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:04:05,765 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:04:06,333 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:07:35,003 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:07:35,465 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:12:26,566 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:12:27,025 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:12:51,491 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:12:52,019 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:14:54,804 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:14:55,241 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:14:58,708 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:14:59,163 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:15:02,018 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 103
+INFO 2025-11-27 16:16:28,798 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:16:29,252 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-11-27 16:16:31,122 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 16:16:31,123 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 35
+WARNING 2025-11-27 16:16:36,701 log 253 Bad Request: /users/create/floor/
+WARNING 2025-11-27 16:16:36,702 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 400 35
+INFO 2025-11-27 16:16:47,438 basehttp 213 "DELETE /users/delete/2/floor HTTP/1.1" 200 71
+INFO 2025-11-27 16:16:54,371 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 38
+INFO 2025-11-27 16:17:02,173 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12103
+INFO 2025-11-27 16:17:02,209 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:17:36,918 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:17:37,374 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:18:15,545 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 103
+INFO 2025-11-27 16:18:48,280 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-11-27 16:18:48,733 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-27 16:18:50,031 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2025-11-27 16:18:55,326 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2025-11-27 16:21:09,990 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2025-11-27 16:23:03,460 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2025-11-27 16:23:03,495 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2025-11-27 16:23:22,157 basehttp 213 "OPTIONS /users/create/floor/ HTTP/1.1" 200 0
+INFO 2025-11-27 16:23:22,163 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 38
+INFO 2025-11-27 16:23:25,137 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 175
+INFO 2025-11-27 16:23:30,244 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 38
+INFO 2025-11-27 16:23:32,251 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:24:32,274 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:26:16,271 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:26:16,317 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:26:19,771 basehttp 213 "OPTIONS /users/delete/4/floor HTTP/1.1" 200 0
+INFO 2025-11-27 16:26:19,781 basehttp 213 "DELETE /users/delete/4/floor HTTP/1.1" 200 71
+INFO 2025-11-27 16:26:22,365 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 175
+INFO 2025-11-27 16:26:29,309 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 38
+INFO 2025-11-27 16:26:32,188 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:26:33,732 basehttp 213 "OPTIONS /users/delete/1/floor HTTP/1.1" 200 0
+INFO 2025-11-27 16:26:33,749 basehttp 213 "DELETE /users/delete/1/floor HTTP/1.1" 200 71
+INFO 2025-11-27 16:26:36,336 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 175
+INFO 2025-11-27 16:26:39,882 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 38
+INFO 2025-11-27 16:26:42,027 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:26:48,235 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13300
+INFO 2025-11-27 16:26:48,270 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:26:50,222 basehttp 213 "GET /admin/users/hostel/3/change/ HTTP/1.1" 200 13326
+INFO 2025-11-27 16:26:50,249 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:26:51,810 basehttp 213 "POST /admin/users/hostel/3/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 16:26:51,836 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13486
+INFO 2025-11-27 16:26:51,861 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:26:54,669 basehttp 213 "GET /admin/users/hostel/2/change/ HTTP/1.1" 200 13326
+INFO 2025-11-27 16:26:54,697 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:26:55,626 basehttp 213 "POST /admin/users/hostel/2/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 16:26:55,650 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13486
+INFO 2025-11-27 16:26:55,677 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:26:56,778 basehttp 213 "GET /admin/users/hostel/1/change/ HTTP/1.1" 200 13326
+INFO 2025-11-27 16:26:56,807 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:26:57,829 basehttp 213 "POST /admin/users/hostel/1/change/ HTTP/1.1" 302 0
+INFO 2025-11-27 16:26:57,845 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 13486
+INFO 2025-11-27 16:26:57,870 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-11-27 16:32:27,313 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:35:30,411 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:36:03,940 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:37:23,977 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:37:52,618 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:38:05,950 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:38:18,211 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:41:19,926 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:41:22,443 basehttp 213 "DELETE /users/delete/4/floor HTTP/1.1" 200 71
+INFO 2025-11-27 16:41:22,674 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 175
+INFO 2025-11-27 16:41:27,369 basehttp 213 "POST /users/create/floor/ HTTP/1.1" 201 38
+INFO 2025-11-27 16:41:27,491 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:43:59,980 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:44:06,655 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:44:40,295 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-27 16:45:31,182 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-11-27 16:45:31,760 autoreload 667 Watching for file changes with StatReloader

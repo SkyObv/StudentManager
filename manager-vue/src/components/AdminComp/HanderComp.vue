@@ -51,13 +51,26 @@ export default {
             <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
           </svg>
         </div>
-        <h1 class="logo-title">学生管理系统</h1>
+        <h1 class="logo-title">学生宿舍管理控制系统</h1>
       </div>
 
       <!-- 中间导航菜单 -->
       <nav class="main-nav">
         <ul class="nav-menu">
           <li :class="changeCss(0)" @click="changeOption(0)">
+            <a href="#scores" class="nav-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="M9 9h6v6"></path>
+                <path d="M9 15v-6"></path>
+                <path d="M15 9h-6v6"></path>
+                <path d="M3 9h18"></path>
+                <path d="M3 15h18"></path>
+              </svg>
+              <span>宿舍管理</span>
+            </a>
+          </li>
+          <li :class="changeCss(1)" @click="changeOption(1)">
             <a href="#dashboard" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -66,7 +79,7 @@ export default {
               <span>学生管理</span>
             </a>
           </li>
-          <li :class="changeCss(1)" @click="changeOption(1)">
+          <li :class="changeCss(2)" @click="changeOption(2)">
             <a href="#students" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -78,7 +91,7 @@ export default {
               <span>教师管理</span>
             </a>
           </li>
-          <li :class="changeCss(2)" @click="changeOption(2)">
+          <li :class="changeCss(3)" @click="changeOption(3)">
             <a href="#courses" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3 3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"></path>
@@ -87,19 +100,6 @@ export default {
                 <path d="M12 2v4"></path>
               </svg>
               <span>学生宿舍外出管理</span>
-            </a>
-          </li>
-          <li :class="changeCss(3)" @click="changeOption(3)">
-            <a href="#scores" class="nav-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"></path>
-                <path d="M9 9h6v6"></path>
-                <path d="M9 15v-6"></path>
-                <path d="M15 9h-6v6"></path>
-                <path d="M3 9h18"></path>
-                <path d="M3 15h18"></path>
-              </svg>
-              <span>宿舍管理</span>
             </a>
           </li>
         </ul>

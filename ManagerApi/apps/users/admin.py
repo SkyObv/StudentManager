@@ -8,7 +8,7 @@ class FloorAdmin(admin.ModelAdmin):
     """
     宿舍楼模型的后台管理配置
     """
-    list_display = ('floor_name', 'is_deleted')  # 列表页显示的字段
+    list_display = ('id','floor_name', 'is_deleted')  # 列表页显示的字段
     list_filter = ('is_deleted',)                # 右侧过滤器
     search_fields = ('floor_name',)               # 搜索框
 # 宿舍模型后台管理
