@@ -1,5 +1,5 @@
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializer import CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,HostelStudentSerializer
+from .serializer import CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,HostelStudentSerializer, CreateHostelViewSerializer
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -102,3 +102,57 @@ class FloorDeleteView(DestroyAPIView):
                 {"message": "未找到指定的楼层或该楼层已被删除。"},
                 status=404
             )
+
+# 创建宿舍视图
+class CreateHostelView(CreateAPIView):
+    def post(self, request, *args, **kwargs):
+        serializer = CreateHostelViewSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": "宿舍已创建成功。"},status = 201,)
+
+# 删除宿舍
+class HostelDeleteView(DestroyAPIView):
+    queryset = Hostel.objects.filter(is_deleted=False)
+    # 第一种 分步重写
+    def perform_destroy(self, instance):
+        """
+        删除逻辑 instance为查询出的对象
+        """
+        # 软删除宿舍
+        instance.is_deleted = True
+        instance.students_house.clear()
+        instance.save()
+
+    def delete(self, request, *args, **kwargs):
+        """
+        覆盖 delete 方法以返回自定义的成功消息。
+        """
+        with transaction.atomic():
+            # 它会在这个 queryset (Hostel.objects.filter(is_deleted=False)) 中查找 pk 匹配的对象
+            instance = self.get_object()
+            self.perform_destroy(instance)
+            return Response(
+                {'message': f'宿舍 "{instance.hostel_number}" 已成功删除。'},
+                status=200,
+            )
+    # 第二种 重写销毁方法
+    # def delete(self, request, *args, **kwargs):
+    #     hostel_id = kwargs.get('pk')                                 # 获取删除宿舍 ID
+    #     try:
+    #         with transaction.atomic():
+    #             instance = Hostel.objects.get(id=hostel_id, is_deleted=False)
+    #             instance.is_deleted = True
+    #             instance.save()
+    #             response_data = {
+    #                 'message': f'宿舍 "{instance.hostel_number}" 已成功删除。'
+    #             }
+    #             return Response(response_data, status=200)
+    #     except Hostel.DoesNotExist:
+    #         return Response(
+    #             {"message": "未找到指定的宿舍或该宿舍已被删除。"},
+    #         )
+
+
+
+

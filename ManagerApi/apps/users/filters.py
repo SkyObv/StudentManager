@@ -22,11 +22,15 @@ class StudentFilter(django_filters.FilterSet):
     teacher_name = django_filters.CharFilter(
         method='filter_by_teacher_name'                              # 指定一个自定义方法名
     )
+    # 是否有宿舍过滤
+    has_house = django_filters.BooleanFilter(
+        method='filter_by_has_house'
+    )
     class Meta:
         model = User
         # 这里我们通过自定义字段来覆盖，所以 Meta.fields 可以留空或省略
         fields = []
-    # 自定义过滤方法
+    # 自定义teacher_name过滤方法
     def filter_by_teacher_name(self, queryset, name, value):
         """
         自定义过滤方法，用于同时搜索教师的 last_name 和 first_name
@@ -40,3 +44,11 @@ class StudentFilter(django_filters.FilterSet):
             Q(teacher_id__last_name__icontains=value) | Q(teacher_id__first_name__icontains=value)
         )
         return queryset
+    # 自定义has_house过滤方法
+    def filter_by_has_house(self, queryset, name, value):
+        if value:  # 如果 value 是 True
+            # 查找 house_number 不为空的学生
+            return queryset.filter(house_number__isnull=False)
+        else:  # 如果 value 是 False
+            # 查找 house_number 为空的学生
+            return queryset.filter(house_number__isnull=True)

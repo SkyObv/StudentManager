@@ -60,8 +60,8 @@ class Hostel(models.Model):
     class Meta:
         verbose_name = '宿舍'
         verbose_name_plural = verbose_name
-        # 联合唯一约束：在同一个宿舍楼内，门牌号不能重复
-        unique_together = ('floor', 'hostel_number')
+        # # 联合唯一约束：在同一个宿舍楼内，门牌号不能重复
+        # unique_together = ('floor', 'hostel_number')
     def __str__(self):
         return f"{self.floor.floor_name}-{self.hostel_number}"
     # 宿舍床位数动态计算,虚拟字段

@@ -89,3 +89,17 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
         """获取学生的姓名"""
         return obj.last_name + obj.first_name
 
+# 创建宿舍序列化器
+class CreateHostelViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hostel
+        fields = ['hostel_number', 'floor', 'gender']
+
+    def validate(self, attrs):
+        super().validate(attrs)
+        # 判断宿舍在这个楼层内是否已存在
+        floor_id = attrs['floor']                                    # 楼层 Floor 的主键
+        hostel_number = attrs['hostel_number']                       # 需要创建的宿舍门牌号
+        if Hostel.objects.filter(floor_id=floor_id, hostel_number=hostel_number,is_deleted=False).exists():
+            raise serializers.ValidationError({'message': '该楼层已存在该宿舍。'})
+        return attrs

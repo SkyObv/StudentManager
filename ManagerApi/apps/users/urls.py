@@ -1,6 +1,6 @@
 from django.urls import path,include
 from rest_framework_simplejwt.views import TokenRefreshView
-from .views import CustomTokenObtainPairView, StudentListView,FloorListView,HostelListView,CreateFloorView,FloorDeleteView
+from .views import CustomTokenObtainPairView, StudentListView,FloorListView,HostelListView,CreateFloorView,FloorDeleteView, CreateHostelView,HostelDeleteView
 
 urlpatterns = [
     path('login/',CustomTokenObtainPairView.as_view()),              # 登入
@@ -12,4 +12,8 @@ urlpatterns = [
 
     path('create/floor/',CreateFloorView.as_view()),                 # 创建楼层
     path('delete/<int:pk>/floor',FloorDeleteView.as_view()),         # 删除楼层
+
+    path('create/hostel/',CreateHostelView.as_view()),               # 创建宿舍
+    path('delete/<int:pk>/hostel/',HostelDeleteView.as_view()),      # 删除宿舍
+
 ]
