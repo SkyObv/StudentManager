@@ -14,12 +14,18 @@ export default {
     // 导航栏点击
     getOption(option) {
       this.option = option
+      this.floorId = null
     },
     // 楼层卡片点击详情页组件显示
     handleFloorClick(floorId) {
       this.floorId = floorId
       console.log('点击了楼层:', floorId);
       this.option = null
+    },
+    // 处理返回楼层管理页面
+    handleGoBack() {
+      this.floorId = null
+      this.option = 0 // 重置为楼层管理页面的选项
     }
   },
   components: {
@@ -36,7 +42,7 @@ export default {
     <HanderComp  @update-option="getOption"></HanderComp>
     <!-- 宿舍管理 -->
     <FloorManage v-if="option === 0" @FloorClick="handleFloorClick"></FloorManage>
-      <HostelManage v-if="floorId"></HostelManage>
+    <HostelManage v-if="floorId" @goBack="handleGoBack"></HostelManage>
     <!-- 教师管理 -->
     <h1 v-if="option === 1">教师管理</h1>
     <!-- 学生宿舍外出管理 -->

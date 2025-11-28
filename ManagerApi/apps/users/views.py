@@ -3,6 +3,7 @@ from .serializer import CustomTokenObtainPairSerializer, GetAllStudentsSerialize
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from .models import User, Floor, Hostel
 from .filters import StudentFilter
 from django.db import transaction # 导入事务
@@ -36,6 +37,8 @@ class HostelListView(ListAPIView):
 
 # 创建楼层视图
 class CreateFloorView(APIView):
+    # 添加权限控制
+    # permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         floor_name = request.data.get('floor_name')
         # 基础验证

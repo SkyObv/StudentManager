@@ -3,6 +3,9 @@ export default {
   name: 'FloorManage',
   data() {
     return {
+      // 用户数据
+      token:sessionStorage.getItem('token') || localStorage.getItem('token'),
+      refresh:sessionStorage.getItem('refresh') || localStorage.getItem('refresh'),
       // 楼层数据
       floors:[],
       // 动画状态

@@ -36,7 +36,7 @@ export default {
         return
       }
       this.$axios.post(`${this.$settings.Host}/users/login/`,
-          {'username':this.loginForm.username, 'password':this.loginForm.password}).then(response => {
+          {'username':this.loginForm.username, 'password':this.loginForm.password, 'user_type':this.identity}).then(response => {
         if (this.rememberMe){
           localStorage.token = response.data.access
           localStorage.refresh = response.data.refresh

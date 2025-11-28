@@ -1,12 +1,19 @@
 from .models import User,Floor,Hostel
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
+from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 # 自定义 JWT 认证返回结果
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    user_type = serializers.CharField(required=True)
     # 自定义返回数据
     def validate(self, attrs):
+        res_user_type = attrs.get('user_type')
         data = super().validate(attrs)
+        if self.user.user_type != res_user_type:
+            raise AuthenticationFailed(
+                detail=f'用户类型不匹配。',
+            )
         # 向响应中添加自定义数据
         data['user_type'] = self.user.user_type
         data['name'] = self.user.last_name + self.user.first_name
