@@ -1484,3 +1484,50 @@ INFO 2025-11-28 14:05:06,619 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
 INFO 2025-11-28 14:05:06,654 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
 INFO 2025-11-28 14:05:38,698 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
 INFO 2025-11-28 14:06:03,543 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-28 16:13:38,283 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-28 16:13:56,430 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-11-28 16:13:57,041 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-11-28 16:13:57,094 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-28 16:14:37,812 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:01:40,055 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-11-29 10:02:28,172 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-11-29 10:02:28,799 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-11-29 10:02:28,924 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:09:11,948 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:10:19,730 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:10:24,765 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:16:49,660 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:17:30,453 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:17:37,896 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:17:41,690 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:17:45,898 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:17:47,279 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:17:50,891 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:19:05,450 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:19:22,685 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:22:20,453 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+WARNING 2025-11-29 10:22:21,813 log 253 Not Found: /users/hostel/1}/
+WARNING 2025-11-29 10:22:21,814 basehttp 213 "GET /users/hostel/1%7D/ HTTP/1.1" 404 4521
+INFO 2025-11-29 10:25:05,635 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:25:10,633 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+WARNING 2025-11-29 10:25:12,033 log 253 Not Found: /users/hostel/1}/
+WARNING 2025-11-29 10:25:12,033 basehttp 213 "GET /users/hostel/1%7D/ HTTP/1.1" 404 4521
+INFO 2025-11-29 10:25:30,015 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:25:31,290 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:25:32,477 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:25:45,723 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:25:46,853 basehttp 213 "GET /users/hostel/3/ HTTP/1.1" 200 52
+INFO 2025-11-29 10:25:49,421 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:25:50,066 basehttp 213 "GET /users/hostel/2/ HTTP/1.1" 200 52
+INFO 2025-11-29 10:25:51,071 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:25:51,769 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:26:42,828 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:26:45,958 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:34:40,898 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:41:17,701 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:42:49,515 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:42:56,666 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:42:58,792 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 631
+INFO 2025-11-29 10:47:25,735 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:49:23,476 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-11-29 10:49:24,298 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233

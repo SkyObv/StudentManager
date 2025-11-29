@@ -1,6 +1,12 @@
 <script>
 export default {
   name: 'HostelManage',
+  props: {
+    floorId: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       // 静态宿舍数据
@@ -66,6 +72,10 @@ export default {
         gender: 'male'
       }
     }
+  },
+  created() {
+    // 获取楼层ID,发送宿舍数据请求
+    console.log('楼层ID:', this.floorId);
   },
   computed: {
     /**

@@ -42,7 +42,7 @@ export default {
     <HanderComp  @update-option="getOption"></HanderComp>
     <!-- 宿舍管理 -->
     <FloorManage v-if="option === 0" @FloorClick="handleFloorClick"></FloorManage>
-    <HostelManage v-if="floorId" @goBack="handleGoBack"></HostelManage>
+    <HostelManage v-if="floorId" @goBack="handleGoBack" :floorId="floorId"></HostelManage>
     <!-- 教师管理 -->
     <h1 v-if="option === 1">教师管理</h1>
     <!-- 学生宿舍外出管理 -->
