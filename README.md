@@ -237,9 +237,9 @@ StudenManager/
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
 
 ## 联系方式
-- 项目负责人: [Your Name]
-- 电子邮件: [your.email@example.com]
-- 项目地址: [GitHub Repository URL]
+- 项目负责人: [Sky_Oblivion]
+- 电子邮件: [2014567412@qq.com]
+- 项目地址: [https://gitee.com/spidermanehe/students-manager]
 
 ---
 
