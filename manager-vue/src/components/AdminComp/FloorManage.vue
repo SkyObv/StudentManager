@@ -17,7 +17,9 @@ export default {
       newFloor: {
         floor_name: ''
       },
-
+      // 删除楼层对话框相关数据
+      showDeleteFloorForm: false,
+      selectedFloor: null
     }
   },
   created() {
@@ -82,12 +84,12 @@ export default {
     // 确认创建楼层
     createFloor() {
       if (!this.newFloor.floor_name.trim()) {
-        alert('请输入楼层名称');
+        this.$message.warning('请输入楼层名称');
         return;
       }
       // 检查名称是否已存在
       if (this.floors.some(floor => floor.floor_name === this.newFloor.floor_name)) {
-        alert('该楼层名称已存在');
+        this.$message.warning('该楼层名称已存在');
         return;
       }
       // 创建新楼层，设置默认值
@@ -106,17 +108,38 @@ export default {
       // 关闭模态框
       this.showCreateModal = false;
   },
-    // 删除宿舍楼
-    deleteFloor(floorId) {
-      console.log('删除楼层:', floorId);
-      // 发送请求删除楼层
-      this.$axios.delete(`${this.$settings.Host}/users/delete/${floorId}/floor`).then(response => {
-        this.$message.success(response.data.message)
-        window.location.reload()
-      }).catch( err=>{
-        console.log(err)
-        this.$message.error('删除失败！')
-      })
+    // 打开删除楼层对话框
+    openDeleteFloorForm(floor) {
+      this.selectedFloor = floor;
+      this.showDeleteFloorForm = true;
+    },
+    
+    // 关闭删除楼层对话框
+    closeDeleteFloorForm() {
+      this.showDeleteFloorForm = false;
+      this.selectedFloor = null;
+    },
+    
+    // 确认删除楼层
+    confirmDeleteFloor() {
+      if (!this.selectedFloor) return;
+      
+      // 发送删除请求
+      console.log('删除楼层:', this.selectedFloor.id);
+      this.$axios.delete(`${this.$settings.Host}/users/delete/${this.selectedFloor.id}/floor`)
+        .then(response => {
+          this.$message.success(response.data.message);
+          // 重新加载楼层数据
+          this.$axios.get(`${this.$settings.Host}/users/floors/`).then(res => {
+            this.floors = res.data;
+          });
+          // 关闭对话框
+          this.closeDeleteFloorForm();
+        })
+        .catch(err => {
+          console.log(err);
+          this.$message.error('删除失败！');
+        });
     }
   },
   mounted() {
@@ -228,7 +251,7 @@ export default {
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
-          <button class="delete-button" @click.stop="deleteFloor(floor.id)">
+          <button class="delete-button" @click.stop="openDeleteFloorForm(floor)">
             <svg class="button-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -268,6 +291,26 @@ export default {
         <div class="modal-footer">
           <button class="cancel-button" @click="showCreateModal = false">取消</button>
           <button class="confirm-button" @click="createFloor">创建</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 删除楼层对话框 -->
+    <div class="modal" v-if="showDeleteFloorForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>删除楼层</h3>
+          <button class="close-button" @click="closeDeleteFloorForm">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="delete-confirm">
+            <p>确定要删除楼层 <strong>{{ selectedFloor?.floor_name }}</strong> 吗？</p>
+            <p class="delete-warning">删除后该楼层下的所有宿舍信息也将被删除，此操作不可恢复，请谨慎操作。</p>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-button" @click="closeDeleteFloorForm">取消</button>
+            <button type="button" class="delete-confirm-button" @click="confirmDeleteFloor">确认删除</button>
+          </div>
         </div>
       </div>
     </div>
@@ -322,6 +365,138 @@ export default {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* 模态框样式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.delete-confirm p {
+  margin-bottom: 1rem;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.delete-warning {
+  color: #ef4444;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-button {
+  padding: 0.75rem 1.5rem;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.delete-confirm-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.delete-confirm-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
 }
 
 /* 操作按钮区域 */

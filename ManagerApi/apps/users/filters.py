@@ -1,5 +1,5 @@
 import django_filters
-from .models import User
+from .models import User,Hostel
 from django.db.models import Q
 
 # 学生过滤器
@@ -52,3 +52,17 @@ class StudentFilter(django_filters.FilterSet):
         else:  # 如果 value 是 False
             # 查找 house_number 为空的学生
             return queryset.filter(house_number__isnull=True)
+
+# 楼层宿舍过滤器
+class HostelFilter(django_filters.FilterSet):
+    hostel_number = django_filters.CharFilter(
+        field_name='hostel_number',
+        lookup_expr='iexact'
+    )
+    gender = django_filters.CharFilter(
+        field_name='gender',
+        lookup_expr='iexact'
+    )
+    class Meta:
+        model = Hostel
+        fields = ['hostel_number', 'gender']

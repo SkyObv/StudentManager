@@ -9,48 +9,14 @@ export default {
   },
   data() {
     return {
-      // 静态宿舍数据
-      hostels_data: [
-        {
-          "hostel_number": "101",
-          "floor": 1,
-          "student_count": 1,
-          "is_full": false,
-          "gender": "male",
-          "students": [
-            {
-              "id": 3,
-              "name": "小小怪",
-              "gender": "male"
-            }
-          ]
-        },
-        {
-          "hostel_number": "102",
-          "floor": 1,
-          "student_count": 1,
-          "is_full": false,
-          "gender": "male",
-          "students": [
-            {
-              "id": 4,
-              "name": "小猪猪",
-              "gender": "male"
-            }
-          ]
-        },
-        {
-          "hostel_number": "103",
-          "floor": 1,
-          "student_count": 0,
-          "is_full": false,
-          "gender": "male",
-          "students": []
-        }
-      ],
+      // 宿舍数据（从后端获取）
+      hostels_data: [],
       // 分页数据
       currentPage: 1,
       pageSize: 20,
+      totalCount: 0,  // 总记录数（从API获取）
+      nextPageUrl: null,  // 下一页URL
+      prevPageUrl: null,  // 上一页URL
       // 筛选数据
       genderFilter: '',
       searchQuery: '',
@@ -58,73 +24,40 @@ export default {
       showAddHostelForm: false,
       showAddStudentForm: false,
       showDeleteStudentForm: false,
+      // 删除宿舍对话框
+      showDeleteHostelForm: false,
+      hostelToDelete: null,
       // 新增宿舍表单数据
       newHostel: {
         hostel_number: '',
-        floor: 1,
+        floor: this.floorId,
         gender: 'male'
       },
       selectedHostel: null,
       selectedStudent: null,
       // 新增学生表单数据
       newStudent: {
-        name: '',
-        gender: 'male'
-      }
+        username: ''
+      },
+      // 加载状态
+      loading: false
     }
   },
   created() {
-    // 获取楼层ID,发送宿舍数据请求
-    console.log('楼层ID:', this.floorId);
+    // 组件创建时加载第一页数据
+    this.loadHostelsData();
   },
   computed: {
     /**
      * 计算总页数
+     * 使用后端提供的count字段计算总页数
      * @returns {number} 总页数
      */
     totalPages() {
       return Math.ceil(this.totalCount / this.pageSize);
     },
     
-    /**
-     * 根据搜索条件和性别过滤的宿舍列表
-     * @returns {Array} 过滤后的宿舍列表
-     */
-    filteredHostels() {
-      let result = this.hostels_data;
-      
-      // 根据宿舍号进行搜索筛选
-      if (this.searchQuery) {
-        result = result.filter(hostel => 
-          hostel.hostel_number.includes(this.searchQuery)
-        );
-      }
-      
-      // 根据性别进行筛选
-      if (this.genderFilter) {
-        result = result.filter(hostel => hostel.gender === this.genderFilter);
-      }
-      
-      return result;
-    },
-    
-    /**
-     * 获取过滤后的宿舍总记录数
-     * @returns {number} 总记录数
-     */
-    totalCount() {
-      return this.filteredHostels.length;
-    },
-    
-    /**
-     * 获取当前页显示的宿舍数据
-     * @returns {Array} 当前页的宿舍列表
-     */
-    currentHostels() {
-      const start = (this.currentPage - 1) * this.pageSize;
-      const end = start + this.pageSize;
-      return this.filteredHostels.slice(start, end);
-    },
+
     
     /**
      * 获取性别显示文本映射
@@ -161,6 +94,57 @@ export default {
   },
   methods: {
     /**
+     * 加载宿舍数据
+     * 根据当前页码、筛选条件从后端获取数据
+     */
+    loadHostelsData(url = null) {
+      this.loading = true;
+      
+      // 如果没有提供URL，则构建初始URL
+      if (!url) {
+        let apiUrl = `${this.$settings.Host}/users/hostel/${this.floorId}/`;
+        
+        // 添加查询参数
+        const params = new URLSearchParams();
+        params.append('page', this.currentPage);
+        params.append('page_size', this.pageSize);
+        
+        // 添加筛选条件
+        if (this.genderFilter) {
+          params.append('gender', this.genderFilter);
+        }
+        if (this.searchQuery) {
+          params.append('hostel_number', this.searchQuery);
+        }
+        
+        const queryString = params.toString();
+        if (queryString) {
+          apiUrl += `?${queryString}`;
+        }
+        
+        url = apiUrl;
+      }
+      
+      // 发送请求获取数据
+      this.$axios.get(url)
+        .then(response => {
+          // 更新宿舍数据
+          this.hostels_data = response.data.results;
+          // 更新分页信息
+          this.totalCount = response.data.count;
+          this.nextPageUrl = response.data.next;
+          this.prevPageUrl = response.data.previous;
+        })
+        .catch(error => {
+          console.error('获取宿舍数据失败:', error);
+          this.$message.error('获取宿舍数据失败，请稍后重试');
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+    
+    /**
      * 返回楼层管理页面
      * 触发父组件的goBack事件
      */
@@ -174,25 +158,26 @@ export default {
      */
     handlePageChange(page) {
       this.currentPage = page;
+      this.loadHostelsData(); // 重新加载数据
     },
     
     /**
      * 跳转到上一页
-     * 如果当前不是第一页，则页码减1
+     * 使用后端提供的prevPageUrl
      */
     prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
+      if (this.prevPageUrl) {
+        this.loadHostelsData(this.prevPageUrl);
       }
     },
     
     /**
      * 跳转到下一页
-     * 如果当前不是最后一页，则页码加1
+     * 使用后端提供的nextPageUrl
      */
     nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage++;
+      if (this.nextPageUrl) {
+        this.loadHostelsData(this.nextPageUrl);
       }
     },
     
@@ -203,26 +188,28 @@ export default {
     goToPage(page) {
       if (page >= 1 && page <= this.totalPages) {
         this.currentPage = page;
+        this.loadHostelsData(); // 重新加载数据
       }
     },
     
     /**
      * 重置所有筛选条件
-     * 清空搜索框、性别筛选，并回到第一页
+     * 清空搜索框、性别筛选，并回到第一页重新加载数据
      */
     resetFilters() {
       this.genderFilter = '';
       this.searchQuery = '';
       this.currentPage = 1;
+      this.loadHostelsData(); // 重置后重新加载数据
     },
     
     /**
      * 执行搜索操作
-     * 重置页码到第一页，搜索逻辑通过computed属性自动处理
+     * 重置页码到第一页并重新加载数据
      */
     searchHostels() {
-      // 搜索逻辑已通过computed属性filteredHostels自动实现
       this.currentPage = 1; // 搜索时重置到第一页
+      this.loadHostelsData(); // 重新加载数据
     },
     
     /**
@@ -230,73 +217,110 @@ export default {
      * 重置表单数据并显示模态框
      */
     openAddHostelForm() {
-      // 重置新建宿舍表单数据
-      this.newHostel = {
-        hostel_number: '',
-        floor: 1,
-        gender: 'male'
-      };
       // 显示新建宿舍表单
       this.showAddHostelForm = true;
     },
     
     /**
      * 关闭新建宿舍表单
-     * 隐藏模态框
+     * 隐藏模态框并重置表单数据
      */
     closeAddHostelForm() {
       this.showAddHostelForm = false;
+      // 重置表单数据
+      this.newHostel = {
+        hostel_number: '',
+        floor: this.floorId,
+        gender: 'male'
+      };
     },
     
     /**
      * 提交新建宿舍表单
-     * 验证数据，检查宿舍号是否已存在，添加新宿舍到数据列表
+     * 验证数据并向后端API发送请求创建宿舍
      */
     submitAddHostel() {
       // 验证宿舍号是否为空
       if (!this.newHostel.hostel_number) {
-        alert('请输入宿舍号');
+        this.$message.warning('请输入宿舍号');
         return;
       }
       
       // 检查宿舍号是否已存在
       if (this.hostels_data.some(h => h.hostel_number === this.newHostel.hostel_number)) {
-        alert('宿舍号已存在');
+        this.$message.warning('宿舍号已存在');
         return;
       }
       
-      // 构建新宿舍完整数据
-      const newHostelData = {
-        ...this.newHostel,
-        student_count: 0, // 初始学生数为0
-        is_full: false,   // 初始状态为未满
-        students: []      // 初始没有学生
+      // 准备请求数据，floor固定为当前floorId
+      const requestData = {
+        hostel_number: this.newHostel.hostel_number,
+        floor: this.floorId,
+        gender: this.newHostel.gender
       };
       
-      // 添加新宿舍到数据列表
-      this.hostels_data.push(newHostelData);
-      // 关闭表单
-      this.showAddHostelForm = false;
-      // 显示成功提示
-      alert('宿舍添加成功');
+      // 发送POST请求到后端API
+      this.loading = true;
+      this.$axios.post(`${this.$settings.Host}/users/create/hostel/`, requestData)
+        .then(() => {
+          // 关闭表单
+          this.showAddHostelForm = false;
+          // 重新加载宿舍数据以获取最新信息
+          this.loadHostelsData();
+          // 显示成功提示
+          this.$message.success('宿舍添加成功');
+        })
+        .catch(error => {
+          console.error('添加宿舍失败:', error);
+          // 显示错误提示
+          this.$message.error('添加宿舍失败，请稍后重试');
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+    
+    /**
+     * 打开删除宿舍对话框
+     * @param {Object} hostel - 要删除的宿舍对象
+     */
+    openDeleteHostelForm(hostel) {
+      this.hostelToDelete = hostel;
+      this.showDeleteHostelForm = true;
+    },
+    
+    /**
+     * 关闭删除宿舍对话框
+     */
+    closeDeleteHostelForm() {
+      this.showDeleteHostelForm = false;
+      this.hostelToDelete = null;
     },
     
     /**
      * 删除指定宿舍
-     * @param {string} hostelNumber - 要删除的宿舍号
      */
-    deleteHostel(hostelNumber) {
-      // 确认删除操作
-      if (confirm('确定要删除这个宿舍吗？')) {
-        // 查找宿舍索引
-        const index = this.hostels_data.findIndex(h => h.hostel_number === hostelNumber);
-        // 如果找到宿舍，则删除
-        if (index !== -1) {
-          this.hostels_data.splice(index, 1);
+    deleteHostel() {
+      if (!this.hostelToDelete) return;
+      
+      // 发送DELETE请求到后端API
+      this.loading = true;
+      this.$axios.delete(`${this.$settings.Host}/users/delete/${this.hostelToDelete.id}/hostel/`)
+        .then(() => {
+          // 重新加载宿舍数据以获取最新信息
+          this.loadHostelsData();
           // 显示成功提示
-          alert('宿舍删除成功');
-        }
-      }
+          this.$message.success(`宿舍 ${this.hostelToDelete.hostel_number} 删除成功`);
+        })
+        .catch(error => {
+          console.error('删除宿舍失败:', error);
+          // 显示错误提示
+          this.$message.error('删除宿舍失败，请稍后重试');
+        })
+        .finally(() => {
+          this.loading = false;
+          this.closeDeleteHostelForm();
+        });
     },
     
     /**
@@ -306,65 +330,77 @@ export default {
     openAddStudentForm(hostel) {
       // 设置当前选中的宿舍
       this.selectedHostel = hostel;
-      // 重置添加学生表单数据，默认性别与宿舍一致
-      this.newStudent = {
-        name: '',
-        gender: hostel.gender
-      };
       // 显示添加学生表单
       this.showAddStudentForm = true;
     },
     
     /**
      * 关闭添加学生表单
-     * 隐藏模态框并清空选中的宿舍
+     * 隐藏模态框并清空选中的宿舍和表单数据
      */
     closeAddStudentForm() {
       this.showAddStudentForm = false;
       this.selectedHostel = null;
+      // 重置表单数据
+      this.newStudent = {
+        username: ''
+      };
     },
     
     /**
      * 提交添加学生表单
-     * 验证数据，检查宿舍是否已满，添加学生到宿舍
+     * 验证数据，检查宿舍是否已满，调用API将学生添加到宿舍
      */
     submitAddStudent() {
-      // 验证学生姓名是否为空
-      if (!this.newStudent.name) {
-        alert('请输入学生姓名');
+      // 验证学生学号是否为空
+      if (!this.newStudent.username) {
+        this.$message.warning('请输入学生学号');
         return;
       }
       
       // 检查宿舍是否已满
       if (this.selectedHostel.is_full) {
-        alert('宿舍已满，无法添加学生');
+        this.$message.warning('宿舍已满，无法添加学生');
         return;
       }
       
-      // 生成新学生ID（当前最大ID+1）
-      const maxId = Math.max(...this.hostels_data.flatMap(h => h.students.map(s => s.id)), 0);
-      const newStudentData = {
-        ...this.newStudent,
-        id: maxId + 1
-      };
-      
-      // 查找当前选中宿舍的索引
-      const hostelIndex = this.hostels_data.findIndex(h => h.hostel_number === this.selectedHostel.hostel_number);
-      if (hostelIndex !== -1) {
-        // 添加学生到宿舍
-        this.hostels_data[hostelIndex].students.push(newStudentData);
-        // 更新学生人数
-        this.hostels_data[hostelIndex].student_count += 1;
-        // 检查是否已满（假设每个宿舍最多4人）
-        if (this.hostels_data[hostelIndex].student_count >= 4) {
-          this.hostels_data[hostelIndex].is_full = true;
-        }
-        // 关闭表单
-        this.showAddStudentForm = false;
-        // 显示成功提示
-        alert('学生添加成功');
-      }
-    },
+        // 显示加载状态
+        this.loading = true;
+        
+        // 构建请求参数
+        const requestData = {
+          username: this.newStudent.username,
+          hostel_id: this.selectedHostel.id
+        };
+        
+        // 发送POST请求到后端API
+        this.$axios.post(`${this.$settings.Host}/users/add/fromhostel/student/`, requestData)
+          .then(() => {
+            // 关闭添加学生表单
+            this.closeAddStudentForm();
+            
+            // 重新加载宿舍数据以更新界面
+            this.loadHostelsData();
+            
+            // 显示成功提示
+            this.$message.success('学生已分配宿舍。');
+          })
+          .catch(error => {
+            // 打印错误信息到控制台以便调试
+            console.error('添加学生失败:', error);
+            
+            // 根据错误状态码显示不同的提示
+            if (error.response && error.response.status === 404) {
+              this.$message.error('未找到指定的学生。');
+            } else {
+              this.$message.error('添加学生失败，请稍后重试。');
+            }
+          })
+          .finally(() => {
+        // 无论成功或失败，都要重置加载状态
+        this.loading = false;
+      });
+  },
     
     /**
      * 打开删除学生表单
@@ -391,31 +427,36 @@ export default {
     
     /**
      * 提交删除学生操作
-     * 确认删除后从宿舍中移除学生
+     * 调用后端API从宿舍中移除学生
      */
-    submitDeleteStudent() {
-      // 确认删除操作
-      if (confirm(`确定要删除学生 ${this.selectedStudent.name} 吗？`)) {
-        // 查找当前选中宿舍的索引
-        const hostelIndex = this.hostels_data.findIndex(h => h.hostel_number === this.selectedHostel.hostel_number);
-        if (hostelIndex !== -1) {
-          // 查找要删除的学生索引
-          const studentIndex = this.hostels_data[hostelIndex].students.findIndex(s => s.id === this.selectedStudent.id);
-          if (studentIndex !== -1) {
-            // 从宿舍中删除学生
-            this.hostels_data[hostelIndex].students.splice(studentIndex, 1);
-            // 更新学生人数
-            this.hostels_data[hostelIndex].student_count -= 1;
-            // 重置满员状态（如果之前是满员的）
-            if (this.hostels_data[hostelIndex].is_full) {
-              this.hostels_data[hostelIndex].is_full = false;
-            }
-            // 关闭表单
-            this.showDeleteStudentForm = false;
-            // 显示成功提示
-            alert('学生删除成功');
-          }
-        }
+    async submitDeleteStudent() {
+      try {
+        // 显示加载状态
+        this.loading = true;
+        
+        // 构建请求URL，包含学生学号作为查询参数
+        const url = `${this.$settings.Host}/users/delete/fromhostel/student/?username=${this.selectedStudent.username}`;
+        
+        // 发送DELETE请求到后端API
+        await this.$axios.delete(url);
+        
+        // 关闭删除学生表单
+        this.closeDeleteStudentForm();
+        
+        // 重新加载宿舍数据以更新界面
+        this.loadHostelsData();
+        
+        // 显示删除成功提示
+        this.$message.success('学生已从宿舍中删除。');
+      } catch (error) {
+        // 打印错误信息到控制台以便调试
+        console.error('删除学生失败:', error);
+        
+        // 显示删除失败提示
+        this.$message.error('删除学生失败，请稍后重试。');
+      } finally {
+        // 无论成功或失败，都要重置加载状态
+        this.loading = false;
       }
     }
   },
@@ -453,7 +494,7 @@ export default {
       </div>
       
       <div class="filter-controls">
-        <select v-model="genderFilter" class="filter-select">
+        <select v-model="genderFilter" class="filter-select" @change="searchHostels">
           <option value="">全部性别</option>
           <option value="male">男生宿舍</option>
           <option value="female">女生宿舍</option>
@@ -485,9 +526,9 @@ export default {
     
     <!-- 宿舍列表 -->
     <div class="hostels-grid">
-      <div class="hostel-card" v-for="hostel in currentHostels" :key="hostel.hostel_number">
+      <div class="hostel-card" v-for="hostel in hostels_data" :key="hostel.hostel_number">
         <!-- 删除宿舍按钮 -->
-        <button class="delete-hostel-button" @click="deleteHostel(hostel.hostel_number)" title="删除宿舍">
+        <button class="delete-hostel-button" @click="openDeleteHostelForm(hostel)" title="删除宿舍">
           🗑️
         </button>
         <!-- 卡片头部 -->
@@ -547,7 +588,7 @@ export default {
     </div>
     
     <!-- 无数据提示 -->
-    <div class="no-data" v-if="currentHostels.length === 0">
+    <div class="no-data" v-if="hostels_data.length === 0">
       <p>暂无符合条件的宿舍数据</p>
     </div>
     
@@ -563,10 +604,6 @@ export default {
             <div class="form-group">
               <label for="hostel_number">宿舍号：</label>
               <input type="text" id="hostel_number" v-model="newHostel.hostel_number" required>
-            </div>
-            <div class="form-group">
-              <label for="floor">楼层：</label>
-              <input type="number" id="floor" v-model.number="newHostel.floor" min="1" required>
             </div>
             <div class="form-group">
               <label for="gender">性别：</label>
@@ -594,16 +631,10 @@ export default {
         <div class="modal-body">
           <form @submit.prevent="submitAddStudent">
             <div class="form-group">
-              <label for="student_name">学生姓名：</label>
-              <input type="text" id="student_name" v-model="newStudent.name" required>
+              <label for="student_username">学生学号：</label>
+              <input type="text" id="student_username" v-model="newStudent.username" required>
             </div>
-            <div class="form-group">
-              <label for="student_gender">性别：</label>
-              <select id="student_gender" v-model="newStudent.gender" required>
-                <option value="male" :disabled="selectedHostel?.gender !== 'male'">男生</option>
-                <option value="female" :disabled="selectedHostel?.gender !== 'female'">女生</option>
-              </select>
-            </div>
+
             <div class="form-actions">
               <button type="button" class="cancel-button" @click="closeAddStudentForm">取消</button>
               <button type="submit" class="submit-button">提交</button>
@@ -628,6 +659,26 @@ export default {
           <div class="form-actions">
             <button type="button" class="cancel-button" @click="closeDeleteStudentForm">取消</button>
             <button type="button" class="delete-confirm-button" @click="submitDeleteStudent">确认删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 删除宿舍表单 -->
+    <div class="modal" v-if="showDeleteHostelForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>删除宿舍</h3>
+          <button class="close-button" @click="closeDeleteHostelForm">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="delete-confirm">
+            <p>确定要删除宿舍 <strong>{{ hostelToDelete?.hostel_number }}</strong> 吗？</p>
+            <p class="delete-warning">此操作不可恢复，请谨慎操作。</p>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-button" @click="closeDeleteHostelForm">取消</button>
+            <button type="button" class="delete-confirm-button" @click="deleteHostel">确认删除</button>
           </div>
         </div>
       </div>

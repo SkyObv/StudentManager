@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin):
     继承 Django 内置的 UserAdmin 以保留所有用户管理功能
     """
     # 在列表页显示哪些字段
-    list_display = ('id','username', 'user_type', 'first_name','last_name','get_teacher', 'get_hostel', 'is_staff')
+    list_display = ('id','username', 'user_type', 'first_name','last_name','get_teacher', 'get_hostel', 'is_staff','is_active')
     # 在列表页添加过滤器
     list_filter = ('user_type', 'is_staff', 'is_active', 'groups')
     # 搜索框支持按哪些字段搜索

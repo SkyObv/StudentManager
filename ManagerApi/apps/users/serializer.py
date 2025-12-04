@@ -39,7 +39,7 @@ class Hoste_StudentSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['id', 'name','gender']
+        fields = ['id','username','name','gender']
     def get_name(self, obj):
         """获取学生的姓名"""
         return obj.last_name + obj.first_name
@@ -51,7 +51,7 @@ class HostelStudentSerializer(HostelSerializer):
     )
     class Meta:
         model = Hostel
-        fields = ['hostel_number','floor','student_count','is_full','gender','students']
+        fields = ['id','hostel_number','floor','student_count','is_full','gender','students']
 
 # 宿舍楼信息序列化器
 class FloorSerializer(serializers.ModelSerializer):
@@ -91,9 +91,14 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
 
 # 创建宿舍序列化器
 class CreateHostelViewSerializer(serializers.ModelSerializer):
+    students = Hoste_StudentSerializer(
+        source='students_house',  # students_house是我们在 User 模型中定义的 related_name,反向查询
+        many=True,
+        read_only=True
+    )
     class Meta:
         model = Hostel
-        fields = ['hostel_number', 'floor', 'gender']
+        fields = ['id','hostel_number','floor','student_count','is_full','gender','students']
 
     def validate(self, attrs):
         super().validate(attrs)

@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Floor, Hostel
-from .filters import StudentFilter
+from .filters import StudentFilter,HostelFilter
 from django.db import transaction # 导入事务
 
 
@@ -29,11 +29,11 @@ class FloorListView(ListAPIView):
 
 # 获取单个楼层的所有宿舍信息视图
 class HostelListView(ListAPIView):
-    queryset = Hostel.objects.filter(is_deleted=False)
     serializer_class = HostelStudentSerializer
+    filterset_class = HostelFilter
     def get_queryset(self):
         floor_id = self.kwargs.get('floor_id')
-        return Hostel.objects.filter(floor_id=floor_id)
+        return Hostel.objects.filter(floor_id=floor_id,is_deleted=False)
 
 # 创建楼层视图
 class CreateFloorView(APIView):
@@ -109,7 +109,7 @@ class CreateHostelView(CreateAPIView):
         serializer = CreateHostelViewSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response({"message": "宿舍已创建成功。"},status = 201,)
+        return Response(serializer.data,status = 201,)
 
 # 删除宿舍
 class HostelDeleteView(DestroyAPIView):
@@ -152,6 +152,63 @@ class HostelDeleteView(DestroyAPIView):
     #         return Response(
     #             {"message": "未找到指定的宿舍或该宿舍已被删除。"},
     #         )
+
+# 从宿舍中删除学生
+class DeleteStudentFromHostelView(APIView):
+    def delete(self, request, *args, **kwargs):
+        try:
+            print(request.query_params.get('username'))
+            student_obj = User.objects.get(
+                username=request.query_params.get('username'),
+                user_type='student',
+                is_active=True,
+            )
+            if student_obj.house_number:
+                student_obj.house_number = None
+                student_obj.save(update_fields=['house_number'])
+                return Response(
+                    {"message": "学生已从宿舍中删除。"},
+                    status=200
+                )
+            return Response(
+                {"message": "该学生未加入宿舍。"},
+                status=400
+            )
+        except User.DoesNotExist:
+            return Response(
+                {"message": "未找到指定的学生。"},
+                status=404
+            )
+# 为学生分配宿舍
+class AssignStudentToHostelView(APIView):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        hostel_id = request.data.get('hostel_id')
+        try:
+            student_obj = User.objects.get(
+                username=username,
+                user_type='student',
+                is_active=True,
+            )
+            student_obj.house_number = Hostel.objects.get(id=hostel_id)
+            student_obj.save(update_fields=['house_number'])
+            return Response(
+                {
+                    "message": "学生已分配宿舍。",
+                    "username": username,
+                    "hostel_id": hostel_id
+                },
+                status=200
+            )
+        except Exception as e:
+            return Response(
+                {
+                    "message": "未找到指定的学生。",
+                },
+                status=404
+            )
+
+
 
 
 
