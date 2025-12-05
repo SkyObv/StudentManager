@@ -1,5 +1,7 @@
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializer import CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,HostelStudentSerializer, CreateHostelViewSerializer, GetAllTeachersSerializer
+from .serializer import (CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,
+                         HostelStudentSerializer, CreateHostelViewSerializer, GetAllTeachersSerializer,
+                         CreateUserSerializer)
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -23,7 +25,7 @@ class StudentListView(ListAPIView):
 
 # 获取所有老师信息
 class TeacherListView(ListAPIView):
-    queryset = User.objects.filter(user_type='teacher',is_active=True)
+    queryset = User.objects.filter(user_type='teacher')
     serializer_class = GetAllTeachersSerializer
     filterset_class = TeachersFilter
     ordering_fields = ['id']
@@ -81,7 +83,6 @@ class CreateFloorView(APIView):
                     {"message": "楼层已成功创建。"},
                     status=201
                 )
-
 # 删除楼层视图
 class FloorDeleteView(DestroyAPIView):
     queryset = Floor.objects.filter(is_deleted=False)
@@ -118,7 +119,6 @@ class CreateHostelView(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data,status = 201,)
-
 # 删除宿舍
 class HostelDeleteView(DestroyAPIView):
     queryset = Hostel.objects.filter(is_deleted=False)
@@ -165,7 +165,6 @@ class HostelDeleteView(DestroyAPIView):
 class DeleteStudentFromHostelView(APIView):
     def delete(self, request, *args, **kwargs):
         try:
-            print(request.query_params.get('username'))
             student_obj = User.objects.get(
                 username=request.query_params.get('username'),
                 user_type='student',
@@ -216,7 +215,89 @@ class AssignStudentToHostelView(APIView):
                 status=404
             )
 
-
+# 创建用户账号
+class CreateUserView(CreateAPIView):
+    serializer_class = CreateUserSerializer
+# 禁用老师账号
+class DeleteTeacherView(APIView):
+    def delete(self, request, *args, **kwargs):
+        teacher_id = kwargs.get('pk')
+        try:
+            with transaction.atomic():
+                teacher_obj = User.objects.get(
+                    id=teacher_id,
+                    user_type='teacher',
+                    is_active=True,
+                )
+                teacher_obj.is_active = False
+                teacher_obj.save(update_fields=['is_active'])
+                teacher_obj.students.clear()
+            return Response(
+                {
+                    "message": "老师已禁用。",
+                    "teacher_id": teacher_id
+                },
+                status=200
+            )
+        except User.DoesNotExist:
+            return Response(
+                {
+                    "message": "未找到指定的老师。",
+                },
+                status=404
+            )
+# 恢复老师账号
+class RestoreTeacherView(APIView):
+    def post(self, request, *args, **kwargs):
+        teacher_id = kwargs.get('pk')
+        print(teacher_id)
+        try:
+            with transaction.atomic():
+                teacher_obj = User.objects.get(
+                    id=teacher_id,
+                    user_type='teacher',
+                    is_active=False,
+                )
+                teacher_obj.is_active = True
+                teacher_obj.save(update_fields=['is_active'])
+            return Response(
+                {
+                    "message": "老师已恢复。",
+                    "teacher_id": teacher_id
+                },
+                status=200
+            )
+        except User.DoesNotExist:
+            return Response(
+                {
+                    "message": "未找到指定的老师。",
+                },
+                status=404
+            )
+# 彻底删除老师账号
+class DeleteTeacherPermanentlyView(APIView):
+    def delete(self, request, *args, **kwargs):
+        teacher_id = kwargs.get('pk')
+        try:
+            with transaction.atomic():
+                teacher_obj = User.objects.get(
+                    id=teacher_id,
+                    user_type='teacher',
+                )
+                teacher_obj.delete()
+            return Response(
+                {
+                    "message": "老师已彻底删除。",
+                    "teacher_id": teacher_id
+                },
+                status=200
+            )
+        except User.DoesNotExist:
+            return Response(
+                {
+                    "message": "未找到指定的老师。",
+                },
+            )
 
 
 

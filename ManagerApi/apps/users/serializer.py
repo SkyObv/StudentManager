@@ -123,3 +123,28 @@ class CreateHostelViewSerializer(serializers.ModelSerializer):
         if Hostel.objects.filter(floor_id=floor_id, hostel_number=hostel_number,is_deleted=False).exists():
             raise serializers.ValidationError({'message': '该楼层已存在该宿舍。'})
         return attrs
+
+# 创建用户账号序列化器
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password', 'first_name', 'last_name', 'gender', 'user_type']
+        extra_kwargs = {
+            'id':{'required': False},
+            'username': {'required': True},
+            'password': {'required': True,'write_only': True},
+            'first_name': {'required': False},
+            'last_name': {'required': False},
+            'gender': {'required': True},
+            'user_type': {'required': True}
+        }
+    def validate(self, attrs):
+        super().validate(attrs)
+        return attrs
+    def create(self, validated_data):
+        """创建用户"""
+        password = validated_data.pop('password')
+        user = User(**validated_data)
+        user.set_password(password)  # 关键：对密码进行哈希处理
+        user.save()
+        return user

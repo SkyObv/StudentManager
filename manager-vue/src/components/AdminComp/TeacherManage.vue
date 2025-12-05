@@ -4,56 +4,32 @@ export default {
   name: 'TeacherManage',
   data() {
     return {
-      // 老师数据（静态数据）
-      teachers: [
-        {
-          "id": 2,
-          "username": "000000",
-          "name": "大大怪",
-          "gender": "male",
-          "is_active": true,
-          "counts": 1
-        },
-        {
-          "id": 5,
-          "username": "432234",
-          "name": "迷糊老师",
-          "gender": "male",
-          "is_active": true,
-          "counts": 1
-        },
-        {
-          "id": 6,
-          "username": "543345",
-          "name": "李老师",
-          "gender": "female",
-          "is_active": true,
-          "counts": 3
-        },
-        {
-          "id": 7,
-          "username": "654456",
-          "name": "王老师",
-          "gender": "male",
-          "is_active": false,
-          "counts": 2
-        }
-      ],
-
+      // 老师数据
+      teachers: [],
       // 筛选数据
       genderFilter: '',
-      searchQuery: '',
+      searchQuery: '', // 搜索关键词
+      searchType: 'teacher_account', // 搜索类型：teacher_account-老师账号, teacher_name-老师姓名, student_name-学生姓名
       isActiveFilter: 'active', // 默认只显示活跃账号
       // 表单状态
       showAddTeacherForm: false,
       showDeleteTeacherForm: false,
+      showRestoreTeacherForm: false,
+      showPermanentlyDeleteTeacherForm: false,
       // 删除老师对话框
       teacherToDelete: null,
+      // 恢复老师对话框
+      teacherToRestore: null,
+      // 彻底删除老师对话框
+      teacherToPermanentlyDelete: null,
       // 新增老师表单数据
       newTeacher: {
         username: '',
-        name: '',
-        gender: 'male'
+        password: '',
+        first_name: '',
+        last_name: '',
+        gender: 'male',
+        user_type: 'teacher'
       },
       // 加载状态
       loading: false
@@ -61,34 +37,11 @@ export default {
   },
   computed: {
     /**
-     * 计算过滤后的老师数据
-     * @returns {Array} 过滤后的老师数据
+     * 返回老师数据（API已经返回过滤后的数据）
+     * @returns {Array} 老师数据
      */
     filteredTeachers() {
-      let filtered = this.teachers;
-      
-      // 按账号状态过滤
-      if (this.isActiveFilter === 'active') {
-        filtered = filtered.filter(teacher => teacher.is_active === true);
-      } else if (this.isActiveFilter === 'inactive') {
-        filtered = filtered.filter(teacher => teacher.is_active === false);
-      }
-      
-      // 按性别过滤
-      if (this.genderFilter) {
-        filtered = filtered.filter(teacher => teacher.gender === this.genderFilter);
-      }
-      
-      // 按姓名搜索
-      if (this.searchQuery) {
-        const query = this.searchQuery.toLowerCase();
-        filtered = filtered.filter(teacher => 
-          teacher.name.toLowerCase().includes(query) || 
-          teacher.username.includes(query)
-        );
-      }
-      
-      return filtered;
+      return [...this.teachers];
     },
 
     /**
@@ -126,10 +79,59 @@ export default {
   },
   methods: {
     /**
+     * 获取老师数据
+     */
+    async getTeachers() {
+      this.loading = true;
+      try {
+        // 构建查询参数
+        const params = {};
+        
+        // 性别过滤
+        if (this.genderFilter) {
+          params.gender = this.genderFilter;
+        }
+        
+        // 根据搜索类型添加查询参数
+        if (this.searchQuery) {
+          switch (this.searchType) {
+            case 'teacher_account':
+              params.name = this.searchQuery; // API文档中显示老师账号和姓名使用同一个参数
+              break;
+            case 'teacher_name':
+              params.name = this.searchQuery;
+              break;
+            case 'student_name':
+              params.student_name = this.searchQuery;
+              break;
+          }
+        }
+        
+        // 账号状态过滤
+        if (this.isActiveFilter === 'active') {
+          params.is_active = true;
+        } else if (this.isActiveFilter === 'inactive') {
+          params.is_active = false;
+        }
+        
+        // 发送GET请求
+        const response = await this.$axios.get(`${this.$settings.Host}/users/teachers/`, { params });
+        
+        // 更新老师数据
+        this.teachers = response.data;
+      } catch (error) {
+        console.error('获取老师数据失败:', error);
+        this.$message.error('获取老师数据失败，请稍后重试');
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    /**
      * 处理搜索和筛选
      */
     searchTeachers() {
-      // 搜索时不需要分页
+      this.getTeachers();
     },
 
     /**
@@ -138,7 +140,9 @@ export default {
     resetFilters() {
       this.genderFilter = '';
       this.searchQuery = '';
+      this.searchType = 'teacher_account'; // 重置为默认搜索老师账号
       this.isActiveFilter = 'active'; // 重置为默认显示活跃账号
+      this.getTeachers();
     },
 
     /**
@@ -149,8 +153,11 @@ export default {
       // 重置表单数据
       this.newTeacher = {
         username: '',
-        name: '',
-        gender: 'male'
+        password: '',
+        first_name: '',
+        last_name: '',
+        gender: 'male',
+        user_type: 'teacher'
       };
     },
 
@@ -164,29 +171,36 @@ export default {
     /**
      * 提交添加老师表单
      */
-    submitAddTeacher() {
+    async submitAddTeacher() {
       // 验证表单数据
-      if (!this.newTeacher.username || !this.newTeacher.name) {
+      if (!this.newTeacher.username || !this.newTeacher.password || !this.newTeacher.first_name || !this.newTeacher.last_name) {
         this.$message.warning('请填写完整的老师信息');
         return;
       }
 
-      // 模拟添加老师（静态数据）
-      const newTeacher = {
-        id: Date.now(), // 使用时间戳作为临时ID
-        ...this.newTeacher,
-        is_active: true,
-        counts: 0
-      };
+      try {
+        // 发送创建老师请求到后端API
+        const response = await this.$axios.post(`${this.$settings.Host}/users/craete/teacher/`, {
+          username: this.newTeacher.username,
+          password: this.newTeacher.password,
+          first_name: this.newTeacher.first_name,
+          last_name: this.newTeacher.last_name,
+          gender: this.newTeacher.gender,
+          user_type: this.newTeacher.user_type
+        });
 
-      // 添加到老师列表
-      this.teachers.push(newTeacher);
+        // 重新获取老师数据，确保数据与后端一致
+        await this.getTeachers();
 
-      // 关闭表单
-      this.closeAddTeacherForm();
+        // 关闭表单
+        this.closeAddTeacherForm();
 
-      // 显示成功提示
-      this.$message.success('老师账号创建成功');
+        // 显示成功提示
+        this.$message.success(response.data.message || '老师账号创建成功');
+      } catch (error) {
+        console.error('创建老师失败:', error);
+        this.$message.error('创建老师失败，请稍后重试');
+      }
     },
 
     /**
@@ -194,33 +208,138 @@ export default {
      * @param {Object} teacher - 要删除的老师对象
      */
     openDeleteTeacherForm(teacher) {
-      this.teacherToDelete = teacher;
-      this.showDeleteTeacherForm = true;
-    },
+    this.teacherToDelete = teacher;
+    this.showDeleteTeacherForm = true;
+  },
 
     /**
      * 关闭删除老师表单
      */
-    closeDeleteTeacherForm() {
-      this.showDeleteTeacherForm = false;
-      this.teacherToDelete = null;
-    },
+      closeDeleteTeacherForm() {
+        this.showDeleteTeacherForm = false;
+        this.teacherToDelete = null;
+      },
+      
+      /**
+       * 打开恢复老师表单
+       * @param {Object} teacher - 要恢复的老师对象
+       */
+      openRestoreTeacherForm(teacher) {
+        this.teacherToRestore = teacher;
+        this.showRestoreTeacherForm = true;
+      },
+      
+      /**
+       * 关闭恢复老师表单
+       */
+      closeRestoreTeacherForm() {
+        this.showRestoreTeacherForm = false;
+        this.teacherToRestore = null;
+      },
+      
+      /**
+       * 提交恢复老师操作
+       */
+      async submitRestoreTeacher() {
+        if (!this.teacherToRestore) return;
+        
+        try {
+          // 发送恢复请求到后端API
+          const response = await this.$axios.post(`${this.$settings.Host}/users/restore/${this.teacherToRestore.id}/teacher`);
+          
+          // 更新本地数据
+          const updatedTeacher = this.teachers.find(teacher => teacher.id === this.teacherToRestore.id);
+          if (updatedTeacher) {
+            updatedTeacher.is_active = true;
+          }
+          
+          // 关闭表单
+          this.closeRestoreTeacherForm();
+          
+          // 显示成功提示
+          this.$message.success(response.data.message || '老师账号恢复成功');
+        } catch (error) {
+          console.error('恢复老师失败:', error);
+          this.$message.error('恢复老师失败，请稍后重试');
+        }
+      },
+      
+      /**
+       * 打开彻底删除老师表单
+       * @param {Object} teacher - 要彻底删除的老师对象
+       */
+      openPermanentlyDeleteTeacherForm(teacher) {
+        this.teacherToPermanentlyDelete = teacher;
+        this.showPermanentlyDeleteTeacherForm = true;
+      },
+      
+      /**
+       * 关闭彻底删除老师表单
+       */
+      closePermanentlyDeleteTeacherForm() {
+        this.showPermanentlyDeleteTeacherForm = false;
+        this.teacherToPermanentlyDelete = null;
+      },
+      
+      /**
+       * 提交彻底删除老师操作
+       */
+      async submitPermanentlyDeleteTeacher() {
+        if (!this.teacherToPermanentlyDelete) return;
+        
+        try {
+          // 发送彻底删除请求到后端API
+          const response = await this.$axios.delete(`${this.$settings.Host}/users/delete/permanently/${this.teacherToPermanentlyDelete.id}/teacher`);
+          
+          // 从本地列表中移除该老师
+          this.teachers = this.teachers.filter(teacher => teacher.id !== this.teacherToPermanentlyDelete.id);
+          
+          // 关闭表单
+          this.closePermanentlyDeleteTeacherForm();
+          
+          // 显示成功提示
+          this.$message.success(response.data.message || '老师已彻底删除');
+        } catch (error) {
+          console.error('彻底删除老师失败:', error);
+          // 根据后端返回的错误信息显示不同提示
+          if (error.response && error.response.data && error.response.data.message) {
+            this.$message.error(error.response.data.message);
+          } else {
+            this.$message.error('彻底删除老师失败，请稍后重试');
+          }
+        }
+      },
 
     /**
      * 提交删除老师操作
      */
-    submitDeleteTeacher() {
+    async submitDeleteTeacher() {
       if (!this.teacherToDelete) return;
 
-      // 模拟删除老师（静态数据）
-      this.teachers = this.teachers.filter(teacher => teacher.id !== this.teacherToDelete.id);
-
-      // 关闭表单
-      this.closeDeleteTeacherForm();
-
-      // 显示成功提示
-      this.$message.success('老师账号删除成功');
+      try {
+        // 发送DELETE请求到后端API
+        const response = await this.$axios.delete(`${this.$settings.Host}/users/delete/${this.teacherToDelete.id}/teacher`);
+        
+        // 更新本地数据
+        this.teachers = this.teachers.filter(teacher => teacher.id !== this.teacherToDelete.id);
+        
+        // 关闭表单
+        this.closeDeleteTeacherForm();
+        
+        // 显示成功提示
+        this.$message.success(response.data.message || '老师账号删除成功');
+      } catch (error) {
+        console.error('删除老师失败:', error);
+        this.$message.error('删除老师失败，请稍后重试');
+      }
     }
+  },
+  
+  /**
+   * 组件挂载后获取老师数据
+   */
+  mounted() {
+    this.getTeachers();
   }
 }
 </script>
@@ -240,9 +359,14 @@ export default {
         <input 
           type="text" 
           v-model="searchQuery" 
-          placeholder="搜索老师名字或账号..." 
+          placeholder="搜索关键词..." 
           class="search-input"
         >
+        <select v-model="searchType" class="search-type-select">
+          <option value="teacher_account">老师账号</option>
+          <option value="teacher_name">老师姓名</option>
+          <option value="student_name">学生姓名</option>
+        </select>
         <button class="search-button" @click="searchTeachers">
           <span class="search-icon">🔍</span>
           <span class="search-text">搜索</span>
@@ -285,10 +409,22 @@ export default {
     <!-- 老师列表 -->
     <div class="teachers-grid">
       <div class="teacher-card" v-for="teacher in filteredTeachers" :key="teacher.id">
-        <!-- 删除老师按钮 -->
-        <button class="delete-teacher-button" @click="openDeleteTeacherForm(teacher)" title="删除老师">
-          🗑️
-        </button>
+          <!-- 根据账号状态显示不同按钮 -->
+          <button 
+            :class="teacher.is_active ? 'delete-teacher-button' : 'restore-teacher-button'" 
+            @click="teacher.is_active ? openDeleteTeacherForm(teacher) : openRestoreTeacherForm(teacher)" 
+            :title="teacher.is_active ? '禁用老师' : '恢复老师'"
+          >
+            {{ teacher.is_active ? '🗑️' : '🔄' }}
+          </button>
+          <!-- 彻底删除按钮 -->
+          <button 
+            class="permanently-delete-button" 
+            @click="openPermanentlyDeleteTeacherForm(teacher)" 
+            title="彻底删除老师（从数据库中删除）"
+          >
+            🗑️🗑️
+          </button>
         <!-- 卡片头部 -->
         <div class="card-header">
           <h3 class="teacher-name">{{ teacher.name }}</h3>
@@ -337,8 +473,16 @@ export default {
               <input type="text" id="teacher_username" v-model="newTeacher.username" required>
             </div>
             <div class="form-group">
-              <label for="teacher_name">姓名：</label>
-              <input type="text" id="teacher_name" v-model="newTeacher.name" required>
+              <label for="teacher_password">密码：</label>
+              <input type="password" id="teacher_password" v-model="newTeacher.password" required>
+            </div>
+            <div class="form-group">
+              <label for="teacher_first_name">名：</label>
+              <input type="text" id="teacher_first_name" v-model="newTeacher.first_name" required>
+            </div>
+            <div class="form-group">
+              <label for="teacher_last_name">姓：</label>
+              <input type="text" id="teacher_last_name" v-model="newTeacher.last_name" required>
             </div>
             <div class="form-group">
               <label for="teacher_gender">性别：</label>
@@ -356,21 +500,61 @@ export default {
       </div>
     </div>
 
-    <!-- 删除老师对话框 -->
+    <!-- 禁用老师对话框 -->
     <div class="modal" v-if="showDeleteTeacherForm">
       <div class="modal-content">
         <div class="modal-header">
-          <h3>删除老师</h3>
+          <h3>禁用老师账号</h3>
           <button class="close-button" @click="closeDeleteTeacherForm">×</button>
         </div>
         <div class="modal-body">
           <div class="delete-confirm">
-            <p>确定要删除老师 <strong>{{ teacherToDelete?.name }}</strong> 吗？</p>
-            <p class="delete-warning">此操作不可恢复，请谨慎操作。</p>
+            <p>确定要禁用老师 <strong>{{ teacherToDelete?.name }}</strong> 的账号吗？</p>
+            <p class="delete-warning">禁用后老师将无法登录系统，但数据会被保留。</p>
           </div>
           <div class="form-actions">
             <button type="button" class="cancel-button" @click="closeDeleteTeacherForm">取消</button>
-            <button type="button" class="delete-confirm-button" @click="submitDeleteTeacher">确认删除</button>
+            <button type="button" class="delete-confirm-button" @click="submitDeleteTeacher">确认禁用</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 恢复老师对话框 -->
+    <div class="modal" v-if="showRestoreTeacherForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>恢复老师账号</h3>
+          <button class="close-button" @click="closeRestoreTeacherForm">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="restore-confirm">
+            <p>确定要恢复老师 <strong>{{ teacherToRestore?.name }}</strong> 的账号吗？</p>
+            <p class="restore-info">恢复后老师将可以重新登录系统。</p>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-button" @click="closeRestoreTeacherForm">取消</button>
+            <button type="button" class="restore-confirm-button" @click="submitRestoreTeacher">确认恢复</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 彻底删除老师对话框 -->
+    <div class="modal" v-if="showPermanentlyDeleteTeacherForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>彻底删除老师</h3>
+          <button class="close-button" @click="closePermanentlyDeleteTeacherForm">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="permanently-delete-confirm">
+            <p>确定要彻底删除老师 <strong>{{ teacherToPermanentlyDelete?.name }}</strong> 吗？</p>
+            <p class="permanently-delete-warning">此操作将从数据库中彻底删除该老师的所有数据，包括关联的学生信息，且不可恢复！</p>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-button" @click="closePermanentlyDeleteTeacherForm">取消</button>
+            <button type="button" class="permanently-delete-confirm-button" @click="submitPermanentlyDeleteTeacher">确认彻底删除</button>
           </div>
         </div>
       </div>
@@ -440,6 +624,16 @@ export default {
   border: 1px solid #ddd;
   border-radius: 4px 0 0 4px;
   font-size: 14px;
+}
+
+.search-type-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
 }
 
 .search-button {
@@ -577,6 +771,66 @@ export default {
 .delete-teacher-button:hover {
   background-color: #f56c6c;
   color: white;
+}
+
+/* 恢复按钮 */
+.restore-teacher-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #10b981;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 0 0 0 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.restore-teacher-button:hover {
+  background-color: #059669;
+}
+
+/* 彻底删除按钮样式 */
+.permanently-delete-button {
+  position: absolute;
+  right: 85px;
+  bottom: 0;
+  background-color: #ef4444;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 0 0 8px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.permanently-delete-button:hover {
+  background-color: #dc2626;
+}
+
+/* 彻底删除确认按钮样式 */
+.permanently-delete-confirm-button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.permanently-delete-confirm-button:hover {
+  background-color: #dc2626;
+}
+
+/* 彻底删除警告信息样式 */
+.permanently-delete-warning {
+  color: #ef4444;
+  font-weight: bold;
+  margin-top: 12px;
 }
 
 .card-header {
@@ -824,6 +1078,21 @@ export default {
 
 .delete-confirm-button:hover {
   background-color: #f78989;
+}
+
+/* 恢复确认按钮 */
+.restore-confirm-button {
+  padding: 8px 16px;
+  background-color: #67C23A;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.restore-confirm-button:hover {
+  background-color: #85CE61;
 }
 
 .delete-confirm {
