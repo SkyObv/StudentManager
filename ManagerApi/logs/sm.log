@@ -2603,3 +2603,19 @@ INFO 2025-12-05 17:27:11,934 basehttp 213 "GET /users/hostel/4/?page=1&page_size
 INFO 2025-12-05 17:27:15,959 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
 INFO 2025-12-05 17:27:21,836 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
 INFO 2025-12-05 17:27:23,063 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+WARNING 2025-12-05 17:31:59,848 log 253 Bad Request: /users/craete/teacher/
+WARNING 2025-12-05 17:31:59,849 basehttp 213 "POST /users/craete/teacher/ HTTP/1.1" 400 59
+WARNING 2025-12-05 17:32:02,689 log 253 Bad Request: /users/craete/teacher/
+WARNING 2025-12-05 17:32:02,690 basehttp 213 "POST /users/craete/teacher/ HTTP/1.1" 400 59
+INFO 2025-12-05 17:32:18,343 basehttp 213 "OPTIONS /users/craete/teacher/ HTTP/1.1" 200 0
+WARNING 2025-12-05 17:32:18,357 log 253 Bad Request: /users/craete/teacher/
+WARNING 2025-12-05 17:32:18,357 basehttp 213 "POST /users/craete/teacher/ HTTP/1.1" 400 59
+WARNING 2025-12-05 17:32:49,661 log 253 Bad Request: /users/craete/teacher/
+WARNING 2025-12-05 17:32:49,662 basehttp 213 "POST /users/craete/teacher/ HTTP/1.1" 400 160
+WARNING 2025-12-05 17:32:50,660 log 253 Bad Request: /users/craete/teacher/
+WARNING 2025-12-05 17:32:50,660 basehttp 213 "POST /users/craete/teacher/ HTTP/1.1" 400 160
+INFO 2025-12-05 17:34:12,607 basehttp 213 "OPTIONS /users/delete/permanently/%3Cint:pk%3E/teacher?%3Cint:pk%3E HTTP/1.1" 200 0
+WARNING 2025-12-05 17:34:12,611 log 253 Not Found: /users/delete/permanently/<int:pk>/teacher
+WARNING 2025-12-05 17:34:12,611 basehttp 213 "DELETE /users/delete/permanently/%3Cint:pk%3E/teacher?%3Cint:pk%3E HTTP/1.1" 404 6472
+INFO 2025-12-05 17:36:23,972 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-05 17:36:24,250 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
