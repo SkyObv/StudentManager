@@ -1,6 +1,8 @@
 import django_filters
 from .models import User,Hostel
 from django.db.models import Q
+from django.db.models import Value
+from django.db.models.functions import Concat
 
 # 学生过滤器
 class StudentFilter(django_filters.FilterSet):
@@ -66,3 +68,36 @@ class HostelFilter(django_filters.FilterSet):
     class Meta:
         model = Hostel
         fields = ['hostel_number', 'gender']
+
+# 老师过滤器
+class TeachersFilter(django_filters.FilterSet):
+    gender = django_filters.CharFilter(
+        field_name='gender',
+        lookup_expr='iexact'
+    )
+    name = django_filters.CharFilter(
+        method='filter_by_name'
+    )
+    student_name = django_filters.CharFilter(
+        method='filter_by_student_name'
+    )
+    is_active = django_filters.BooleanFilter(
+        field_name='is_active'
+    )
+
+    def filter_by_name(self, queryset, name, value):
+        if value:
+            return queryset.filter(
+                Q(last_name__icontains=value) | Q(first_name__icontains=value)
+            )
+        return queryset
+    def filter_by_student_name(self, queryset, name, value):
+        if value:
+            # 使用 .annotate() 创建一个名为 'student_full_name' 的虚拟字段
+            # 这个字段的值是通过拼接关联学生的姓和名得到的
+            # 使用 Concat 函数在数据库层面拼接姓和名
+            annotated_queryset = queryset.annotate(
+                student_full_name=Concat('students__last_name', 'students__first_name')
+            )
+            return annotated_queryset.filter(student_full_name__icontains=value).distinct()
+        return queryset

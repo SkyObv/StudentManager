@@ -89,6 +89,21 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
         """获取学生的姓名"""
         return obj.last_name + obj.first_name
 
+# 获取所有老师序列化器
+class GetAllTeachersSerializer(serializers.ModelSerializer):
+    """获取所有教师"""
+    name = serializers.SerializerMethodField()
+    counts = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'name', 'gender', 'is_active', 'counts']
+    def get_name(self, obj):
+        """获取老师的姓名"""
+        return obj.last_name + obj.first_name
+    def get_counts(self, obj):
+        """统计老师所有的学生"""
+        return obj.students.filter(is_active=True).count()
+
 # 创建宿舍序列化器
 class CreateHostelViewSerializer(serializers.ModelSerializer):
     students = Hoste_StudentSerializer(

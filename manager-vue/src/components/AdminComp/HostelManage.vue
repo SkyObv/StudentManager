@@ -1,4 +1,5 @@
 <script>
+// 宿舍详细信息组件
 export default {
   name: 'HostelManage',
   props: {

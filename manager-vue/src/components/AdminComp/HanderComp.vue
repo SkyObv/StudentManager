@@ -1,4 +1,5 @@
 <script>
+// 导航栏组件
 export default {
   name: 'HanderComp',
   data() {
@@ -76,7 +77,7 @@ export default {
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
-              <span>学生管理</span>
+              <span>老师账号管理</span>
             </a>
           </li>
           <li :class="changeCss(2)" @click="changeOption(2)">
@@ -88,20 +89,20 @@ export default {
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 <line x1="15" y1="13" x2="21" y2="13"></line>
               </svg>
-              <span>教师管理</span>
+              <span>学生外出信息可视化</span>
             </a>
           </li>
-          <li :class="changeCss(3)" @click="changeOption(3)">
-            <a href="#courses" class="nav-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3 3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"></path>
-                <line x1="12" y1="10" x2="12" y2="16"></line>
-                <line x1="8" y1="13" x2="16" y2="13"></line>
-                <path d="M12 2v4"></path>
-              </svg>
-              <span>学生宿舍外出管理</span>
-            </a>
-          </li>
+<!--          <li :class="changeCss(3)" @click="changeOption(3)">-->
+<!--            <a href="#courses" class="nav-link">-->
+<!--              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                <path d="M12 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3 3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"></path>-->
+<!--                <line x1="12" y1="10" x2="12" y2="16"></line>-->
+<!--                <line x1="8" y1="13" x2="16" y2="13"></line>-->
+<!--                <path d="M12 2v4"></path>-->
+<!--              </svg>-->
+<!--              <span>学生宿舍外出管理</span>-->
+<!--            </a>-->
+<!--          </li>-->
         </ul>
       </nav>
 

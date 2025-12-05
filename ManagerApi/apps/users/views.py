@@ -1,11 +1,11 @@
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializer import CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,HostelStudentSerializer, CreateHostelViewSerializer
+from .serializer import CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,HostelStudentSerializer, CreateHostelViewSerializer, GetAllTeachersSerializer
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Floor, Hostel
-from .filters import StudentFilter,HostelFilter
+from .filters import StudentFilter, HostelFilter, TeachersFilter
 from django.db import transaction # 导入事务
 
 
@@ -20,6 +20,14 @@ class StudentListView(ListAPIView):
     filterset_class = StudentFilter
     # (可选) 指定可以进行排序的字段，这会增加 API 的灵活性
     ordering_fields = ['id', 'house_number__hostel_number']
+
+# 获取所有老师信息
+class TeacherListView(ListAPIView):
+    queryset = User.objects.filter(user_type='teacher',is_active=True)
+    serializer_class = GetAllTeachersSerializer
+    filterset_class = TeachersFilter
+    ordering_fields = ['id']
+    pagination_class = None
 
 # 获取所有楼层视图
 class FloorListView(ListAPIView):

@@ -1,4 +1,5 @@
 <script>
+// 宿舍楼组件
 export default {
   name: 'FloorManage',
   data() {

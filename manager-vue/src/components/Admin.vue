@@ -2,12 +2,13 @@
 import HanderComp from "@/components/AdminComp/HanderComp.vue"
 import FloorManage from "@/components/AdminComp/FloorManage.vue"
 import HostelManage from "@/components/AdminComp/HostelManage.vue"
+import TeacherManage from "@/components/AdminComp/TeacherManage.vue"
 export default {
   name: 'AdminPage',
   data() {
     return {
       option:HanderComp.data().option,                               // 导航栏选项
-      floorId: null,                                                 // 楼层ID
+      floorId: null,                                                 // 楼层ID点击
     }
   },
   methods: {
@@ -32,6 +33,7 @@ export default {
     HanderComp,
     FloorManage: FloorManage,
     HostelManage,
+    TeacherManage,
   }
 }
 </script>
@@ -43,12 +45,12 @@ export default {
     <!-- 宿舍管理 -->
     <FloorManage v-if="option === 0" @FloorClick="handleFloorClick"></FloorManage>
     <HostelManage v-if="floorId" @goBack="handleGoBack" :floorId="floorId"></HostelManage>
-    <!-- 教师管理 -->
-    <h1 v-if="option === 1">教师管理</h1>
-    <!-- 学生宿舍外出管理 -->
-    <h1 v-if="option === 2">学生宿舍外出管理</h1>
+    <!-- 教师账号管理 -->
+    <TeacherManage v-if="option === 1"></TeacherManage>
+    <!-- 学生宿舍外出信息可视化 -->
+    <h1 v-if="option === 2"></h1>
     <!-- 学生管理 -->
-    <h1 v-if="option === 3">宿舍管理</h1>
+    <h1 v-if="option === 3"></h1>
   </div>
 </template>
 
