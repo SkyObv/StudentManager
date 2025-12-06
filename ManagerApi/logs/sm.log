@@ -3731,3 +3731,72 @@ INFO 2025-12-06 18:37:39,654 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
 INFO 2025-12-06 18:38:02,807 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
 INFO 2025-12-06 18:38:04,582 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
 INFO 2025-12-06 18:38:04,932 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:40:20,787 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:40:27,431 basehttp 213 "OPTIONS /users/add/hostel/manager/?pk=2 HTTP/1.1" 200 0
+INFO 2025-12-06 18:40:27,446 basehttp 213 "DELETE /users/add/hostel/manager/?pk=2 HTTP/1.1" 200 57
+INFO 2025-12-06 18:40:27,469 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+ERROR 2025-12-06 18:40:33,105 log 253 Internal Server Error: /users/add/hostel/manager/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\views.py", line 309, in post
+    manager = User.objects.get(
+        username=username,
+        user_type='teacher',
+        is_active=True,
+    )
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+users.models.User.DoesNotExist: User matching query does not exist.
+ERROR 2025-12-06 18:40:33,109 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 500 107738
+INFO 2025-12-06 18:40:37,325 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:40:43,303 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:40:44,390 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:40:48,775 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 77
+INFO 2025-12-06 18:40:48,789 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 806
+INFO 2025-12-06 18:44:24,059 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\filters.py changed, reloading.
+INFO 2025-12-06 18:44:24,601 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:44:28,955 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=%E5%A4%A7%E5%A4%A7 HTTP/1.1" 200 298
+INFO 2025-12-06 18:44:33,015 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 806
+INFO 2025-12-06 18:44:37,336 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:44:41,609 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:44:42,275 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 806
+INFO 2025-12-06 18:44:47,371 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 77
+INFO 2025-12-06 18:44:47,387 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+INFO 2025-12-06 18:44:54,087 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=%E8%BF%B7%E7%B3%8A HTTP/1.1" 200 437
+INFO 2025-12-06 18:44:58,708 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=%E5%A4%A7 HTTP/1.1" 200 52
+INFO 2025-12-06 18:45:00,964 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=%E5%A4%A7%E5%A4%A7 HTTP/1.1" 200 427
+INFO 2025-12-06 18:45:30,053 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\filters.py changed, reloading.
+INFO 2025-12-06 18:45:30,519 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:45:30,822 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+INFO 2025-12-06 18:45:33,445 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=%E5%A4%A7%E5%A4%A7 HTTP/1.1" 200 427
+INFO 2025-12-06 18:45:37,233 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=%E8%BF%B7%E7%B3%8A HTTP/1.1" 200 437
+INFO 2025-12-06 18:46:35,995 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+INFO 2025-12-06 18:46:42,513 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 18:46:44,674 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+INFO 2025-12-06 18:46:47,933 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:46:48,422 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20 HTTP/1.1" 200 295
+INFO 2025-12-06 18:46:50,198 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 18:46:51,988 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 295
+INFO 2025-12-06 18:46:53,752 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233

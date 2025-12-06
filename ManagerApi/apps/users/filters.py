@@ -58,8 +58,7 @@ class StudentFilter(django_filters.FilterSet):
 # 楼层宿舍过滤器
 class HostelFilter(django_filters.FilterSet):
     hostel_number = django_filters.CharFilter(
-        field_name='hostel_number',
-        lookup_expr='iexact'
+        method='filter_by_hostel_number'
     )
     gender = django_filters.CharFilter(
         field_name='gender',
@@ -76,6 +75,12 @@ class HostelFilter(django_filters.FilterSet):
             return queryset.filter(manager__isnull=False)
         else:
             return queryset.filter(manager__isnull=True)
+    def filter_by_hostel_number(self, queryset, name, value):
+        if value:
+            queryset = queryset.filter(Q(hostel_number__iexact=value) | Q(manager__last_name__iexact=value))
+            return queryset
+        return queryset
+
 # 老师过滤器
 class TeachersFilter(django_filters.FilterSet):
     gender = django_filters.CharFilter(

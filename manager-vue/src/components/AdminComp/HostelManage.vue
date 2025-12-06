@@ -586,7 +586,7 @@ export default {
         <input 
           type="text" 
           v-model="searchQuery" 
-          placeholder="搜索宿舍号..." 
+          placeholder="搜索宿舍号或管理者姓名..." 
           class="search-input"
         >
         <button class="search-button" @click="searchHostels">
@@ -1332,38 +1332,21 @@ export default {
   margin-bottom: 20px;
 }
 
-.manager-select .students-list {
-  max-height: 300px;
-  overflow-y: auto;
+/* 老师工号输入框样式 */
+.teacher-username-input {
+  width: 100%;
+  padding: 10px 12px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-.manager-select .student-item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.manager-select .student-item:hover {
-  background-color: #f3f4f6;
-}
-
-.manager-select .student-item.selected {
-  background-color: #dbeafe;
-  border: 2px solid #3b82f6;
-}
-
-.manager-select .student-username {
-  margin-left: 10px;
-  color: #6b7280;
   font-size: 14px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.teacher-username-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* 管理员操作按钮样式 */
