@@ -2619,3 +2619,1115 @@ WARNING 2025-12-05 17:34:12,611 log 253 Not Found: /users/delete/permanently/<in
 WARNING 2025-12-05 17:34:12,611 basehttp 213 "DELETE /users/delete/permanently/%3Cint:pk%3E/teacher?%3Cint:pk%3E HTTP/1.1" 404 6472
 INFO 2025-12-05 17:36:23,972 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
 INFO 2025-12-05 17:36:24,250 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 16:19:35,051 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:23:49,669 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\models.py changed, reloading.
+INFO 2025-12-06 16:23:50,104 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:25:47,094 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\admin.py changed, reloading.
+INFO 2025-12-06 16:25:47,561 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:25:55,566 basehttp 213 "GET /admin HTTP/1.1" 301 0
+INFO 2025-12-06 16:25:55,608 basehttp 213 "GET /admin/ HTTP/1.1" 200 11226
+INFO 2025-12-06 16:25:55,645 basehttp 213 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,646 basehttp 213 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,647 basehttp 213 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,648 basehttp 213 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,649 basehttp 213 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,649 basehttp 213 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,761 basehttp 213 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,767 basehttp 213 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:55,767 basehttp 213 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+WARNING 2025-12-06 16:25:55,831 log 253 Not Found: /favicon.ico
+WARNING 2025-12-06 16:25:55,831 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2361
+INFO 2025-12-06 16:25:57,815 basehttp 213 "GET /admin/users/floor/ HTTP/1.1" 200 12464
+INFO 2025-12-06 16:25:57,848 basehttp 213 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,852 basehttp 213 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,852 basehttp 213 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,853 basehttp 213 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,853 basehttp 213 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,853 basehttp 213 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,855 basehttp 213 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,855 basehttp 213 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,857 basehttp 213 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,859 basehttp 213 "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,860 basehttp 213 "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,862 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 16:25:57,876 basehttp 213 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,886 basehttp 213 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2025-12-06 16:25:57,886 basehttp 213 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+ERROR 2025-12-06 16:25:59,710 log 253 Internal Server Error: /admin/users/hostel/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 575, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 826, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 1203, in read
+    first_packet = self.connection._read_packet()
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'users_hostel.manager_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\contrib\admin\options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\contrib\admin\sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\contrib\admin\options.py", line 2163, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ~~~^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 368, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 1954, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 93, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+    ~~~~~~~~~~^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 575, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 826, in _read_query_result
+    result.read()
+    ~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 1203, in read
+    first_packet = self.connection._read_packet()
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1054, "Unknown column 'users_hostel.manager_id' in 'field list'")
+ERROR 2025-12-06 16:25:59,717 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 500 245057
+INFO 2025-12-06 16:26:48,138 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 17664
+INFO 2025-12-06 16:26:48,173 basehttp 213 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-12-06 16:26:48,178 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 16:26:57,763 basehttp 213 "GET /admin/users/hostel/1/change/ HTTP/1.1" 200 15387
+INFO 2025-12-06 16:26:57,785 basehttp 213 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:26:57,785 basehttp 213 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:26:57,790 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 16:26:57,808 basehttp 213 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-12-06 16:26:57,814 basehttp 213 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-12-06 16:26:57,847 basehttp 213 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-12-06 16:27:05,083 basehttp 213 "POST /admin/users/hostel/1/change/ HTTP/1.1" 302 0
+INFO 2025-12-06 16:27:05,112 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 17861
+INFO 2025-12-06 16:27:05,149 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 16:27:52,248 basehttp 213 "GET /users/teachers/?is_active=false HTTP/1.1" 200 2
+INFO 2025-12-06 16:27:57,127 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 16:31:34,501 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 16:31:35,011 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:31:35,288 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 387
+INFO 2025-12-06 16:39:28,803 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 16:39:29,416 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-06 16:39:30,535 log 253 Internal Server Error: /users/teachers/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 101, in get_hostel
+    return obj.hostels.floor_name + '-' + obj.hostel_number
+           ^^^^^^^^^^^
+AttributeError: 'Hostel' object has no attribute 'hostels'
+ERROR 2025-12-06 16:39:30,540 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 500 144692
+INFO 2025-12-06 16:40:37,968 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 16:40:38,439 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:40:39,529 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 372
+INFO 2025-12-06 16:41:19,000 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-12-06 16:41:19,592 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-06 16:41:19,622 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 16:41:23,460 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 372
+INFO 2025-12-06 16:41:44,099 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 16:41:45,173 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 744
+INFO 2025-12-06 16:42:58,457 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 16:42:58,941 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:43:01,536 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 16:44:19,166 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\filters.py changed, reloading.
+INFO 2025-12-06 16:44:19,658 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:46:22,201 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 744
+ERROR 2025-12-06 16:46:56,803 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 154, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django_filters\rest_framework\backends.py", line 72, in filter_queryset
+    return filterset.qs
+           ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django_filters\filterset.py", line 250, in qs
+    qs = self.filter_queryset(qs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django_filters\filterset.py", line 233, in filter_queryset
+    queryset = self.filters[name].filter(queryset, value)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django_filters\filters.py", line 167, in filter
+    qs = self.get_method(qs)(**{lookup: value})
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 1495, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 1513, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 1523, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\sql\query.py", line 1526, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\sql\query.py", line 1333, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\sql\query.py", line 1806, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'is_manager' into field. Choices are: capacity, floor, floor_id, gender, hostel_number, id, is_deleted, manager, manager_id, students_house
+ERROR 2025-12-06 16:46:56,808 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 500 165625
+INFO 2025-12-06 16:49:50,687 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\filters.py changed, reloading.
+INFO 2025-12-06 16:49:51,314 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:49:52,322 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 16:50:32,813 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 16:50:35,473 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 16:50:43,102 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 16:50:45,847 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 16:50:47,508 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 16:50:49,723 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 744
+INFO 2025-12-06 16:51:27,229 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 16:51:27,791 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:51:28,294 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 786
+INFO 2025-12-06 16:51:48,369 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 16:51:52,025 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 16:52:15,376 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\filters.py changed, reloading.
+INFO 2025-12-06 16:52:15,890 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:52:16,428 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 16:52:20,963 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 52
+INFO 2025-12-06 16:53:40,125 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\filters.py changed, reloading.
+INFO 2025-12-06 16:53:40,606 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 16:53:41,260 basehttp 213 "GET /users/hostel/1/?is_manager=false HTTP/1.1" 200 355
+INFO 2025-12-06 16:53:54,679 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:00:38,082 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,198 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,218 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,235 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,255 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,274 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,289 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:01:43,600 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:01:44,661 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 786
+INFO 2025-12-06 17:01:52,018 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 482
+INFO 2025-12-06 17:02:25,458 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 17:02:25,927 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 17:02:28,149 basehttp 213 "GET /users/hostel/1/?is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:03:52,720 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:04:17,933 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:04:37,390 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:04:51,732 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:05:48,523 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:06:07,295 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:07:03,965 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:07:44,789 basehttp 213 "OPTIONS /users/hostel/manager/delete/1/ HTTP/1.1" 200 0
+WARNING 2025-12-06 17:07:44,797 log 253 Not Found: /users/hostel/manager/delete/1/
+WARNING 2025-12-06 17:07:44,797 basehttp 213 "DELETE /users/hostel/manager/delete/1/ HTTP/1.1" 404 6410
+INFO 2025-12-06 17:10:11,735 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:10:19,780 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:10:31,593 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:10:37,504 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:10:56,936 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:10:58,029 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:11:02,893 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&has_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:11:03,947 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&has_manager=false HTTP/1.1" 200 495
+INFO 2025-12-06 17:11:06,171 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&has_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:11:08,287 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&has_manager=false HTTP/1.1" 200 495
+INFO 2025-12-06 17:11:09,093 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:11:12,879 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:11:13,340 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 17:11:14,515 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:11:14,950 basehttp 213 "GET /users/hostel/3/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 17:11:15,750 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:11:17,086 basehttp 213 "GET /users/hostel/4/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 17:11:17,922 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:11:18,956 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:12:51,455 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male HTTP/1.1" 200 495
+INFO 2025-12-06 17:12:52,283 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=female HTTP/1.1" 200 52
+INFO 2025-12-06 17:12:53,401 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male HTTP/1.1" 200 495
+INFO 2025-12-06 17:12:55,301 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male&has_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:12:56,285 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male&has_manager=false HTTP/1.1" 200 495
+INFO 2025-12-06 17:12:57,442 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male HTTP/1.1" 200 495
+ERROR 2025-12-06 17:14:21,425 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:14:21,430 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+INFO 2025-12-06 17:14:36,476 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+ERROR 2025-12-06 17:14:37,384 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:14:37,387 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=false HTTP/1.1" 500 139538
+ERROR 2025-12-06 17:14:40,116 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:14:40,118 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+ERROR 2025-12-06 17:15:47,693 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:15:47,696 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+ERROR 2025-12-06 17:16:00,090 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:16:00,092 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+INFO 2025-12-06 17:16:15,290 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+ERROR 2025-12-06 17:16:15,859 log 253 Internal Server Error: /users/hostel/2/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:16:15,862 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20 HTTP/1.1" 500 138985
+INFO 2025-12-06 17:16:17,351 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+ERROR 2025-12-06 17:16:17,824 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:16:17,827 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+INFO 2025-12-06 17:16:23,501 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+ERROR 2025-12-06 17:20:41,979 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:20:41,982 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+INFO 2025-12-06 17:21:03,657 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+ERROR 2025-12-06 17:21:04,314 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:21:04,316 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+INFO 2025-12-06 17:21:05,966 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+ERROR 2025-12-06 17:21:06,698 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:21:06,701 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 500 139236
+ERROR 2025-12-06 17:21:11,237 log 253 Internal Server Error: /users/hostel/1/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\fields.py", line 1870, in to_representation
+    return method(value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py", line 58, in get_manager
+    return obj.manager.last_name + obj.manager.first_name
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'last_name'
+ERROR 2025-12-06 17:21:11,239 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 500 137998
+INFO 2025-12-06 17:23:28,903 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 17:23:29,346 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 17:23:31,141 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 813
+INFO 2025-12-06 17:23:43,998 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:23:44,634 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+WARNING 2025-12-06 17:23:55,869 log 253 Not Found: /users/hostel/manager/delete/1/
+WARNING 2025-12-06 17:23:55,869 basehttp 213 "DELETE /users/hostel/manager/delete/1/ HTTP/1.1" 404 6410
+INFO 2025-12-06 17:24:22,048 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:24:23,047 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 369
+INFO 2025-12-06 17:24:24,395 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+INFO 2025-12-06 17:24:36,000 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\serializer.py changed, reloading.
+INFO 2025-12-06 17:24:36,464 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 17:24:40,747 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:24:53,564 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 355
+INFO 2025-12-06 17:27:02,160 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:27:18,228 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:27:30,678 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:27:30,679 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:27:30,686 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:27:41,760 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:27:41,760 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:27:41,767 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:27:52,279 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:28:47,496 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 799
+INFO 2025-12-06 17:29:50,174 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:31:07,158 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:31:37,067 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male HTTP/1.1" 200 495
+INFO 2025-12-06 17:31:38,089 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=female HTTP/1.1" 200 52
+INFO 2025-12-06 17:31:39,086 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male HTTP/1.1" 200 495
+INFO 2025-12-06 17:31:39,940 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:31:41,467 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:31:42,055 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:32:24,867 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:32:27,618 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=male HTTP/1.1" 200 495
+INFO 2025-12-06 17:32:28,374 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true&gender=female HTTP/1.1" 200 52
+INFO 2025-12-06 17:32:29,841 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:32:30,599 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+WARNING 2025-12-06 17:34:36,683 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:34:36,683 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:34:36,688 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:34:48,675 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+WARNING 2025-12-06 17:34:49,137 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:34:49,137 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:34:49,145 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+WARNING 2025-12-06 17:37:26,908 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:37:26,908 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:37:26,916 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:37:40,576 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 495
+INFO 2025-12-06 17:37:41,417 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 355
+INFO 2025-12-06 17:37:45,871 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:37:46,749 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&gender=female HTTP/1.1" 200 173
+INFO 2025-12-06 17:37:48,974 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:38:06,064 log 253 Not Found: /users/hostel/manager/delete/1/
+WARNING 2025-12-06 17:38:06,065 basehttp 213 "DELETE /users/hostel/manager/delete/1/ HTTP/1.1" 404 6410
+WARNING 2025-12-06 17:39:29,309 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:39:29,310 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:39:29,319 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:39:42,827 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+WARNING 2025-12-06 17:39:43,669 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:39:43,669 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:39:43,681 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:39:49,329 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+WARNING 2025-12-06 17:40:13,440 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:40:13,441 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:40:13,448 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:41:19,361 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:41:19,361 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:41:19,371 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:43:15,149 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:43:15,149 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:43:15,158 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:45:59,001 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:45:59,002 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:45:59,009 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:46:19,788 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19241
+INFO 2025-12-06 17:46:19,825 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 17:46:19,944 basehttp 213 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-12-06 17:46:21,205 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17656
+INFO 2025-12-06 17:46:21,232 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 17:46:31,478 basehttp 213 "OPTIONS /users/delete/fromhostel/student/?username=111113 HTTP/1.1" 200 0
+INFO 2025-12-06 17:46:31,495 basehttp 213 "DELETE /users/delete/fromhostel/student/?username=111113 HTTP/1.1" 200 44
+INFO 2025-12-06 17:46:31,513 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 741
+INFO 2025-12-06 17:46:40,357 basehttp 213 "OPTIONS /users/add/fromhostel/student/ HTTP/1.1" 200 0
+INFO 2025-12-06 17:46:40,364 basehttp 213 "POST /users/add/fromhostel/student/ HTTP/1.1" 200 72
+INFO 2025-12-06 17:46:40,381 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+WARNING 2025-12-06 17:46:52,099 log 253 Not Found: /users/hostel/manager/delete/1/
+WARNING 2025-12-06 17:46:52,099 basehttp 213 "DELETE /users/hostel/manager/delete/1/ HTTP/1.1" 404 6410
+INFO 2025-12-06 17:47:06,051 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 413
+INFO 2025-12-06 17:47:06,982 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 437
+INFO 2025-12-06 17:47:20,562 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=103&is_manager=true HTTP/1.1" 200 52
+INFO 2025-12-06 17:47:22,078 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20&hostel_number=103 HTTP/1.1" 200 173
+INFO 2025-12-06 17:47:48,482 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 17:50:43,521 basehttp 213 "OPTIONS /users/delete/5/teacher HTTP/1.1" 200 0
+INFO 2025-12-06 17:50:43,539 basehttp 213 "DELETE /users/delete/5/teacher HTTP/1.1" 200 47
+INFO 2025-12-06 17:50:45,536 basehttp 213 "GET /users/teachers/?is_active=false HTTP/1.1" 200 97
+INFO 2025-12-06 17:50:48,795 basehttp 213 "POST /users/restore/5/teacher HTTP/1.1" 200 47
+INFO 2025-12-06 17:50:50,209 basehttp 213 "GET /users/teachers/ HTTP/1.1" 200 284
+INFO 2025-12-06 17:50:52,286 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 17:50:53,096 basehttp 213 "GET /users/teachers/?is_active=false HTTP/1.1" 200 2
+INFO 2025-12-06 17:50:53,917 basehttp 213 "GET /users/teachers/ HTTP/1.1" 200 284
+INFO 2025-12-06 17:51:17,380 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B HTTP/1.1" 200 2
+INFO 2025-12-06 17:51:21,791 basehttp 213 "GET /users/teachers/?student_name=%E5%B0%8F HTTP/1.1" 200 93
+INFO 2025-12-06 17:51:28,026 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 17:51:33,049 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 17:52:54,331 basehttp 213 "GET /users/students/ HTTP/1.1" 200 1053
+INFO 2025-12-06 17:53:08,583 basehttp 213 "GET /users/teachers/ HTTP/1.1" 200 284
+WARNING 2025-12-06 17:53:40,982 log 253 Not Found: /users/student/
+WARNING 2025-12-06 17:53:40,983 basehttp 213 "GET /users/student/ HTTP/1.1" 404 6359
+INFO 2025-12-06 17:53:40,992 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 17:58:38,199 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\urls.py changed, reloading.
+INFO 2025-12-06 17:58:38,859 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 17:59:57,568 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 17675
+INFO 2025-12-06 17:59:57,604 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 17:59:59,353 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1 HTTP/1.1" 200 16789
+INFO 2025-12-06 17:59:59,380 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:00:04,242 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1&is_deleted__exact=0 HTTP/1.1" 200 14847
+INFO 2025-12-06 18:00:04,269 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:00:37,167 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19241
+INFO 2025-12-06 18:00:37,194 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:00:39,021 basehttp 213 "GET /admin/users/user/?user_type__exact=teacher HTTP/1.1" 200 15593
+INFO 2025-12-06 18:00:39,049 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:01:08,898 basehttp 213 "OPTIONS /users/add/hostel/manager/ HTTP/1.1" 200 0
+WARNING 2025-12-06 18:01:08,902 log 253 Method Not Allowed: /users/add/hostel/manager/
+WARNING 2025-12-06 18:01:08,903 basehttp 213 "GET /users/add/hostel/manager/ HTTP/1.1" 405 45
+INFO 2025-12-06 18:01:12,764 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 80
+INFO 2025-12-06 18:01:26,506 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:01:39,489 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 17686
+INFO 2025-12-06 18:01:39,516 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:01:41,145 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1 HTTP/1.1" 200 16800
+INFO 2025-12-06 18:01:41,170 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:01:41,783 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1&is_deleted__exact=0 HTTP/1.1" 200 14858
+INFO 2025-12-06 18:01:41,813 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:01:43,960 basehttp 213 "GET /admin/users/hostel/9/change/?_changelist_filters=floor__id__exact%3D1%26is_deleted__exact%3D0 HTTP/1.1" 200 15592
+INFO 2025-12-06 18:01:43,988 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:01:44,050 basehttp 213 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-12-06 18:01:46,906 basehttp 213 "POST /admin/users/hostel/9/change/?_changelist_filters=floor__id__exact%3D1%26is_deleted__exact%3D0 HTTP/1.1" 302 0
+INFO 2025-12-06 18:01:46,934 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1&is_deleted__exact=0 HTTP/1.1" 200 15033
+INFO 2025-12-06 18:01:46,961 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:03:28,015 basehttp 213 "GET /users/hostel/1/ HTTP/1.1" 200 799
+INFO 2025-12-06 18:06:00,802 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:06:20,368 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:06:45,796 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:06:49,776 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:06:50,358 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:08:03,151 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:08:16,875 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:08:18,559 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:08:23,981 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:08:27,459 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:08:28,525 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:08:31,393 basehttp 213 "OPTIONS /users/add/hostel/manager/ HTTP/1.1" 200 0
+INFO 2025-12-06 18:08:31,410 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 80
+INFO 2025-12-06 18:08:31,427 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:08:39,395 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1&is_deleted__exact=0 HTTP/1.1" 200 14858
+INFO 2025-12-06 18:08:39,425 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:26:47,294 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-12-06 18:26:47,816 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:27:00,085 basehttp 213 "DELETE /users/add/hostel/manager/ HTTP/1.1" 200 41
+INFO 2025-12-06 18:28:15,412 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-12-06 18:28:15,835 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:29:10,771 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-12-06 18:29:11,278 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:29:13,554 basehttp 213 "OPTIONS /users/add/hostel/manager/?pk=1 HTTP/1.1" 200 0
+INFO 2025-12-06 18:29:13,559 basehttp 213 "DELETE /users/add/hostel/manager/?pk=1 HTTP/1.1" 200 16
+INFO 2025-12-06 18:29:18,930 basehttp 213 "OPTIONS /users/add/hostel/manager/?pk=3 HTTP/1.1" 200 0
+INFO 2025-12-06 18:29:18,932 basehttp 213 "DELETE /users/add/hostel/manager/?pk=3 HTTP/1.1" 200 16
+INFO 2025-12-06 18:29:53,709 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-12-06 18:29:54,180 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:29:54,551 basehttp 213 "DELETE /users/add/hostel/manager/?pk=3 HTTP/1.1" 200 15
+INFO 2025-12-06 18:30:04,984 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-12-06 18:30:05,460 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-06 18:30:16,891 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:30:17,905 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:30:25,877 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1&is_deleted__exact=0 HTTP/1.1" 200 14858
+INFO 2025-12-06 18:30:25,910 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:30:27,108 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1&is_deleted__exact=0 HTTP/1.1" 200 14858
+INFO 2025-12-06 18:30:27,135 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:30:39,196 basehttp 213 "OPTIONS /users/add/hostel/manager/?pk=9 HTTP/1.1" 200 0
+INFO 2025-12-06 18:30:39,202 basehttp 213 "DELETE /users/add/hostel/manager/?pk=9 HTTP/1.1" 200 57
+INFO 2025-12-06 18:30:49,886 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:30:50,796 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:33:01,182 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:33:37,284 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:33:41,111 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:33:42,026 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:33:45,419 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 80
+INFO 2025-12-06 18:33:45,438 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:33:49,628 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:33:50,390 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20 HTTP/1.1" 200 295
+INFO 2025-12-06 18:33:54,579 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 80
+INFO 2025-12-06 18:33:54,591 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20 HTTP/1.1" 200 305
+INFO 2025-12-06 18:33:56,925 basehttp 213 "OPTIONS /users/add/hostel/manager/?pk=7 HTTP/1.1" 200 0
+INFO 2025-12-06 18:33:56,941 basehttp 213 "DELETE /users/add/hostel/manager/?pk=7 HTTP/1.1" 200 57
+INFO 2025-12-06 18:33:56,950 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20 HTTP/1.1" 200 295
+INFO 2025-12-06 18:34:07,020 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:34:08,280 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:34:10,742 basehttp 213 "OPTIONS /users/add/hostel/manager/?pk=9 HTTP/1.1" 200 0
+INFO 2025-12-06 18:34:10,748 basehttp 213 "DELETE /users/add/hostel/manager/?pk=9 HTTP/1.1" 200 57
+INFO 2025-12-06 18:34:10,762 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 799
+INFO 2025-12-06 18:34:16,523 basehttp 213 "POST /users/add/hostel/manager/ HTTP/1.1" 200 80
+INFO 2025-12-06 18:34:16,543 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:34:21,308 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:34:39,482 basehttp 213 "GET /users/teachers/?name=%E6%B5%8B%E8%AF%95&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:44,007 basehttp 213 "GET /users/teachers/?name=%E6%B5%8B&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:44,520 basehttp 213 "GET /users/teachers/?name=%E6%B5%8B&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:44,699 basehttp 213 "GET /users/teachers/?name=%E6%B5%8B&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:46,566 basehttp 213 "GET /users/teachers/?name=%E6%B5%8B HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:49,874 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:50,989 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:51,280 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:51,534 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B HTTP/1.1" 200 2
+INFO 2025-12-06 18:34:56,969 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B%E8%AF%95 HTTP/1.1" 200 2
+INFO 2025-12-06 18:35:00,937 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:35:02,020 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:35:07,336 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:35:11,067 basehttp 213 "GET /users/teachers/?student_name=111&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:35:15,987 basehttp 213 "GET /users/teachers/?student_name=%E5%B0%8F&is_active=true HTTP/1.1" 200 93
+INFO 2025-12-06 18:35:19,529 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:35:20,662 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:35:30,107 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:35:32,750 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B%E8%AF%952&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:35:39,926 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B%E8%AF%952&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:37:14,248 basehttp 213 "GET /users/teachers/?student_name=%E6%B5%8B&is_active=true HTTP/1.1" 200 2
+INFO 2025-12-06 18:37:22,357 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-06 18:37:24,508 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 809
+INFO 2025-12-06 18:37:32,861 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19241
+INFO 2025-12-06 18:37:32,893 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:37:34,546 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17656
+INFO 2025-12-06 18:37:34,569 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:37:39,625 basehttp 213 "GET /admin/users/user/?is_active__exact=1&user_type__exact=student HTTP/1.1" 200 18264
+INFO 2025-12-06 18:37:39,654 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-06 18:38:02,807 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:38:04,582 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-06 18:38:04,932 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233

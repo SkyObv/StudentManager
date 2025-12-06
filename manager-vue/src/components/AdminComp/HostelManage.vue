@@ -21,6 +21,7 @@ export default {
       // 筛选数据
       genderFilter: '',
       searchQuery: '',
+      hasManagerFilter: '', // 是否有管理员过滤
       // 表单状态
       showAddHostelForm: false,
       showAddStudentForm: false,
@@ -28,6 +29,11 @@ export default {
       // 删除宿舍对话框
       showDeleteHostelForm: false,
       hostelToDelete: null,
+      // 管理员选择对话框
+      showManagerSelectForm: false,
+      selectedHostelForManager: null,
+      // 老师工号输入
+      teacherUsername: '',
       // 新增宿舍表单数据
       newHostel: {
         hostel_number: '',
@@ -47,6 +53,7 @@ export default {
   created() {
     // 组件创建时加载第一页数据
     this.loadHostelsData();
+
   },
   computed: {
     /**
@@ -116,6 +123,12 @@ export default {
         }
         if (this.searchQuery) {
           params.append('hostel_number', this.searchQuery);
+        }
+        // 添加管理员过滤条件（只有在选择后才添加）
+        if (this.hasManagerFilter) {
+          // API逻辑：is_manager=true获取有管理员的宿舍，is_manager=false获取没有管理员的宿舍
+          const isManager = this.hasManagerFilter === 'true';
+          params.append('is_manager', isManager);
         }
         
         const queryString = params.toString();
@@ -200,6 +213,7 @@ export default {
     resetFilters() {
       this.genderFilter = '';
       this.searchQuery = '';
+      this.hasManagerFilter = '';
       this.currentPage = 1;
       this.loadHostelsData(); // 重置后重新加载数据
     },
@@ -301,27 +315,114 @@ export default {
     /**
      * 删除指定宿舍
      */
-    deleteHostel() {
+    async deleteHostel() {
       if (!this.hostelToDelete) return;
       
-      // 发送DELETE请求到后端API
-      this.loading = true;
-      this.$axios.delete(`${this.$settings.Host}/users/delete/${this.hostelToDelete.id}/hostel/`)
-        .then(() => {
-          // 重新加载宿舍数据以获取最新信息
-          this.loadHostelsData();
-          // 显示成功提示
-          this.$message.success(`宿舍 ${this.hostelToDelete.hostel_number} 删除成功`);
-        })
-        .catch(error => {
-          console.error('删除宿舍失败:', error);
-          // 显示错误提示
-          this.$message.error('删除宿舍失败，请稍后重试');
-        })
-        .finally(() => {
-          this.loading = false;
-          this.closeDeleteHostelForm();
-        });
+      try {
+        this.loading = true;
+        await this.$axios.delete(`${this.$settings.Host}/users/delete/${this.hostelToDelete.id}/hostel/`);
+        
+        // 关闭对话框
+        this.closeDeleteHostelForm();
+        
+        // 重新加载数据
+        this.loadHostelsData();
+        
+        // 显示成功提示
+        this.$message.success(`宿舍 ${this.hostelToDelete.hostel_number} 删除成功`);
+      } catch (error) {
+        console.error('删除宿舍失败:', error);
+        this.$message.error('删除宿舍失败，请稍后重试');
+      } finally {
+        this.loading = false;
+      }
+    },
+    
+    /**
+     * 打开管理员选择表单
+     * @param {Object} hostel - 目标宿舍对象
+     */
+    addManager(hostel) {
+      // 设置当前选中的宿舍
+      this.selectedHostelForManager = hostel;
+      // 重置输入的老师工号
+      this.teacherUsername = '';
+      // 显示管理员选择表单
+      this.showManagerSelectForm = true;
+    },
+    
+
+
+    /**
+     * 关闭管理员选择表单
+     */
+    closeManagerSelectForm() {
+      this.showManagerSelectForm = false;
+      this.selectedHostelForManager = null;
+      this.teacherUsername = '';
+    },
+    
+    /**
+     * 提交添加管理员操作
+     */
+    async submitAddManager() {
+      if (!this.selectedHostelForManager || !this.teacherUsername.trim()) {
+        this.$message.warning('请输入老师工号');
+        return;
+      }
+      
+      try {
+        // 显示加载状态
+        this.loading = true;
+        
+        // 构建请求数据
+        const requestData = {
+          hostel_id: this.selectedHostelForManager.id,
+          username: this.teacherUsername.trim()
+        };
+        
+        // 发送添加管理员请求到后端API
+        const response = await this.$axios.post(`${this.$settings.Host}/users/add/hostel/manager/`, requestData);
+        
+        // 关闭表单
+        this.closeManagerSelectForm();
+        
+        // 重新加载宿舍数据以获取最新信息
+        this.loadHostelsData();
+        
+        // 显示成功提示
+        this.$message.success(response.data.message);
+      } catch (error) {
+        console.error('设置宿舍管理员失败:', error);
+        this.$message.error(error.response?.data?.message || '设置宿舍管理员失败，请稍后重试');
+      } finally {
+        this.loading = false;
+      }
+    },
+    
+    /**
+     * 删除宿舍管理员
+     * @param {Object} hostel - 目标宿舍对象
+     */
+    async removeManager(hostel) {
+      try {
+        // 显示加载状态
+        this.loading = true;
+        
+        // 发送删除管理员请求到后端API
+        const response = await this.$axios.delete(`${this.$settings.Host}/users/add/hostel/manager/?pk=${hostel.id}`);
+        
+        // 重新加载宿舍数据以获取最新信息
+        this.loadHostelsData();
+        
+        // 显示成功提示
+        this.$message.success(response.data.message || `已移除宿舍${hostel.hostel_number}的管理员`);
+      } catch (error) {
+        console.error('移除宿舍管理员失败:', error);
+        this.$message.error(error.response?.data?.message || '移除宿舍管理员失败，请稍后重试');
+      } finally {
+        this.loading = false;
+      }
     },
     
     /**
@@ -496,12 +597,18 @@ export default {
       
       <div class="filter-controls">
         <select v-model="genderFilter" class="filter-select" @change="searchHostels">
-          <option value="">全部性别</option>
-          <option value="male">男生宿舍</option>
-          <option value="female">女生宿舍</option>
-        </select>
-        
-        <button class="reset-button" @click="resetFilters">重置筛选</button>
+            <option value="">全部性别</option>
+            <option value="male">男生宿舍</option>
+            <option value="female">女生宿舍</option>
+          </select>
+          
+          <select v-model="hasManagerFilter" class="filter-select" @change="searchHostels">
+            <option value="">全部管理员状态</option>
+            <option value="true">有管理员</option>
+            <option value="false">无管理员</option>
+          </select>
+          
+          <button class="reset-button" @click="resetFilters">重置筛选</button>
       </div>
       
       <!-- 宿舍管理按钮 -->
@@ -556,6 +663,13 @@ export default {
             <span class="info-label">学生人数：</span>
             <span class="info-value">{{ hostel.student_count }}人</span>
           </div>
+          <div class="info-row">
+            <span class="info-label">宿舍管理员：</span>
+            <span class="info-value">
+              <span v-if="hostel.manager">{{ hostel.manager }}</span>
+              <span v-else class="no-manager">无</span>
+            </span>
+          </div>
         </div>
         
         <!-- 学生列表 -->
@@ -583,6 +697,27 @@ export default {
           <button class="add-student-button" @click="openAddStudentForm(hostel)" :disabled="hostel.is_full">
             <span class="button-icon">➕</span>
             添加学生
+          </button>
+          
+          <!-- 管理员操作按钮 -->
+          <button 
+            v-if="!hostel.manager" 
+            class="add-manager-button"
+            @click="addManager(hostel)"
+            title="添加管理员"
+          >
+            <span class="button-icon">👤</span>
+            添加管理员
+          </button>
+          
+          <button 
+            v-else-if="hostel.manager"
+            class="remove-manager-button"
+            @click="removeManager(hostel)"
+            title="移除管理员"
+          >
+            <span class="button-icon">❌</span>
+            移除管理员
           </button>
         </div>
       </div>
@@ -680,6 +815,47 @@ export default {
           <div class="form-actions">
             <button type="button" class="cancel-button" @click="closeDeleteHostelForm">取消</button>
             <button type="button" class="delete-confirm-button" @click="deleteHostel">确认删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 管理员选择表单 -->
+    <div class="modal" v-if="showManagerSelectForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>添加宿舍管理员</h3>
+          <button class="close-button" @click="closeManagerSelectForm">×</button>
+        </div>
+        <div class="modal-body">
+          <!-- 显示宿舍信息 -->
+          <div class="hostel-info">
+            <p><strong>宿舍编号：</strong>{{ selectedHostelForManager?.hostel_number }}</p>
+            <p><strong>宿舍ID：</strong>{{ selectedHostelForManager?.id }}</p>
+            <p><strong>宿舍性别：</strong>{{ selectedHostelForManager?.gender === 'male' ? '男生宿舍' : '女生宿舍' }}</p>
+          </div>
+          
+          <div class="manager-select">
+            <label for="teacherUsername">输入老师工号：</label>
+            <input 
+              id="teacherUsername"
+              v-model="teacherUsername"
+              type="text"
+              placeholder="请输入老师工号"
+              class="teacher-username-input"
+              @keyup.enter="submitAddManager"
+            >
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-button" @click="closeManagerSelectForm">取消</button>
+            <button 
+              type="button" 
+              class="submit-button"
+              :disabled="!teacherUsername.trim()"
+              @click="submitAddManager"
+            >
+              确认设置
+            </button>
           </div>
         </div>
       </div>
@@ -1025,6 +1201,9 @@ export default {
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 380px; /* 最小高度确保卡片不会太小 */
 }
 
 .hostel-card::before {
@@ -1142,9 +1321,97 @@ export default {
   border: 1px solid #fbcfe8;
 }
 
+/* 无管理员样式 */
+.no-manager {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* 管理员选择表单样式 */
+.manager-select {
+  margin-bottom: 20px;
+}
+
+.manager-select .students-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.manager-select .student-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.manager-select .student-item:hover {
+  background-color: #f3f4f6;
+}
+
+.manager-select .student-item.selected {
+  background-color: #dbeafe;
+  border: 2px solid #3b82f6;
+}
+
+.manager-select .student-username {
+  margin-left: 10px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* 管理员操作按钮样式 */
+.add-manager-button, .remove-manager-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px; /* 统一按钮宽度 */
+  justify-content: center; /* 文字居中 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 统一阴影效果 */
+  line-height: 20px; /* 统一行高 */
+  min-height: 40px; /* 最小高度确保按钮不会太小 */
+}
+
+.add-manager-button {
+  background-color: #10b981;
+  color: white;
+}
+
+.add-manager-button:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.remove-manager-button {
+  background-color: #ef4444;
+  color: white;
+}
+
+.remove-manager-button:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
 /* 学生列表 */
 .students-section {
   margin-bottom: 25px;
+  flex: 1; /* 让学生列表区域自适应高度 */
+  min-height: 120px; /* 最小高度确保有足够空间显示学生信息 */
 }
 
 .section-title {
@@ -1267,8 +1534,12 @@ export default {
 .card-actions {
   display: flex;
   justify-content: flex-end;
-  padding-top: 20px;
+  padding: 20px 0 0 0; /* 顶部内边距，取消左右和底部内边距 */
   border-top: 1px solid #f1f5f9;
+  gap: 10px; /* 统一按钮间距 */
+  align-items: center; /* 垂直居中按钮 */
+  flex-wrap: wrap; /* 确保按钮在小屏幕上不会溢出 */
+  margin-top: auto; /* 自动margin将按钮推到底部 */
 }
 
 .add-student-button {
@@ -1285,6 +1556,10 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  min-width: 120px; /* 统一按钮宽度 */
+  justify-content: center; /* 文字居中 */
+  line-height: 20px; /* 统一行高 */
+  min-height: 40px; /* 最小高度确保按钮不会太小 */
 }
 
 .add-student-button:hover:not(:disabled) {

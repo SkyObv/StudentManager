@@ -43,6 +43,15 @@ class User(AbstractUser):
 class Hostel(models.Model):
     """宿舍模型"""
     hostel_number = models.CharField(max_length=30,verbose_name='宿舍门牌号')
+    manager = models.ForeignKey(
+        'User',
+        verbose_name='管理员老师',
+        on_delete=models.SET_NULL,                                    # 设置为空
+        related_name='hostels_manager',                               # 反向查询管理员
+        null=True,                                                    # 数据库允许为NULL
+        blank=True,                                                   # 允许为空
+        limit_choices_to={'user_type': 'teacher'}
+    )
     floor = models.ForeignKey(
         'Floor',
         verbose_name='宿舍楼',

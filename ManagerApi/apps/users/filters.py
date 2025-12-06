@@ -65,10 +65,17 @@ class HostelFilter(django_filters.FilterSet):
         field_name='gender',
         lookup_expr='iexact'
     )
+    is_manager = django_filters.BooleanFilter(
+        method='filter_by_is_manager',
+    )
     class Meta:
         model = Hostel
-        fields = ['hostel_number', 'gender']
-
+        fields = ['hostel_number', 'gender','is_manager']
+    def filter_by_is_manager(self, queryset, name, value):
+        if value:
+            return queryset.filter(manager__isnull=False)
+        else:
+            return queryset.filter(manager__isnull=True)
 # 老师过滤器
 class TeachersFilter(django_filters.FilterSet):
     gender = django_filters.CharFilter(

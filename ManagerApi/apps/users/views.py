@@ -299,6 +299,57 @@ class DeleteTeacherPermanentlyView(APIView):
                 },
             )
 
+# 添加宿舍管理员
+class AddManagerToHostelView(APIView):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        hostel_id = request.data.get('hostel_id')
+        try:
+            hostel_obj = Hostel.objects.get(id=hostel_id)
+            manager = User.objects.get(
+                username=username,
+                user_type='teacher',
+                is_active=True,
+            )
+            hostel_obj.manager = manager
+            manager = manager.last_name + manager.first_name
+            hostel_obj.save(update_fields=['manager'])
+            return Response(
+                {
+                    "message": "宿舍管理员已添加。",
+                    "manager": manager,
+                    "hostel_id": hostel_id
+                },
+                status=200
+            )
+        except Hostel.DoesNotExist:
+            return Response(
+                {
+                    "message": "未找到指定的宿舍。",
+                },
+                status=404
+            )
+    def delete(self, request, *args, **kwargs):
+        hostel_id = request.query_params.get('pk')
+        try:
+            hostel_obj = Hostel.objects.get(id=hostel_id)
+            hostel_obj.manager = None
+            hostel_obj.save(update_fields=['manager'])
+            return Response(
+                {
+                    "message": "宿舍管理员已删除。",
+                    "hostel_id": hostel_id
+                },
+                status=200
+            )
+        except Hostel.DoesNotExist:
+            return Response(
+                {
+                    "message": "未找到指定的宿舍。",
+                },
+                status=404
+            )
+
 
 
 
