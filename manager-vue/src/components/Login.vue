@@ -55,8 +55,12 @@ export default {
           this.$router.push({name: 'StudentComp'})
         }
         // 管理者页面
-        if (response.data.user_type === 'teacher' || response.data.user_type === 'admin'){
+        if (response.data.user_type ==='admin'){
           this.$router.push({name: 'AdminComp'})
+        }
+        // 老师页面
+        if (response.data.user_type === 'teacher'){
+          this.$router.push({name: 'TeacherComp'})
         }
       }).catch(error => {
         console.log(error)

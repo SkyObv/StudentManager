@@ -3800,3 +3800,287 @@ INFO 2025-12-06 18:46:48,422 basehttp 213 "GET /users/hostel/2/?page=1&page_size
 INFO 2025-12-06 18:46:50,198 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20&is_manager=true HTTP/1.1" 200 52
 INFO 2025-12-06 18:46:51,988 basehttp 213 "GET /users/hostel/2/?page=1&page_size=20&is_manager=false HTTP/1.1" 200 295
 INFO 2025-12-06 18:46:53,752 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-07 11:44:35,978 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 11:46:07,181 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-12-07 11:46:07,794 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 11:46:07,828 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-07 11:46:11,674 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-07 11:46:14,892 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-07 11:46:15,438 basehttp 213 "GET /users/hostel/1/?page=1&page_size=20 HTTP/1.1" 200 813
+INFO 2025-12-07 11:46:22,762 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-07 11:46:26,906 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-07 11:48:26,077 basehttp 213 "GET /admin HTTP/1.1" 301 0
+INFO 2025-12-07 11:48:26,123 basehttp 213 "GET /admin/ HTTP/1.1" 200 11219
+WARNING 2025-12-07 11:48:26,337 log 253 Not Found: /favicon.ico
+WARNING 2025-12-07 11:48:26,337 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2361
+INFO 2025-12-07 11:48:29,163 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19241
+INFO 2025-12-07 11:48:29,204 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 11:48:30,517 basehttp 213 "GET /admin/users/user/?user_type__exact=teacher HTTP/1.1" 200 15593
+INFO 2025-12-07 11:48:30,545 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 11:48:49,764 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+WARNING 2025-12-07 12:05:56,694 log 253 Unauthorized: /users/login/
+WARNING 2025-12-07 12:05:56,695 basehttp 213 "POST /users/login/ HTTP/1.1" 401 63
+INFO 2025-12-07 12:06:03,783 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-07 12:09:22,798 basehttp 213 "GET /users/students/?teacher_id=2 HTTP/1.1" 200 225
+INFO 2025-12-07 12:10:23,486 basehttp 213 "GET /admin/users/hostel/ HTTP/1.1" 200 17691
+INFO 2025-12-07 12:10:23,526 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:10:25,940 basehttp 213 "GET /admin/users/hostel/?floor__id__exact=1 HTTP/1.1" 200 16805
+INFO 2025-12-07 12:10:25,968 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:10:35,577 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19241
+INFO 2025-12-07 12:10:35,603 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:10:37,731 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17656
+INFO 2025-12-07 12:10:37,757 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:11:19,634 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+WARNING 2025-12-07 12:11:19,638 log 253 Bad Request: /users/login/
+WARNING 2025-12-07 12:11:19,638 basehttp 213 "POST /users/login/ HTTP/1.1" 400 42
+INFO 2025-12-07 12:12:03,351 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 12:14:56,783 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-07 12:22:00,783 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\urls.py changed, reloading.
+INFO 2025-12-07 12:22:01,365 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:22:10,114 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-07 12:22:10,629 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:24:08,584 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:24:09,118 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:24:09,441 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 16
+INFO 2025-12-07 12:24:41,821 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-07 12:32:35,848 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:32:36,355 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:32:58,545 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:32:58,986 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:32:59,438 basehttp 213 "GET /admin/users/user/?user_type__exact=teacher HTTP/1.1" 200 15593
+INFO 2025-12-07 12:32:59,479 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:33:32,956 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:33:33,392 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:35:51,316 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:35:51,803 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:36:17,302 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 52
+INFO 2025-12-07 12:36:46,530 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17656
+INFO 2025-12-07 12:36:46,568 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:38:15,395 basehttp 213 "GET /admin/users/user/?user_type__exact=teacher HTTP/1.1" 200 15593
+INFO 2025-12-07 12:38:15,435 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 12:38:29,379 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 52
+INFO 2025-12-07 12:39:34,977 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:39:35,447 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-07 12:39:35,895 log 253 Internal Server Error: /teacher/get/allStudents/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ~~~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\generics.py", line 67, in get_queryset
+    assert self.queryset is not None, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'GetStudentListView' should either include a `queryset` attribute, or override the `get_queryset()` method.
+ERROR 2025-12-07 12:39:35,898 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 500 106179
+INFO 2025-12-07 12:42:15,274 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-07 12:42:15,769 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:43:08,651 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:43:09,228 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:43:11,362 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 52
+INFO 2025-12-07 12:43:40,163 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:43:40,754 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:46:03,855 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:46:04,372 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:46:12,092 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 175
+INFO 2025-12-07 12:46:45,876 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:46:46,391 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:53:54,736 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:53:55,198 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:54:11,233 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:54:11,652 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:54:28,690 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:54:29,134 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:54:42,028 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:54:42,497 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:54:48,027 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 615
+INFO 2025-12-07 12:55:37,731 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 615
+INFO 2025-12-07 12:55:51,282 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 12:55:51,779 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 12:55:52,084 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 615
+INFO 2025-12-07 13:02:21,532 basehttp 213 "OPTIONS /teacher/get/allStudents/ HTTP/1.1" 200 0
+INFO 2025-12-07 13:02:21,554 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 125
+INFO 2025-12-07 13:03:47,129 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:03:47,677 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:04:30,057 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:04:30,565 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-12-07 13:04:35,117 log 253 Unauthorized: /teacher/get/allStudents/
+WARNING 2025-12-07 13:04:35,118 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 401 43
+INFO 2025-12-07 13:04:41,066 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 125
+INFO 2025-12-07 13:06:35,281 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:06:35,829 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:09:04,287 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:09:04,743 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:12:24,334 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:12:24,834 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:14:46,226 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:14:46,814 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:14:52,910 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 125
+INFO 2025-12-07 13:15:32,522 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-07 13:15:33,039 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:15:52,134 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-07 13:15:52,617 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:15:55,612 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 104
+INFO 2025-12-07 13:18:15,106 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-07 13:18:15,627 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:18:21,253 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-07 13:18:21,762 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:18:22,968 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 13:19:40,992 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:19:41,472 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:30:57,488 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=1232321321321 HTTP/1.1" 200 0
+INFO 2025-12-07 13:30:57,509 basehttp 213 "GET /teacher/get/allStudents/?search=1232321321321 HTTP/1.1" 200 127
+INFO 2025-12-07 13:31:13,475 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=103 HTTP/1.1" 200 0
+INFO 2025-12-07 13:31:13,487 basehttp 213 "GET /teacher/get/allStudents/?search=103 HTTP/1.1" 200 127
+INFO 2025-12-07 13:31:30,145 basehttp 213 "GET /teacher/get/allStudents/?search=103 HTTP/1.1" 200 127
+INFO 2025-12-07 13:32:11,271 basehttp 213 "GET /teacher/get/allStudents/?search=103 HTTP/1.1" 200 127
+INFO 2025-12-07 13:36:25,717 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=101 HTTP/1.1" 200 0
+INFO 2025-12-07 13:36:25,738 basehttp 213 "GET /teacher/get/allStudents/?search=101 HTTP/1.1" 200 127
+INFO 2025-12-07 13:36:31,135 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=312312321321312 HTTP/1.1" 200 0
+INFO 2025-12-07 13:36:31,146 basehttp 213 "GET /teacher/get/allStudents/?search=312312321321312 HTTP/1.1" 200 127
+INFO 2025-12-07 13:37:55,826 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 13:37:56,365 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 13:37:57,747 basehttp 213 "GET /teacher/get/allStudents/?search=312312321321312 HTTP/1.1" 200 2
+INFO 2025-12-07 13:38:02,766 basehttp 213 "GET /teacher/get/allStudents/?search=103 HTTP/1.1" 200 2
+INFO 2025-12-07 13:38:05,819 basehttp 213 "GET /teacher/get/allStudents/?search=101 HTTP/1.1" 200 127
+INFO 2025-12-07 13:38:11,193 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=123321 HTTP/1.1" 200 0
+INFO 2025-12-07 13:38:11,207 basehttp 213 "GET /teacher/get/allStudents/?search=123321 HTTP/1.1" 200 127
+INFO 2025-12-07 13:38:13,987 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=12332 HTTP/1.1" 200 0
+INFO 2025-12-07 13:38:13,995 basehttp 213 "GET /teacher/get/allStudents/?search=12332 HTTP/1.1" 200 2
+INFO 2025-12-07 13:39:35,858 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=12332&gender=male HTTP/1.1" 200 0
+INFO 2025-12-07 13:39:35,866 basehttp 213 "GET /teacher/get/allStudents/?search=12332&gender=male HTTP/1.1" 200 2
+INFO 2025-12-07 13:39:40,192 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=male HTTP/1.1" 200 0
+INFO 2025-12-07 13:39:40,201 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 127
+WARNING 2025-12-07 13:46:00,709 log 253 Bad Request: /users/refresh/
+WARNING 2025-12-07 13:46:00,710 basehttp 213 "POST /users/refresh/ HTTP/1.1" 400 40
+INFO 2025-12-07 13:47:12,639 basehttp 213 "OPTIONS /users/refresh/ HTTP/1.1" 200 0
+WARNING 2025-12-07 13:47:12,642 log 253 Bad Request: /users/refresh/
+WARNING 2025-12-07 13:47:12,643 basehttp 213 "POST /users/refresh/ HTTP/1.1" 400 40
+INFO 2025-12-07 14:03:39,068 basehttp 213 "OPTIONS /teacher/get/allStudents/ HTTP/1.1" 200 0
+WARNING 2025-12-07 14:03:39,074 log 253 Unauthorized: /teacher/get/allStudents/
+WARNING 2025-12-07 14:03:39,074 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 401 43
+INFO 2025-12-07 14:03:39,082 basehttp 213 "OPTIONS /users/refresh/ HTTP/1.1" 200 0
+WARNING 2025-12-07 14:03:39,086 log 253 Bad Request: /users/refresh/
+WARNING 2025-12-07 14:03:39,086 basehttp 213 "POST /users/refresh/ HTTP/1.1" 400 42
+INFO 2025-12-07 14:03:49,819 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-12-07 14:03:50,501 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+WARNING 2025-12-07 14:03:55,574 log 253 Unauthorized: /teacher/get/allStudents/
+WARNING 2025-12-07 14:03:55,575 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 401 43
+WARNING 2025-12-07 14:03:55,585 log 253 Bad Request: /users/refresh/
+WARNING 2025-12-07 14:03:55,586 basehttp 213 "POST /users/refresh/ HTTP/1.1" 400 42
+INFO 2025-12-07 14:04:18,184 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+WARNING 2025-12-07 14:04:29,891 log 253 Unauthorized: /teacher/get/allStudents/
+WARNING 2025-12-07 14:04:29,892 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 401 43
+WARNING 2025-12-07 14:04:29,902 log 253 Bad Request: /users/refresh/
+WARNING 2025-12-07 14:04:29,903 basehttp 213 "POST /users/refresh/ HTTP/1.1" 400 42
+INFO 2025-12-07 14:07:22,548 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-07 14:07:27,807 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:07:40,757 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=female HTTP/1.1" 200 0
+INFO 2025-12-07 14:07:40,763 basehttp 213 "GET /teacher/get/allStudents/?gender=female HTTP/1.1" 200 2
+INFO 2025-12-07 14:08:41,883 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:09:04,425 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=male HTTP/1.1" 200 0
+INFO 2025-12-07 14:09:04,433 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 127
+INFO 2025-12-07 14:09:05,358 basehttp 213 "GET /teacher/get/allStudents/?gender=female HTTP/1.1" 200 2
+INFO 2025-12-07 14:09:06,313 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 127
+INFO 2025-12-07 14:09:10,189 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=101&gender=male HTTP/1.1" 200 0
+INFO 2025-12-07 14:09:10,198 basehttp 213 "GET /teacher/get/allStudents/?search=101&gender=male HTTP/1.1" 200 127
+INFO 2025-12-07 14:14:55,634 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:16:16,395 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:21:41,221 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:24:05,211 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:24:43,481 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:25:13,202 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:27:21,357 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:27:38,627 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:30:19,238 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:31:10,019 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 14:31:10,628 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 14:34:56,630 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 14:34:57,209 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 14:35:26,937 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-07 14:35:27,407 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 14:35:37,202 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-07 14:35:37,717 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 14:35:45,114 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:39:36,770 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-07 14:39:37,279 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 14:39:52,635 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 127
+INFO 2025-12-07 14:40:05,193 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 14:41:10,840 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 14:41:28,600 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 14:43:35,727 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 14:46:41,591 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 14:46:41,627 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-07 14:46:45,943 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-07 14:48:07,420 basehttp 213 "OPTIONS /users/delete/2/teacher HTTP/1.1" 200 0
+INFO 2025-12-07 14:48:07,445 basehttp 213 "DELETE /users/delete/2/teacher HTTP/1.1" 200 47
+WARNING 2025-12-07 14:48:19,375 log 253 Unauthorized: /users/login/
+WARNING 2025-12-07 14:48:19,375 basehttp 213 "POST /users/login/ HTTP/1.1" 401 63
+WARNING 2025-12-07 14:48:30,085 log 253 Unauthorized: /users/login/
+WARNING 2025-12-07 14:48:30,085 basehttp 213 "POST /users/login/ HTTP/1.1" 401 63
+INFO 2025-12-07 14:48:42,589 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-07 14:48:42,618 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-07 14:48:46,540 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 192
+INFO 2025-12-07 14:48:50,164 basehttp 213 "GET /users/teachers/?is_active=false HTTP/1.1" 200 94
+INFO 2025-12-07 14:48:52,981 basehttp 213 "POST /users/restore/2/teacher HTTP/1.1" 200 47
+INFO 2025-12-07 14:48:56,058 basehttp 213 "GET /users/teachers/ HTTP/1.1" 200 284
+INFO 2025-12-07 14:48:57,819 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-07 14:49:11,051 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-07 14:49:15,769 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 2
+INFO 2025-12-07 14:49:19,691 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 2
+INFO 2025-12-07 14:49:34,379 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19238
+INFO 2025-12-07 14:49:34,427 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:49:36,265 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17653
+INFO 2025-12-07 14:49:36,293 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:49:48,745 basehttp 213 "GET /admin/users/user/4/change/?_changelist_filters=user_type__exact%3Dstudent HTTP/1.1" 200 28430
+INFO 2025-12-07 14:49:48,782 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:49:48,876 basehttp 213 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-12-07 14:49:48,877 basehttp 213 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+INFO 2025-12-07 14:49:48,879 basehttp 213 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-12-07 14:49:48,879 basehttp 213 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-12-07 14:49:48,930 basehttp 213 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+INFO 2025-12-07 14:49:48,930 basehttp 213 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-12-07 14:49:48,930 basehttp 213 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-12-07 14:49:54,553 basehttp 213 "POST /admin/users/user/4/change/?_changelist_filters=user_type__exact%3Dstudent HTTP/1.1" 302 0
+INFO 2025-12-07 14:49:54,577 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17844
+INFO 2025-12-07 14:49:54,606 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:49:57,841 basehttp 213 "GET /admin/users/user/3/change/?_changelist_filters=user_type__exact%3Dstudent HTTP/1.1" 200 28430
+INFO 2025-12-07 14:49:57,870 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:50:01,882 basehttp 213 "POST /admin/users/user/3/change/?_changelist_filters=user_type__exact%3Dstudent HTTP/1.1" 302 0
+INFO 2025-12-07 14:50:01,907 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17847
+INFO 2025-12-07 14:50:01,939 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:50:04,229 basehttp 213 "GET /admin/users/user/8/change/?_changelist_filters=user_type__exact%3Dstudent HTTP/1.1" 200 28422
+INFO 2025-12-07 14:50:04,258 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:50:07,925 basehttp 213 "POST /admin/users/user/8/change/?_changelist_filters=user_type__exact%3Dstudent HTTP/1.1" 302 0
+INFO 2025-12-07 14:50:07,950 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17848
+INFO 2025-12-07 14:50:07,980 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-07 14:50:15,843 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:50:26,059 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:50:28,564 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:50:29,330 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:50:35,718 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:50:36,603 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:50:37,374 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:54:19,655 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\users\views.py changed, reloading.
+INFO 2025-12-07 14:54:20,289 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-07 14:54:23,362 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-07 14:54:24,820 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377

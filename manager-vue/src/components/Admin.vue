@@ -49,8 +49,6 @@ export default {
     <TeacherManage v-if="option === 1"></TeacherManage>
     <!-- 学生宿舍外出信息可视化 -->
     <h1 v-if="option === 2"></h1>
-    <!-- 学生管理 -->
-    <h1 v-if="option === 3"></h1>
   </div>
 </template>
 

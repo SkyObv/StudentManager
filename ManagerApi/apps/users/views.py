@@ -231,7 +231,6 @@ class DeleteTeacherView(APIView):
                 )
                 teacher_obj.is_active = False
                 teacher_obj.save(update_fields=['is_active'])
-                teacher_obj.students.clear()
             return Response(
                 {
                     "message": "老师已禁用。",
