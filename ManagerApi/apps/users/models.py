@@ -87,7 +87,7 @@ class Hostel(models.Model):
     def have_people(self):
         return self.student_count > 0
 
-# 楼层模型
+# 楼模型
 class Floor(models.Model):
     """宿舍楼模型"""
     floor_name = models.CharField(max_length=20,verbose_name='宿舍楼名称',unique=True)
