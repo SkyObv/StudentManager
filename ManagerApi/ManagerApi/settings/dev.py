@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'users',
+    'teacher',
 ]
 # 添加自定义认证后端 (实现多表登录的关键)
 AUTHENTICATION_BACKENDS = [
