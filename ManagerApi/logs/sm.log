@@ -4396,3 +4396,138 @@ INFO 2025-12-08 12:26:29,329 basehttp 213 "POST /teacher/import/students/ HTTP/1
 INFO 2025-12-08 12:32:51,882 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
 INFO 2025-12-08 12:32:52,487 autoreload 667 Watching for file changes with StatReloader
 INFO 2025-12-08 12:32:53,216 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 42
+INFO 2025-12-08 14:14:06,834 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-12-08 14:14:07,426 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 14:14:36,863 autoreload 265 D:\pyProject\StudenManager\ManagerApi\ManagerApi\settings\dev.py changed, reloading.
+INFO 2025-12-08 14:52:50,087 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 14:53:48,928 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=male HTTP/1.1" 200 0
+WARNING 2025-12-08 14:53:48,944 log 253 Unauthorized: /teacher/get/allStudents/
+WARNING 2025-12-08 14:53:48,945 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 401 172
+WARNING 2025-12-08 14:54:30,464 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 14:54:30,464 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 27
+WARNING 2025-12-08 14:54:56,772 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 14:54:56,773 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 27
+INFO 2025-12-08 14:55:03,012 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 42
+INFO 2025-12-08 15:00:02,479 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 42
+INFO 2025-12-08 15:25:22,063 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 15:25:22,611 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 15:26:26,651 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 15:26:27,224 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 15:26:28,659 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-08 15:28:24,882 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-08 15:28:26,984 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-08 15:28:27,646 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-08 15:31:42,558 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-08 17:27:49,900 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-12-08 17:28:52,921 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 17:28:52,922 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 27
+ERROR 2025-12-08 17:29:00,259 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\serialization.py", line 41, in _reraise_errors
+    yield
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\serialization.py", line 220, in dumps
+    payload = encoder(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\utils\json.py", line 63, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+  File "D:\pythonEXE\3.13.7\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "D:\pythonEXE\3.13.7\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "D:\pythonEXE\3.13.7\Lib\json\encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\utils\json.py", line 47, in default
+    return super().default(o)
+           ~~~~~~~~~~~~~~~^^^
+  File "D:\pythonEXE\3.13.7\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type InMemoryUploadedFile is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 43, in post
+    result = craete_student.delay(file_xlsx)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 608, in apply_async
+    return app.send_task(
+           ~~~~~~~~~~~~~^
+        self.name, args, kwargs, task_id=task_id, producer=producer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        **options
+        ^^^^^^^^^
+    )
+    ^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\base.py", line 947, in send_task
+    amqp.send_task_message(P, name, message, **options)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\amqp.py", line 559, in send_task_message
+    ret = producer.publish(
+        body,
+    ...<8 lines>...
+        **properties
+    )
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\messaging.py", line 178, in publish
+    body, content_type, content_encoding = self._prepare(
+                                           ~~~~~~~~~~~~~^
+        body, serializer, content_type, content_encoding,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        compression, headers)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\messaging.py", line 280, in _prepare
+    body) = dumps(body, serializer=serializer)
+            ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\serialization.py", line 219, in dumps
+    with _reraise_errors(EncodeError):
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\pythonEXE\3.13.7\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\serialization.py", line 45, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\exceptions.py", line 34, in reraise
+    raise value.with_traceback(tb)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\serialization.py", line 41, in _reraise_errors
+    yield
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\serialization.py", line 220, in dumps
+    payload = encoder(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\utils\json.py", line 63, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+  File "D:\pythonEXE\3.13.7\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "D:\pythonEXE\3.13.7\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "D:\pythonEXE\3.13.7\Lib\json\encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\kombu\utils\json.py", line 47, in default
+    return super().default(o)
+           ~~~~~~~~~~~~~~~^^^
+  File "D:\pythonEXE\3.13.7\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+kombu.exceptions.EncodeError: Object of type InMemoryUploadedFile is not JSON serializable
+ERROR 2025-12-08 17:29:00,268 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 248807

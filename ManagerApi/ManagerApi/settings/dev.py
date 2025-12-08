@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_filters',
+    'django_redis',
     'users',
     'teacher',
 ]
@@ -117,6 +118,17 @@ DATABASES = {
         'HOST': '127.0.0.1',                   # 数据库主机地址，本地默认127.0.0.1
         'PORT': '3306',                        # MySQL端口，默认3306
     }
+}
+# redis数据库配置
+CACHES = {
+    # 默认缓存数据
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/13',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    },
 }
 
 # 日志配置

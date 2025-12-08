@@ -9,6 +9,7 @@ from .permissions import IsTeacher
 from .filters import GetStudentFilter
 from .serializer import GetAllStudentsSerializer, FileFieldSerializer
 from .tests import craete_student
+from mycelery.manager_task.create_student import craete_student
 
 # 获取所有学生
 class GetStudentListView(ListAPIView):
@@ -38,8 +39,14 @@ class ImportStudentsView(APIView):
         if not file_xlsx:
             return Response({"error": "请上传文件"}, status=status.HTTP_400_BAD_REQUEST)
         if file_xlsx.name.endswith('.xlsx'):
-            craete_student(file_xlsx)
-            return Response({"message": "导入成功,用户创建中"}, status=status.HTTP_200_OK)
+            # 异步处理表格生成学生用户对象
+            result = craete_student.delay(file_xlsx)
+            task_id = result.id
+            return Response(
+                {
+                    "message": "任务创建成功",
+                    "task_id": task_id,
+                }, status=status.HTTP_200_OK)
         else:
             return Response({"error": "请上传xlsx文件"}, status=status.HTTP_400_BAD_REQUEST)
 
