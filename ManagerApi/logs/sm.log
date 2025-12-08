@@ -4084,3 +4084,315 @@ INFO 2025-12-07 14:54:19,655 autoreload 265 D:\pyProject\StudenManager\ManagerAp
 INFO 2025-12-07 14:54:20,289 autoreload 667 Watching for file changes with StatReloader
 INFO 2025-12-07 14:54:23,362 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
 INFO 2025-12-07 14:54:24,820 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-08 10:41:16,251 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 10:45:01,783 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-12-08 10:45:02,402 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-08 10:45:02,435 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-08 10:45:07,447 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-08 10:50:26,178 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 10:50:26,750 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 10:52:30,948 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-08 10:52:31,426 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:35:29,771 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:35:30,310 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:35:51,585 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:35:52,052 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:36:08,121 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:36:08,599 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-12-08 11:36:14,675 log 253 Unauthorized: /teacher/import/students/
+WARNING 2025-12-08 11:36:14,675 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 401 43
+INFO 2025-12-08 11:36:21,674 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:36:22,223 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:36:22,815 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 44
+INFO 2025-12-08 11:37:30,922 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:37:31,413 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:42:41,334 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:42:41,882 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:44:51,454 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:44:51,949 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 11:44:54,008 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 44
+WARNING 2025-12-08 11:44:58,729 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 11:44:58,730 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 27
+WARNING 2025-12-08 11:45:07,381 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 11:45:07,381 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 31
+INFO 2025-12-08 11:48:56,236 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 11:48:56,738 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:02:58,016 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:02:58,482 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:08:42,384 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-08 12:08:42,881 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-08 12:08:52,521 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pandas\compat\_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "D:\pythonEXE\3.13.7\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'openpyxl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 41, in post
+    df = pandas.read_excel(file_xlsx, header=0)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pandas\io\excel\_base.py", line 495, in read_excel
+    io = ExcelFile(
+        io,
+    ...<2 lines>...
+        engine_kwargs=engine_kwargs,
+    )
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pandas\io\excel\_base.py", line 1567, in __init__
+    self._reader = self._engines[engine](
+                   ~~~~~~~~~~~~~~~~~~~~~^
+        self._io,
+        ^^^^^^^^^
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        engine_kwargs=engine_kwargs,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pandas\io\excel\_openpyxl.py", line 552, in __init__
+    import_optional_dependency("openpyxl")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pandas\compat\_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+ERROR 2025-12-08 12:08:52,525 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 135945
+ERROR 2025-12-08 12:09:22,952 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+ERROR 2025-12-08 12:09:22,954 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 85509
+INFO 2025-12-08 12:10:18,760 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:10:19,278 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-12-08 12:10:26,213 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 12:10:26,213 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 4087
+WARNING 2025-12-08 12:11:12,871 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 12:11:12,871 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 4087
+INFO 2025-12-08 12:12:04,114 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-08 12:12:04,654 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:13:08,011 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:13:08,459 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-12-08 12:13:35,614 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 12:13:35,614 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 4087
+INFO 2025-12-08 12:14:19,250 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:14:19,794 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:15:50,336 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:15:50,781 autoreload 667 Watching for file changes with StatReloader
+WARNING 2025-12-08 12:15:53,403 log 253 Bad Request: /teacher/import/students/
+WARNING 2025-12-08 12:15:53,403 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 400 4087
+INFO 2025-12-08 12:20:48,496 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:20:49,186 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-08 12:20:51,735 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 51, in post
+    df = df.read_excel(file_xlsx, header=0, dtype=str)
+         ^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\pandas\core\generic.py", line 6321, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'read_excel'
+ERROR 2025-12-08 12:20:51,740 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 105422
+INFO 2025-12-08 12:21:27,689 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:21:28,281 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:21:29,127 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 75
+INFO 2025-12-08 12:22:35,231 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:22:35,753 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:23:55,005 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:23:55,496 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-08 12:25:08,643 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 60, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 777, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 636, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 695, in to_internal_value
+    validated = self.run_child_validation(item)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 655, in run_child_validation
+    return self.child.run_validation(data)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 503, in to_internal_value
+    validated_value = validate_method(validated_value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py", line 33, in validate_teacher
+    print(f"¿œ ¶ «{teacher.last_name}+{teacher.first_name}")
+                   ^^^^^^^^^^^^^^^^^
+AttributeError: 'QuerySet' object has no attribute 'last_name'
+ERROR 2025-12-08 12:25:08,648 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 187389
+INFO 2025-12-08 12:25:29,058 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-08 12:25:29,684 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-08 12:25:30,636 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 60, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 777, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 636, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 695, in to_internal_value
+    validated = self.run_child_validation(item)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 655, in run_child_validation
+    return self.child.run_validation(data)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 503, in to_internal_value
+    validated_value = validate_method(validated_value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py", line 27, in validate_username
+    user = User.objects.get(username=value)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+users.models.User.DoesNotExist: User matching query does not exist.
+ERROR 2025-12-08 12:25:30,640 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 196501
+INFO 2025-12-08 12:26:10,828 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-08 12:26:11,420 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-08 12:26:12,208 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 60, in post
+    if serializer.is_valid():
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 777, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 636, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 695, in to_internal_value
+    validated = self.run_child_validation(item)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 655, in run_child_validation
+    return self.child.run_validation(data)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\serializers.py", line 503, in to_internal_value
+    validated_value = validate_method(validated_value)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py", line 34, in validate_teacher
+    if not teacher.exists():
+           ^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'exists'
+ERROR 2025-12-08 12:26:12,212 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 187097
+INFO 2025-12-08 12:26:27,932 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-08 12:26:28,534 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:26:29,329 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 75
+INFO 2025-12-08 12:32:51,882 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-08 12:32:52,487 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-08 12:32:53,216 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 42
