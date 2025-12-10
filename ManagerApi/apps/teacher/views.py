@@ -1,3 +1,7 @@
+import os
+import random
+import time
+from django.conf import settings
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,8 +12,7 @@ from rest_framework.permissions import IsAuthenticated                          
 from .permissions import IsTeacher
 from .filters import GetStudentFilter
 from .serializer import GetAllStudentsSerializer, FileFieldSerializer
-from .tests import craete_student
-from mycelery.manager_task.create_student import craete_student
+from mycelery.manager_task.create_student import create_student
 
 # 获取所有学生
 class GetStudentListView(ListAPIView):
@@ -39,13 +42,19 @@ class ImportStudentsView(APIView):
         if not file_xlsx:
             return Response({"error": "请上传文件"}, status=status.HTTP_400_BAD_REQUEST)
         if file_xlsx.name.endswith('.xlsx'):
-            # 异步处理表格生成学生用户对象
-            result = craete_student.delay(file_xlsx)
-            task_id = result.id
+            # 将文件保存在本地
+            time_head = int(time.time()* 1000000)
+            rand_head = random.randint(1000, 9999)
+            file_path = os.path.join(settings.MEDIA_ROOT, f"{time_head}"+"_"+f"{rand_head}"+file_xlsx.name)
+            with open(file_path, 'wb') as f:
+                for chunk in file_xlsx.chunks():
+                    f.write(chunk)
+            # 创建任务
+            task = create_student.delay(file_path)
             return Response(
                 {
                     "message": "任务创建成功",
-                    "task_id": task_id,
+                    "task_id": task.id,
                 }, status=status.HTTP_200_OK)
         else:
             return Response({"error": "请上传xlsx文件"}, status=status.HTTP_400_BAD_REQUEST)

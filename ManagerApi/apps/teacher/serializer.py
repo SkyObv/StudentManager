@@ -18,18 +18,24 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
 
 # 上传文件字段验证序列化器
 class FileFieldSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=20,source="学号")
-    last_name = serializers.CharField(max_length=20, source="姓")
-    first_name = serializers.CharField(max_length=20, source="名")
-    gender = serializers.ChoiceField(choices=(('male','男'),('female','女')), source="性别")
-    teacher = serializers.CharField(max_length=20, source="指导老师")
+    username = serializers.CharField(max_length=20)
+    last_name = serializers.CharField(max_length=20)
+    first_name = serializers.CharField(max_length=20)
+    gender = serializers.ChoiceField(choices=(('male','男'),('female','女')))
+    teacher_id = serializers.CharField(max_length=20)
     def validate_username(self, value):
         user = User.objects.filter(username=value)
         if user.exists():
             raise serializers.ValidationError("用户已存在")
         return value
-    def validate_teacher(self, value):
+    def validate_teacher_id(self, value):
         teacher = User.objects.filter(username=value, user_type="teacher")
         if not teacher.exists():
             raise serializers.ValidationError("老师不存在或账号以停用")
         return value
+    def create(self, validated_data):
+        try:
+            user = User.objects.create_user(**validated_data)
+            user.save()
+        except Exception as e:
+            raise serializers.ValidationError(e)

@@ -4531,3 +4531,147 @@ Traceback (most recent call last):
                     f'is not JSON serializable')
 kombu.exceptions.EncodeError: Object of type InMemoryUploadedFile is not JSON serializable
 ERROR 2025-12-08 17:29:00,268 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 248807
+INFO 2025-12-10 15:19:12,170 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:20:36,830 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:20:37,359 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:21:12,010 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:21:41,824 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:21:42,390 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-10 15:22:01,514 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 44, in post
+    file_path = os.path.join(settings.MEDIA_ROOT, file_xlsx.name)
+                             ^^^^^^^^
+NameError: name 'settings' is not defined. Did you mean: 'self.settings'?
+ERROR 2025-12-10 15:22:01,517 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 98672
+INFO 2025-12-10 15:22:47,718 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:22:48,278 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:23:45,806 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:23:46,378 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:23:48,185 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 32
+INFO 2025-12-10 15:27:13,990 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:27:14,503 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:27:38,867 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:27:39,409 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:27:50,209 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 32
+INFO 2025-12-10 15:28:24,382 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:28:24,876 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:28:41,851 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:28:42,373 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:28:46,687 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 32
+INFO 2025-12-10 15:29:20,907 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:29:21,455 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:32:01,632 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 32
+INFO 2025-12-10 15:33:54,518 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 15:33:55,032 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:35:33,164 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 15:35:33,653 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:36:01,607 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 15:37:42,161 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-10 15:37:42,680 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:38:37,484 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-10 15:38:37,916 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:42:40,764 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 15:42:41,291 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:46:30,977 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-10 15:46:31,484 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:46:33,095 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+WARNING 2025-12-10 15:47:59,328 log 253 Not Found: /
+WARNING 2025-12-10 15:47:59,329 basehttp 213 "GET / HTTP/1.1" 404 2461
+WARNING 2025-12-10 15:47:59,551 log 253 Not Found: /favicon.ico
+WARNING 2025-12-10 15:47:59,551 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2512
+INFO 2025-12-10 15:48:08,023 basehttp 213 "GET /admin/ HTTP/1.1" 200 11235
+INFO 2025-12-10 15:48:08,051 basehttp 213 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,052 basehttp 213 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,053 basehttp 213 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,053 basehttp 213 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,053 basehttp 213 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,053 basehttp 213 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,076 basehttp 213 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,080 basehttp 213 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:08,080 basehttp 213 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,686 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19247
+INFO 2025-12-10 15:48:09,713 basehttp 213 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,717 basehttp 213 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,717 basehttp 213 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,717 basehttp 213 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,718 basehttp 213 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,718 basehttp 213 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,722 basehttp 213 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,723 basehttp 213 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,723 basehttp 213 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,726 basehttp 213 "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,726 basehttp 213 "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,728 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-10 15:48:09,745 basehttp 213 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,747 basehttp 213 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,770 basehttp 213 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,770 basehttp 213 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:09,770 basehttp 213 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-12-10 15:48:11,771 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17662
+INFO 2025-12-10 15:48:11,797 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-10 15:50:51,041 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 15:50:51,569 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:54:46,614 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 15:54:47,225 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:55:05,607 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 15:55:31,558 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17662
+INFO 2025-12-10 15:55:31,594 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-10 15:58:40,841 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 15:58:54,200 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 15:59:19,444 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17662
+INFO 2025-12-10 15:59:19,476 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-10 16:04:33,580 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-10 16:04:34,268 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 16:04:42,842 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 16:05:16,002 basehttp 213 "GET /admin/users/user/?user_type__exact=student HTTP/1.1" 200 17662
+INFO 2025-12-10 16:05:16,034 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-10 16:05:49,662 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 16:05:50,182 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 16:06:51,428 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 16:09:42,520 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 16:09:43,064 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 16:10:07,401 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 16:11:01,455 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 16:14:44,027 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 16:14:44,652 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 16:16:05,905 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-10 16:16:06,396 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-10 16:16:13,058 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-10 16:19:41,702 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-12-10 16:19:42,320 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-10 16:19:42,353 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-10 16:19:46,539 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 284
+INFO 2025-12-10 16:19:48,987 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-10 16:19:59,286 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-10 16:20:04,338 basehttp 213 "OPTIONS /teacher/get/allStudents/ HTTP/1.1" 200 0
+INFO 2025-12-10 16:20:04,352 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-10 16:20:09,417 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-10 16:20:12,827 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-10 16:20:14,691 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=male HTTP/1.1" 200 0
+INFO 2025-12-10 16:20:14,710 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 377
+INFO 2025-12-10 16:20:20,824 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=123&gender=male HTTP/1.1" 200 0
+INFO 2025-12-10 16:20:20,830 basehttp 213 "GET /teacher/get/allStudents/?search=123&gender=male HTTP/1.1" 200 2
+INFO 2025-12-10 16:20:27,368 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=101&gender=male HTTP/1.1" 200 0
+INFO 2025-12-10 16:20:27,378 basehttp 213 "GET /teacher/get/allStudents/?search=101&gender=male HTTP/1.1" 200 377
+INFO 2025-12-10 16:20:30,925 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=123321&gender=male HTTP/1.1" 200 0
+INFO 2025-12-10 16:20:30,934 basehttp 213 "GET /teacher/get/allStudents/?search=123321&gender=male HTTP/1.1" 200 127
+INFO 2025-12-10 16:20:33,837 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 377
