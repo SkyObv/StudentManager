@@ -59,5 +59,20 @@ class ImportStudentsView(APIView):
         else:
             return Response({"error": "请上传xlsx文件"}, status=status.HTTP_400_BAD_REQUEST)
 
+# 获取任务结果
+class GetTaskResultView(APIView):
+    def get(self, request,task_id,*args, **kwargs):
+        if not task_id:
+            return Response({"error": "请提供任务ID"}, status=status.HTTP_400_BAD_REQUEST)
+        task = create_student.AsyncResult(task_id)
+        if task.state == 'PENDING':
+            return Response({"message": "任务正在处理中"}, status=status.HTTP_200_OK)
+        if task.state == 'FAILURE':
+            return Response({"error": "任务处理失败"}, status=status.HTTP_400_BAD_REQUEST)
+        if task.state == 'SUCCESS':
+            result = task.result
+            return Response(result, status=status.HTTP_200_OK)
+
+
 
 

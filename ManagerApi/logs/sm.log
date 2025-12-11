@@ -4675,3 +4675,323 @@ INFO 2025-12-10 16:20:27,378 basehttp 213 "GET /teacher/get/allStudents/?search=
 INFO 2025-12-10 16:20:30,925 basehttp 213 "OPTIONS /teacher/get/allStudents/?search=123321&gender=male HTTP/1.1" 200 0
 INFO 2025-12-10 16:20:30,934 basehttp 213 "GET /teacher/get/allStudents/?search=123321&gender=male HTTP/1.1" 200 127
 INFO 2025-12-10 16:20:33,837 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 377
+INFO 2025-12-11 09:47:03,107 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:47:06,669 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 50
+INFO 2025-12-11 09:50:42,443 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 09:50:42,948 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:53:04,316 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:53:05,170 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:54:31,124 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:54:31,642 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:54:51,570 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:54:52,126 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:55:03,549 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:55:04,085 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:55:23,997 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:55:24,485 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:56:19,614 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:56:20,185 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:56:25,701 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:56:26,159 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 09:57:18,781 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 09:57:19,206 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:01:27,067 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 10:01:27,646 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:01:53,954 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 10:01:54,508 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:02:30,404 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 10:02:30,844 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:03:56,749 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:03:57,246 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:04:12,174 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:04:12,623 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:05:48,286 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 10:05:48,781 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:07:48,885 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:07:49,413 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:07:56,882 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 144
+INFO 2025-12-11 10:09:32,142 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:09:32,819 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:09:33,572 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 144
+INFO 2025-12-11 10:09:55,994 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 144
+INFO 2025-12-11 10:11:34,901 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:11:35,448 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:12:40,155 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:12:40,663 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:12:42,188 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 1374
+INFO 2025-12-11 10:13:39,558 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\serializer.py changed, reloading.
+INFO 2025-12-11 10:13:40,114 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:13:40,992 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 2254
+INFO 2025-12-11 10:13:59,607 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=male HTTP/1.1" 200 0
+WARNING 2025-12-11 10:13:59,624 log 253 Unauthorized: /teacher/get/allStudents/
+WARNING 2025-12-11 10:13:59,624 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 401 172
+INFO 2025-12-11 10:15:22,959 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 2254
+INFO 2025-12-11 10:16:21,317 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 209
+INFO 2025-12-11 10:16:45,947 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:16:46,592 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:16:48,025 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 209
+INFO 2025-12-11 10:17:03,153 basehttp 213 "GET /admin/ HTTP/1.1" 200 11235
+WARNING 2025-12-11 10:17:03,372 log 253 Not Found: /favicon.ico
+WARNING 2025-12-11 10:17:03,373 basehttp 213 "GET /favicon.ico HTTP/1.1" 404 2512
+INFO 2025-12-11 10:17:04,900 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 19908
+INFO 2025-12-11 10:17:04,939 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-11 10:18:26,445 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:18:27,002 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:18:32,071 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:18:32,549 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:20:41,181 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:20:41,731 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:20:51,078 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 2228
+INFO 2025-12-11 10:21:17,292 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\tests.py changed, reloading.
+INFO 2025-12-11 10:21:17,813 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:24:00,098 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 2228
+INFO 2025-12-11 10:24:10,871 basehttp 213 "GET /admin/users/user/ HTTP/1.1" 200 32449
+INFO 2025-12-11 10:24:10,902 basehttp 213 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-12-11 10:24:30,779 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 1734
+INFO 2025-12-11 10:27:25,319 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:27:25,836 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:28:30,899 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-11 10:28:31,430 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:31:11,725 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-11 10:31:12,262 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:32:12,079 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:32:12,667 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:32:41,212 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:32:41,802 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:33:41,830 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:33:42,344 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-11 10:33:46,658 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 53, in post
+    task = create_student.delay(file_path)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 573, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: create_student() takes 1 positional argument but 2 were given
+ERROR 2025-12-11 10:33:46,661 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 114046
+ERROR 2025-12-11 10:34:51,370 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 53, in post
+    task = create_student.delay(file_path)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 573, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: create_student() takes 1 positional argument but 2 were given
+ERROR 2025-12-11 10:34:51,372 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 114046
+ERROR 2025-12-11 10:34:53,888 log 253 Internal Server Error: /teacher/import/students/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 53, in post
+    task = create_student.delay(file_path)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\app\task.py", line 573, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: create_student() takes 1 positional argument but 2 were given
+ERROR 2025-12-11 10:34:53,890 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 500 114046
+INFO 2025-12-11 10:37:19,854 autoreload 265 D:\pyProject\StudenManager\ManagerApi\mycelery\manager_task\create_student.py changed, reloading.
+INFO 2025-12-11 10:37:20,446 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:37:24,294 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-11 10:38:42,446 basehttp 213 "POST /teacher/import/students/ HTTP/1.1" 200 81
+INFO 2025-12-11 10:42:23,915 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-11 10:42:24,472 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:43:05,762 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-11 10:43:06,258 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:44:40,322 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:44:40,845 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:45:04,292 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:45:04,815 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:45:50,989 basehttp 213 "OPTIONS /teacher/get/status/ HTTP/1.1" 200 0
+WARNING 2025-12-11 10:45:50,995 log 253 Bad Request: /teacher/get/status/
+WARNING 2025-12-11 10:45:50,995 basehttp 213 "GET /teacher/get/status/ HTTP/1.1" 400 29
+WARNING 2025-12-11 10:46:14,535 log 253 Bad Request: /teacher/get/status/
+WARNING 2025-12-11 10:46:14,535 basehttp 213 "GET /teacher/get/status/ HTTP/1.1" 400 29
+WARNING 2025-12-11 10:46:18,371 log 253 Bad Request: /teacher/get/status/
+WARNING 2025-12-11 10:46:18,371 basehttp 213 "GET /teacher/get/status/ HTTP/1.1" 400 29
+INFO 2025-12-11 10:48:16,550 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\urls.py changed, reloading.
+INFO 2025-12-11 10:48:17,126 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:48:47,976 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:48:48,492 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-11 10:49:08,924 log 253 Internal Server Error: /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 68, in get
+    result = task.get('result')
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\result.py", line 253, in get
+    return self.backend.wait_for_pending(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, timeout=timeout,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        on_message=on_message,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\backends\asynchronous.py", line 266, in wait_for_pending
+    for _ in self._wait_for_pending(result, **kwargs):
+             ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\backends\asynchronous.py", line 332, in _wait_for_pending
+    for _ in self.drain_events_until(
+             ~~~~~~~~~~~~~~~~~~~~~~~^
+            result.on_ready, timeout=timeout,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            on_interval=on_interval):
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\backends\asynchronous.py", line 76, in drain_events_until
+    if timeout and time.monotonic() - time_start >= timeout:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'float' and 'str'
+ERROR 2025-12-11 10:49:08,928 basehttp 213 "GET /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/ HTTP/1.1" 500 119505
+INFO 2025-12-11 10:50:04,504 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:50:05,066 autoreload 667 Watching for file changes with StatReloader
+ERROR 2025-12-11 10:50:08,723 log 253 Internal Server Error: /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/
+Traceback (most recent call last):
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py", line 68, in get
+    result = task.get('result')
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\result.py", line 253, in get
+    return self.backend.wait_for_pending(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, timeout=timeout,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        on_message=on_message,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\backends\asynchronous.py", line 266, in wait_for_pending
+    for _ in self._wait_for_pending(result, **kwargs):
+             ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\backends\asynchronous.py", line 332, in _wait_for_pending
+    for _ in self.drain_events_until(
+             ~~~~~~~~~~~~~~~~~~~~~~~^
+            result.on_ready, timeout=timeout,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            on_interval=on_interval):
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pyProject\StudenManager\venv\Lib\site-packages\celery\backends\asynchronous.py", line 76, in drain_events_until
+    if timeout and time.monotonic() - time_start >= timeout:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'float' and 'str'
+ERROR 2025-12-11 10:50:08,728 basehttp 213 "GET /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/ HTTP/1.1" 500 119831
+INFO 2025-12-11 10:51:25,371 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:51:25,950 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:51:33,128 basehttp 213 "GET /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/ HTTP/1.1" 200 1692
+INFO 2025-12-11 10:53:08,485 basehttp 213 "GET /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/ HTTP/1.1" 200 1692
+INFO 2025-12-11 10:53:53,486 basehttp 213 "GET /teacher/get/status/60d547e5-4ceb-4ab8-a395-a5dac69b121f/ HTTP/1.1" 200 1692
+INFO 2025-12-11 10:54:54,875 autoreload 265 D:\pyProject\StudenManager\ManagerApi\apps\teacher\views.py changed, reloading.
+INFO 2025-12-11 10:54:55,383 autoreload 667 Watching for file changes with StatReloader
+INFO 2025-12-11 10:55:31,827 basehttp 213 "OPTIONS /users/login/ HTTP/1.1" 200 0
+INFO 2025-12-11 10:55:32,427 basehttp 213 "POST /users/login/ HTTP/1.1" 200 530
+INFO 2025-12-11 10:55:36,847 basehttp 213 "OPTIONS /teacher/get/allStudents/ HTTP/1.1" 200 0
+INFO 2025-12-11 10:55:36,861 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-11 10:55:40,035 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-11 10:55:42,842 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 377
+INFO 2025-12-11 10:55:55,395 basehttp 213 "POST /users/login/ HTTP/1.1" 200 528
+INFO 2025-12-11 10:55:55,423 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 233
+INFO 2025-12-11 10:55:59,178 basehttp 213 "GET /users/teachers/?is_active=true HTTP/1.1" 200 285
+INFO 2025-12-11 10:56:14,391 basehttp 213 "POST /users/login/ HTTP/1.1" 200 533
+INFO 2025-12-11 10:56:18,203 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 2652
+INFO 2025-12-11 10:56:22,242 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=male HTTP/1.1" 200 0
+INFO 2025-12-11 10:56:22,260 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 1318
+INFO 2025-12-11 10:56:24,349 basehttp 213 "OPTIONS /teacher/get/allStudents/?gender=female HTTP/1.1" 200 0
+INFO 2025-12-11 10:56:24,368 basehttp 213 "GET /teacher/get/allStudents/?gender=female HTTP/1.1" 200 1335
+INFO 2025-12-11 10:56:25,464 basehttp 213 "GET /teacher/get/allStudents/?gender=male HTTP/1.1" 200 1318
+INFO 2025-12-11 10:56:36,296 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 2652
+INFO 2025-12-11 10:56:39,454 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 2652
+INFO 2025-12-11 10:56:50,677 basehttp 213 "GET /teacher/get/allStudents/ HTTP/1.1" 200 2652

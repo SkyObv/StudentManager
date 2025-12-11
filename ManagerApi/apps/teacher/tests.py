@@ -1,16 +1,50 @@
 from django.test import TestCase
 import pandas
+import os
+from .serializer import FileFieldSerializer
 
 def craete_student(file_xlsx):
-    df = pandas.read_excel(file_xlsx, header=0, dtype=str)
-    print(df.columns)
-    for i in range(len(df)):
-        user = df.loc[i].to_dict()
-        print( user)
-        return "成功"
+    result = {}                                                                          # 结果列表
+    ok_count = 0                                                                         # 成功的个数
+    err_count = 0                                                                        # 失败的个数
+    ok_student = []                                                                      # 成功的数据
+    err_student = []                                                                     # 失败的数据
+    try:
+        df = pandas.read_excel(file_xlsx, header=0, dtype=str)
+        df = handle_xlsx(df)                                                             # 数据处理
+        for i in range(len(df)):
+            user = df.loc[i].to_dict()
+            serializer = FileFieldSerializer(data=user)
+            if serializer.is_valid():
+                serializer.save()
+                ok_count += 1
+                ok_student.append(user)
+            else:
+                err_count += 1
+                err_dict = serializer.errors
+                err_dict['name'] = user['first_name']+user['last_name']
+                err_student.append(err_dict)
+        result = {
+            "ok_count": ok_count,
+            "err_count": err_count,
+            "ok_student": ok_student,
+            "err_student": err_student,
+            }
+        return result
+    except Exception as e:
+        return e
+    finally:
+        os.remove(file_xlsx)
 
-
-if __name__ == '__main__':
-    path = r"D:\pyProject\StudenManager\测试导入文件数据\student_test_data.xlsx"
-    craete_student(path)
-
+# 数据处理
+def handle_xlsx(file_xlsx):
+    new_columns = {
+        "学号": "username",
+        "密码": "password",
+        "姓": "last_name",
+        "名": "first_name",
+        "性别": "gender",
+        "指导老师": "teacher_id",
+    }
+    file_xlsx.rename(columns=new_columns, inplace=True)
+    return file_xlsx
