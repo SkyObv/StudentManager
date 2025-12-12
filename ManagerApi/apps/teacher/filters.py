@@ -18,3 +18,7 @@ class GetStudentFilter(django_filters.FilterSet):
             )
             return queryset
         return queryset
+
+# 老师申请宿舍记录过滤器
+class GetApplyFilter(django_filters.FilterSet):
+    apply_state = django_filters.CharFilter(field_name='apply_state', lookup_expr='iexact')
