@@ -2,16 +2,18 @@ import os
 import random
 import time
 from django.conf import settings
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from users.models import User
+from users.models import User,Floor,Hostel
 from rest_framework_simplejwt.authentication import JWTAuthentication                    # 导入JWT认证
 from rest_framework.permissions import IsAuthenticated                                   # 内置权限
+from .models import HostelApply
 from .permissions import IsTeacher
 from .filters import GetStudentFilter
-from .serializer import GetAllStudentsSerializer, FileFieldSerializer
+from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
+                         CreateHostelApplyViewSerializer,GetAllApplySerializer)
 from mycelery.manager_task.create_student import create_student
 
 # 获取所有学生
@@ -31,7 +33,6 @@ class GetStudentListView(ListAPIView):
             is_active=True,
         )
         return queryset
-
 # 导入学生生成学生用户视图
 class ImportStudentsView(APIView):
     # authentication_classes = [JWTAuthentication]
@@ -58,7 +59,6 @@ class ImportStudentsView(APIView):
                 }, status=status.HTTP_200_OK)
         else:
             return Response({"error": "请上传xlsx文件"}, status=status.HTTP_400_BAD_REQUEST)
-
 # 获取任务结果
 class GetTaskResultView(APIView):
     def get(self, request,task_id,*args, **kwargs):
@@ -73,6 +73,39 @@ class GetTaskResultView(APIView):
             result = task.result
             return Response(result, status=status.HTTP_200_OK)
 
+# 宿舍申请
+# 获取可申请的宿舍列表
+class GetDormitoryListView(ListAPIView):
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated, IsTeacher]
+    queryset = Hostel.objects.filter(is_deleted=False)
+    serializer_class = GetDormitoryHostelSerializer
+    filterset_class = None
+# 申请宿舍
+class ApplyHostelView(CreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher]
+    serializer_class = CreateHostelApplyViewSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(
+            teacher=self.request.user,
+        )
+
+# 申请记录
+# 获取申请记录
+class GetApplyRecordView(ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher]
+    serializer_class = GetAllApplySerializer
+    filterset_class = None
+    pagination_class = None
+
+    def get_queryset(self):
+        teacher_id = self.request.user.id
+        queryset = HostelApply.objects.filter(
+            teacher_id=teacher_id,
+        )
+        return queryset
 
 

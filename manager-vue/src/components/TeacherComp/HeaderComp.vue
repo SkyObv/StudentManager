@@ -60,16 +60,24 @@ export default {
           <li :class="changeCss(0)" @click="changeOption(0)">
             <a href="#dorm-application" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>宿舍申请</span>
+            </a>
+          </li>
+          <li :class="changeCss(1)" @click="changeOption(1)">
+            <a href="#application-records" class="nav-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
                 <line x1="16" y1="13" x2="8" y2="13"></line>
                 <line x1="16" y1="17" x2="8" y2="17"></line>
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
-              <span>宿舍申请</span>
+              <span>申请记录</span>
             </a>
           </li>
-          <li :class="changeCss(1)" @click="changeOption(1)">
+          <li :class="changeCss(2)" @click="changeOption(2)">
             <a href="#my-dorm" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -78,7 +86,7 @@ export default {
               <span>我的宿舍</span>
             </a>
           </li>
-          <li :class="changeCss(2)" @click="changeOption(2)">
+          <li :class="changeCss(3)" @click="changeOption(3)">
             <a href="#my-students" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -89,7 +97,7 @@ export default {
               <span>我的学生</span>
             </a>
           </li>
-          <li :class="changeCss(3)" @click="changeOption(3)">
+          <li :class="changeCss(4)" @click="changeOption(4)">
             <a href="#dorm-allocation" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 3v18h18"></path>

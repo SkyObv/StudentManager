@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from users.models import User
+from users.models import User,Floor,Hostel
+from .models import HostelApply
 
 # 获取老师所有学生序列化器
 class GetAllStudentsSerializer(serializers.ModelSerializer):
@@ -15,7 +16,6 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
             house_number = obj.house_number.floor.floor_name + '-' + obj.house_number.hostel_number
             return house_number
         return "无"
-
 # 上传文件字段验证序列化器
 class FileFieldSerializer(serializers.ModelSerializer):
     teacher_id = serializers.SlugRelatedField(
@@ -41,3 +41,52 @@ class FileFieldSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+# 宿舍申请
+# 获取可申请的宿舍列表
+class GetDormitoryHostelSerializer(serializers.ModelSerializer):
+    manager_name = serializers.SerializerMethodField()
+    floor_name = serializers.SerializerMethodField()
+    class Meta:
+        model = Hostel
+        fields = ['id', 'hostel_number','manager_name','gender','floor_name']
+    def get_manager_name(self, obj):
+        if obj.manager:
+            manager = obj.manager
+            manager_name = manager.last_name + manager.first_name
+            return manager_name
+        return None
+    def get_floor_name(self, obj):
+        return obj.floor.floor_name
+# 申请宿舍
+class CreateHostelApplyViewSerializer(serializers.ModelSerializer):
+    hostel = serializers.SlugRelatedField(
+        slug_field='id',
+        queryset=Hostel.objects.filter(is_deleted=False,manager__isnull=True),
+    )
+    class Meta:
+        model = HostelApply
+        fields = ['hostel']
+    def validate(self, attrs):
+        super().validate(attrs)
+        request = self.context.get('request')
+        teacher = request.user
+        if HostelApply.objects.filter(teacher=teacher, hostel=attrs['hostel']).exists():
+            raise serializers.ValidationError("您已申请过该宿舍，请勿重复提交。")
+        return attrs
+
+# 申请记录
+# 获取所有申请记录
+class GetAllApplySerializer(serializers.ModelSerializer):
+    teacher_name = serializers.SerializerMethodField()
+    hostel_name = serializers.SerializerMethodField()
+    class Meta:
+        model = HostelApply
+        fields = ['id','teacher_name','hostel_name','apply_time','apply_state']
+    def get_teacher_name(self, obj):
+        teacher = obj.teacher
+        teacher_name = teacher.last_name + teacher.first_name
+        return teacher_name
+    def get_hostel_name(self, obj):
+        hostel_name = obj.hostel.floor.floor_name + '-' + obj.hostel.hostel_number
+        return hostel_name
