@@ -5514,3 +5514,8 @@ INFO 2025-12-12 16:57:52,538 basehttp 213 "GET /teacher/get/applyRecord/ HTTP/1.
 INFO 2025-12-12 16:57:54,422 basehttp 213 "GET /teacher/get/applyRecord/?apply_state=%E5%B7%B2%E9%80%9A%E8%BF%87 HTTP/1.1" 200 2
 INFO 2025-12-12 16:57:55,352 basehttp 213 "GET /teacher/get/applyRecord/?apply_state=%E5%B7%B2%E6%8B%92%E7%BB%9D HTTP/1.1" 200 2
 INFO 2025-12-12 16:57:56,241 basehttp 213 "GET /teacher/get/applyRecord/?apply_state=%E5%BE%85%E5%AE%A1%E6%A0%B8 HTTP/1.1" 200 133
+INFO 2025-12-12 17:17:50,142 basehttp 213 "GET /teacher/get/applyRecord/ HTTP/1.1" 200 133
+INFO 2025-12-12 17:17:56,503 basehttp 213 "GET /teacher/get/applyRecord/?apply_state=%E5%B7%B2%E9%80%9A%E8%BF%87 HTTP/1.1" 200 2
+INFO 2025-12-12 17:17:57,323 basehttp 213 "GET /teacher/get/applyRecord/?apply_state=%E5%BE%85%E5%AE%A1%E6%A0%B8 HTTP/1.1" 200 133
+INFO 2025-12-12 17:17:58,182 basehttp 213 "GET /teacher/get/applyRecord/ HTTP/1.1" 200 133
+INFO 2025-12-12 17:20:29,750 basehttp 213 "GET /teacher/get/hostel/ HTTP/1.1" 200 585
