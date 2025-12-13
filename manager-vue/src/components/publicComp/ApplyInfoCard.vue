@@ -11,7 +11,7 @@ export default {
     // 是否显示操作按钮
     showActionButtons: {
       type: Boolean,
-      default: false
+      default:false
     }
   },
   methods: {
@@ -20,9 +20,9 @@ export default {
       switch (state) {
         case '待审核':
           return 'state-pending';
-        case '已通过':
+        case '通过':
           return 'state-approved';
-        case '已拒绝':
+        case '拒绝':
           return 'state-rejected';
         default:
           return '';
@@ -67,9 +67,11 @@ export default {
         </div>
       </div>
       <!-- 已读/删除/撤销按钮，始终显示在右上角 -->
-      <button class="read-delete-button" @click="handleReadDelete">
+      <template v-if="!showActionButtons">
+        <button class="read-delete-button" @click="handleReadDelete">
         已读删除或撤销
-      </button>
+        </button>
+      </template>
     </div>
     <div class="card-body">
       <div class="card-content">

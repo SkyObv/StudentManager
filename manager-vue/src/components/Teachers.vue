@@ -1,6 +1,7 @@
 <script>
 import HeaderComp from '@/components/TeacherComp/HeaderComp.vue'
 import MyStudents from '@/components/TeacherComp/Mystudents.vue'
+import ApplyHostelLogs from '@/components/TeacherComp/ApplyHostelLogs.vue'
 import ApplyHostel from '@/components/TeacherComp/ApplyHostel.vue'
 export default {
   name: 'TeachersPage',
@@ -17,7 +18,8 @@ export default {
     }
   },
   components: {
-    ApplyHostel,                            // 申请记录
+    ApplyHostel,                            // 申请宿舍
+    ApplyHostelLogs,                        // 申请记录
     HeaderComp,                             // 老师头部导航
     MyStudents,                             // 我的学生
   }
@@ -27,8 +29,8 @@ export default {
 <template>
   <div>
     <HeaderComp @update-option="handleHeaderClick"></HeaderComp>
-    <h1 v-if="this.options === 0">宿舍申请</h1>
-    <ApplyHostel v-if="this.options === 1">申请记录</ApplyHostel>
+    <ApplyHostel v-if="this.options === 0">宿舍申请</ApplyHostel>
+    <ApplyHostelLogs  v-if="this.options === 1">申请记录</ApplyHostelLogs >
     <h1 v-if="this.options === 2">我的宿舍</h1>
     <MyStudents v-if="this.options === 3"></MyStudents>
     <h1 v-if="this.options === 4">宿舍分配</h1>
