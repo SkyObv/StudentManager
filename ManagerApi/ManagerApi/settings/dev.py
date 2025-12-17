@@ -108,17 +108,24 @@ TEMPLATES = [
     },
 ]
 
-# 数据库配置
+# # 数据库配置
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # 使用MySQL引擎
+#         'NAME': 'student_manager',             # 要连接的数据库名
+#         'USER': 'root',                        # 数据库用户名
+#         'PASSWORD': 'root',                    # 数据库密码
+#         'HOST': '127.0.0.1',                   # 数据库主机地址，本地默认127.0.0.1
+#         'PORT': '3306',                        # MySQL端口，默认3306
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # 使用MySQL引擎
-        'NAME': 'student_manager',             # 要连接的数据库名
-        'USER': 'root',                        # 数据库用户名
-        'PASSWORD': 'root',                    # 数据库密码
-        'HOST': '127.0.0.1',                   # 数据库主机地址，本地默认127.0.0.1
-        'PORT': '3306',                        # MySQL端口，默认3306
+        'ENGINE': 'django.db.backends.sqlite3',  # 使用SQLite引擎
+        'NAME': BASE_DIR / 'db.sqlite3',         # 数据库文件路径
     }
 }
+
 # redis数据库配置
 CACHES = {
     # 默认缓存数据
