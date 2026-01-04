@@ -45,6 +45,7 @@ class FileFieldSerializer(serializers.ModelSerializer):
 # 宿舍申请
 # 获取可申请的宿舍列表
 class GetDormitoryHostelSerializer(serializers.ModelSerializer):
+    hostel_number = serializers.SerializerMethodField()
     manager_name = serializers.SerializerMethodField()
     floor_name = serializers.SerializerMethodField()
     class Meta:
@@ -56,8 +57,10 @@ class GetDormitoryHostelSerializer(serializers.ModelSerializer):
             manager_name = manager.last_name + manager.first_name
             return manager_name
         return None
-    def get_floor_name(self, obj):
+    def get_hostel_number(self, obj):
         return obj.floor.floor_name + '-' + obj.hostel_number
+    def get_floor_name(self, obj):
+        return obj.floor.floor_name
 # 申请宿舍
 class CreateHostelApplyViewSerializer(serializers.ModelSerializer):
     hostel = serializers.SlugRelatedField(

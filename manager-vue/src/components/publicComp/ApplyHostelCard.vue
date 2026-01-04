@@ -26,22 +26,6 @@ export default {
         'male': '♂',
         'female': '♀'
       };
-    },
-    
-    /**
-     * 获取房间状态映射
-     */
-    roomStatus() {
-      return {
-        'true': { text: '已满', class: 'status-full' },
-        'false': { text: '有空位', class: 'status-available' }
-      };
-    }
-  },
-  methods: {
-    // 宿舍申请点击
-    handleApply() {
-      this.$emit('apply', this.hostelInfo);
     }
   }
 }
@@ -51,41 +35,36 @@ export default {
   <div class="hostel-card">
     <!-- 卡片头部 -->
     <div class="card-header">
-      <h3 class="hostel-number">{{ hostelInfo.hostel_number }}</h3>
-      <div :class="['room-status', roomStatus[hostelInfo.is_full.toString()].class]">
-        {{ roomStatus[hostelInfo.is_full.toString()].text }}
+      <div class="room-info">
+        <h3 class="room-number">{{ hostelInfo.hostel_number }}</h3>
+        <span class="floor-badge">{{ hostelInfo.floor_name }}楼</span>
+      </div>
+      <div :class="['gender-indicator', hostelInfo.gender]">
+        <span class="gender-icon">{{ genderIcon[hostelInfo.gender] }}</span>
+        <span class="gender-text">{{ genderText[hostelInfo.gender] }}</span>
       </div>
     </div>
     
-    <!-- 宿舍信息 -->
-    <div class="hostel-info">
-      <div class="info-row">
-        <span class="info-label">楼层：</span>
-        <span class="info-value">{{ hostelInfo.floor }}号楼</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">性别：</span>
-        <span class="info-value gender-badge" :class="hostelInfo.gender">
-          {{ genderIcon[hostelInfo.gender] }} {{ genderText[hostelInfo.gender] }}
-        </span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">学生人数：</span>
-        <span class="info-value">{{ hostelInfo.student_count }}人</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">宿舍管理员：</span>
-        <span class="info-value">
-          <span v-if="hostelInfo.manager">{{ hostelInfo.manager }}</span>
-          <span v-else class="no-manager">无</span>
-        </span>
+    <!-- 卡片内容 -->
+    <div class="card-content">
+      <div class="info-section">
+        <div class="info-item">
+          <span class="info-label">宿舍ID</span>
+          <span class="info-value">{{ hostelInfo.id }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">管理员</span>
+          <span class="info-value">
+            <span v-if="hostelInfo.manager_name">{{ hostelInfo.manager_name }}</span>
+            <span v-else class="no-manager">暂缺</span>
+          </span>
+        </div>
       </div>
     </div>
     
-    <!-- 操作按钮 -->
-    <div class="card-actions">
-      <button class="apply-button" @click="handleApply" :disabled="hostelInfo.is_full">
-        <span class="button-icon">📝</span>
+    <!-- 卡片底部 -->
+    <div class="card-footer">
+      <button class="apply-manager-btn">
         申请管理员
       </button>
     </div>
@@ -95,175 +74,152 @@ export default {
 <style scoped>
 /* 宿舍卡片 */
 .hostel-card {
-  background: linear-gradient(135deg, #ffffff, #f8fafc);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-}
-
-.hostel-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  min-height: 220px;
 }
 
 .hostel-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #d1d5db;
 }
 
 /* 卡片头部 */
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #f1f5f9;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
 }
 
-.hostel-number {
-  font-size: 24px;
-  font-weight: 800;
-  color: #1e293b;
+.room-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.room-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
   margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
-.room-status {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.status-full {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
-}
-
-.status-available {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
-}
-
-/* 宿舍信息 */
-.hostel-info {
-  margin-bottom: 25px;
-  background: #f8fafc;
-  padding: 16px;
+.floor-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #f3f4f6;
+  color: #6b7280;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.info-row {
+.gender-indicator {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-  font-size: 15px;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-.info-row:last-child {
+.gender-indicator.male {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.gender-indicator.female {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.gender-icon {
+  font-size: 16px;
+}
+
+.gender-text {
+  font-size: 12px;
+}
+
+/* 卡片内容 */
+.card-content {
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.info-section {
+  background: #f9fafb;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.info-item:last-child {
   margin-bottom: 0;
 }
 
 .info-label {
-  color: #64748b;
-  min-width: 80px;
+  color: #6b7280;
   font-weight: 500;
-  font-size: 14px;
 }
 
 .info-value {
-  color: #1e293b;
+  color: #111827;
   font-weight: 600;
 }
 
-.gender-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 16px;
-  font-size: 13px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.gender-badge.male {
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
-}
-
-.gender-badge.female {
-  background: linear-gradient(135deg, #fce7f3, #fbcfe8);
-  color: #be185d;
-  border: 1px solid #fbcfe8;
-}
-
-/* 无管理员样式 */
 .no-manager {
   color: #9ca3af;
-  font-style: italic;
+  font-style: normal;
 }
 
-/* 操作按钮 */
-.card-actions {
+/* 卡片底部 */
+.card-footer {
   display: flex;
   justify-content: center;
-  margin-top: auto;
 }
 
-.apply-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 32px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+.apply-manager-btn {
+  width: 100%;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
 }
 
-.apply-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+.apply-manager-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
 }
 
-.apply-button:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.button-icon {
-  font-size: 18px;
+.apply-manager-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.25);
 }
 </style>
