@@ -11,7 +11,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication           
 from rest_framework.permissions import IsAuthenticated                                   # 内置权限
 from .models import HostelApply
 from .permissions import IsTeacher
-from .filters import GetStudentFilter, GetApplyFilter
+from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
                          CreateHostelApplyViewSerializer,GetAllApplySerializer)
 from mycelery.manager_task.create_student import create_student
@@ -78,9 +78,9 @@ class GetTaskResultView(APIView):
 class GetDormitoryListView(ListAPIView):
     # authentication_classes = [JWTAuthentication]
     # permission_classes = [IsAuthenticated, IsTeacher]
-    queryset = Hostel.objects.filter(is_deleted=False)
+    queryset = Hostel.objects.filter(is_deleted=False, manager__isnull=True)
     serializer_class = GetDormitoryHostelSerializer
-    filterset_class = None
+    filterset_class = GetHostelFilter
 # 申请宿舍
 class ApplyHostelView(CreateAPIView):
     authentication_classes = [JWTAuthentication]

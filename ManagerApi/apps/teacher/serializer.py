@@ -57,7 +57,7 @@ class GetDormitoryHostelSerializer(serializers.ModelSerializer):
             return manager_name
         return None
     def get_floor_name(self, obj):
-        return obj.floor.floor_name
+        return obj.floor.floor_name + '-' + obj.hostel_number
 # 申请宿舍
 class CreateHostelApplyViewSerializer(serializers.ModelSerializer):
     hostel = serializers.SlugRelatedField(
