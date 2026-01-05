@@ -10,35 +10,33 @@ export default {
           {
             "id": 2,
             "hostel_number": "1-102",
-            "manager_name": null,
             "gender": "female",
-            "floor_name": "1"
-        },
-          {
-            "id": 2,
-            "hostel_number": "1-102",
-            "manager_name": null,
-            "gender": "female",
-            "floor_name": "1"
-        },
-          {
-            "id": 2,
-            "hostel_number": "1-102",
-            "manager_name": null,
-            "gender": "female",
-            "floor_name": "1"
-        },
-          {
-            "id": 2,
-            "hostel_number": "1-102",
-            "manager_name": null,
-            "gender": "female",
-            "floor_name": "1"
+            "floor_name": "1",
+            "student_count": 0
         },
       ],
-      searchKeyword : null
+      searchKeyword : null,
+      buildingNumber: 1,   // 当前宿舍所属楼号，默认是1号楼
+      floors: []           // 楼号数据列表
     }
-  }
+  },
+  created() {
+    this.getFloor()                                                            // 获取楼层数据
+  },
+  methods: {
+    getFloor(){
+      this.$axios.get(`${this.$settings.Host}/users/floors/`).then(response => {
+      this.floors = response.data;
+    }).catch(error => {
+      console.log(error);
+      this.$message.error("楼层数据获取失败！")
+    })
+    },
+
+    changeFool(){
+      console.log('选择的楼层号:', this.buildingNumber);
+    }
+  },
 }
 </script>
 
@@ -46,14 +44,23 @@ export default {
   <div class="apply-hostel-container">
     <div class="apply-hostel-header">
       <h2 class="page-title">宿舍申请</h2>
-      <!-- 搜索输入框 -->
+      <!-- 楼号标题 -->
+      <h3 class="building-title">{{ buildingNumber }}号楼</h3>
+      <!-- 楼号下拉选择 -->
       <div class="search-container">
-        <input 
-          type="text" 
-          v-model="searchKeyword" 
-          placeholder="输入楼号搜索..." 
+        <select 
+          v-model="buildingNumber" 
           class="search-input"
+          @change="changeFool"
         >
+          <option 
+            v-for="floor in floors"
+            :key="floor.floor_name"
+            :value="floor.floor_name"
+          >
+            {{ floor.floor_name }}号楼
+          </option>
+        </select>
       </div>
     </div>
     <div class="hostel-cards-wrapper">
@@ -87,10 +94,19 @@ export default {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   animation: fadeInUp 0.8s ease-out;
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 楼号标题 */
+.building-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0.5rem 0 1.5rem 0;
+  animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
 /* 搜索容器 */
@@ -101,11 +117,12 @@ export default {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  gap: 8px;
 }
 
 /* 搜索输入框 */
 .search-input {
-  width: 100%;
+  flex: 1;
   padding: 0.75rem 1rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
@@ -115,6 +132,38 @@ export default {
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+}
+
+/* 搜索按钮 */
+.search-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.search-button:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.search-icon {
+  font-size: 16px;
+}
+
+.search-text {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .search-input:focus {
@@ -127,6 +176,40 @@ export default {
 .search-input::placeholder {
   color: #9ca3af;
   font-weight: 400;
+}
+
+/* 下拉框特定样式 */
+.search-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M6 9L1 4L11 4L6 9Z' fill='%236B7280'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  cursor: pointer;
+  padding-right: 2.5rem;
+}
+
+.search-input::-ms-expand {
+  display: none;
+}
+
+/* 下拉框选项样式 */
+.search-input option {
+  background-color: white;
+  color: #374151;
+  padding: 0.5rem;
+  font-weight: 500;
+}
+
+.search-input option:hover {
+  background-color: #f3f4f6;
+}
+
+.search-input:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
 }
 
 /* 卡片容器 */

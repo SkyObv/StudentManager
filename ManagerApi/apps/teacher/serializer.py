@@ -46,21 +46,17 @@ class FileFieldSerializer(serializers.ModelSerializer):
 # 获取可申请的宿舍列表
 class GetDormitoryHostelSerializer(serializers.ModelSerializer):
     hostel_number = serializers.SerializerMethodField()
-    manager_name = serializers.SerializerMethodField()
+    student_count = serializers.SerializerMethodField()
     floor_name = serializers.SerializerMethodField()
     class Meta:
         model = Hostel
-        fields = ['id', 'hostel_number','manager_name','gender','floor_name']
-    def get_manager_name(self, obj):
-        if obj.manager:
-            manager = obj.manager
-            manager_name = manager.last_name + manager.first_name
-            return manager_name
-        return None
+        fields = ['id', 'hostel_number','gender','floor_name','student_count']
     def get_hostel_number(self, obj):
         return obj.floor.floor_name + '-' + obj.hostel_number
     def get_floor_name(self, obj):
         return obj.floor.floor_name
+    def get_student_count(self, obj):
+        return obj.student_count
 # 申请宿舍
 class CreateHostelApplyViewSerializer(serializers.ModelSerializer):
     hostel = serializers.SlugRelatedField(

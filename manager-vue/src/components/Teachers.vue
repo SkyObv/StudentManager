@@ -7,7 +7,7 @@ export default {
   name: 'TeachersPage',
   data() {
     return {
-      options:null,                             // 头部导航栏选项
+      options:0,                             // 头部导航栏选项
     }
   },
   methods: {
