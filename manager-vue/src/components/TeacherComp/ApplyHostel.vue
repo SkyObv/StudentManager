@@ -70,6 +70,8 @@ export default {
       <!-- 宿舍数量提示 -->
       <h3 class="building-title">共有 {{ count_hostel }} 宿舍可申请</h3>
     </div>
+
+    <!-- 宿舍信息卡片展示 -->
     <div class="hostel-cards-wrapper">
       <ApplyHostelCard v-for="item in hostelList" :key="item.id" :hostelInfo="item"></ApplyHostelCard>
     </div>
