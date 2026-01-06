@@ -6203,3 +6203,16 @@ INFO 2026-01-06 17:08:25,102 basehttp 213 "GET /teacher/get/hostel/?floor=1 HTTP
 INFO 2026-01-06 17:08:26,494 basehttp 213 "GET /teacher/get/applyRecord/ HTTP/1.1" 200 133
 INFO 2026-01-06 17:08:27,453 basehttp 213 "GET /teacher/get/hostel/?floor=1 HTTP/1.1" 200 171
 INFO 2026-01-06 17:08:27,455 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2026-01-06 17:09:28,386 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2026-01-06 17:09:28,413 basehttp 213 "GET /teacher/get/hostel/?floor=1 HTTP/1.1" 200 171
+INFO 2026-01-06 17:13:51,683 basehttp 213 "GET /teacher/get/hostel/?floor=1 HTTP/1.1" 200 171
+INFO 2026-01-06 17:13:51,683 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2026-01-06 17:17:17,825 basehttp 213 "GET /teacher/get/applyRecord/ HTTP/1.1" 200 133
+INFO 2026-01-06 17:17:23,419 basehttp 213 "GET /users/floors/ HTTP/1.1" 200 117
+INFO 2026-01-06 17:17:23,419 basehttp 213 "GET /teacher/get/hostel/?floor=1 HTTP/1.1" 200 171
+WARNING 2026-01-06 17:17:36,384 log 253 Bad Request: /teacher/apply/hostel/
+WARNING 2026-01-06 17:17:36,384 basehttp 213 "POST /teacher/apply/hostel/ HTTP/1.1" 400 73
+WARNING 2026-01-06 17:17:43,251 log 253 Bad Request: /teacher/apply/hostel/
+WARNING 2026-01-06 17:17:43,253 basehttp 213 "POST /teacher/apply/hostel/ HTTP/1.1" 400 73
+WARNING 2026-01-06 17:18:25,621 log 253 Unauthorized: /teacher/get/applyRecord/
+WARNING 2026-01-06 17:18:25,621 basehttp 213 "GET /teacher/get/applyRecord/?apply_state=%E5%BE%85%E5%AE%A1%E6%A0%B8 HTTP/1.1" 401 172

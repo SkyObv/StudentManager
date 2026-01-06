@@ -7,21 +7,23 @@ export default {
       required: true
     }
   },
+  methods : {
+    apply_click(){ // 申请按钮点击
+      let token = this.$settings.getToken()
+      const hostel_id = this.hostelInfo.id
+      console.log(`申请的宿舍id : ${hostel_id}`)
+      console.log(`我的身份令牌为 ： ${token}`)
+    },
+  },
   computed: {
-    /**
-     * 获取性别显示文本映射
-     */
-    genderText() {
+    genderText() { //获取性别显示文本映射
       return {
         'male': '男生宿舍',
         'female': '女生宿舍'
       };
     },
-    
-    /**
-     * 获取性别图标映射
-     */
-    genderIcon() {
+
+    genderIcon() {  // 获取性别图标映射
       return {
         'male': '♂',
         'female': '♀'
@@ -68,7 +70,7 @@ export default {
     </div>
     
     <!-- 操作按钮 -->
-    <div class="card-actions">
+    <div class="card-actions" @click="apply_click">
       <button class="apply-manager-button">
         <span class="button-icon">👤</span>
         申请管理员
