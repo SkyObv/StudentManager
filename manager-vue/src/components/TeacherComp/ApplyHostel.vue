@@ -6,15 +6,8 @@ export default {
   },
   data() {
     return {
-      hostelList: [
-          {
-            "id": 2,
-            "hostel_number": "1-102",
-            "gender": "female",
-            "floor_name": "1",
-            "student_count": 0
-        },
-      ],
+      hostelList: [],        // 当前宿舍数据
+      count_hostel : 1,      //宿舍统计数据
       searchKeyword : null,
       buildingNumber: 1,   // 当前宿舍所属楼号，默认是1号楼
       floors: []           // 楼号数据列表
@@ -22,19 +15,31 @@ export default {
   },
   created() {
     this.getFloor()                                                            // 获取楼层数据
+    this.getHostel()
   },
   methods: {
-    getFloor(){
+    getFloor(){ // 获取楼号数据
       this.$axios.get(`${this.$settings.Host}/users/floors/`).then(response => {
       this.floors = response.data;
+      console.log(this.floors)
     }).catch(error => {
       console.log(error);
       this.$message.error("楼层数据获取失败！")
     })
     },
 
+    getHostel(){ // 获取当前楼号的宿舍数据
+      this.$axios.get(`${this.$settings.Host}/teacher/get/hostel/?floor=${this.buildingNumber}`).then(response => {
+        this.hostelList = response.data
+        this.count_hostel = this.hostelList.length
+      }).catch(error => {
+        console.log(error);
+        this.$message.error("宿舍数据获取失败！")
+      })
+    },
+
     changeFool(){
-      console.log('选择的楼层号:', this.buildingNumber);
+      this.getHostel()    // 重新获取楼层的宿舍信息数据
     }
   },
 }
@@ -62,6 +67,8 @@ export default {
           </option>
         </select>
       </div>
+      <!-- 宿舍数量提示 -->
+      <h3 class="building-title">共有 {{ count_hostel }} 宿舍可申请</h3>
     </div>
     <div class="hostel-cards-wrapper">
       <ApplyHostelCard v-for="item in hostelList" :key="item.id" :hostelInfo="item"></ApplyHostelCard>

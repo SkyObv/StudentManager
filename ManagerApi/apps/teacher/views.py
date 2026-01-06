@@ -81,6 +81,7 @@ class GetDormitoryListView(ListAPIView):
     queryset = Hostel.objects.filter(is_deleted=False, manager__isnull=True)
     serializer_class = GetDormitoryHostelSerializer
     filterset_class = GetHostelFilter
+    pagination_class = None
 # 申请宿舍
 class ApplyHostelView(CreateAPIView):
     authentication_classes = [JWTAuthentication]
