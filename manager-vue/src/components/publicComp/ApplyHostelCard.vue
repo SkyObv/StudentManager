@@ -7,12 +7,37 @@ export default {
       required: true
     }
   },
+  data(){
+    return{
+      token : null
+    }
+  },
+  created() {
+    this.token = this.$settings.getToken()
+    this.headers =  {
+            'Authorization': `Hander ${this.token}`
+          }
+  },
   methods : {
     apply_click(){ // 申请按钮点击
-      let token = this.$settings.getToken()
-      const hostel_id = this.hostelInfo.id
-      console.log(`申请的宿舍id : ${hostel_id}`)
-      console.log(`我的身份令牌为 ： ${token}`)
+      this.$confirm('确定要申请该宿舍的管理员吗？', '确认申请', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {  // 确定申请
+        const hostel_id = this.hostelInfo.id           // 获取申请的宿舍id
+        this.$axios.post(`${this.$settings.Host}/teacher/apply/hostel/`, {
+          "hostel" : hostel_id
+        },{
+          headers : this.headers
+        }).then(res => {
+          this.$message.success("申请宿舍成功")
+          console.log(res)
+        }).catch(err =>{
+          this.$message.error(err.response.data.non_field_errors[0])
+        })
+      }).catch(() => {  // 取消申请
+      })
     },
   },
   computed: {
