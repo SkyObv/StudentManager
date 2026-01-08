@@ -9,8 +9,8 @@ export default {
       hostelList: [],        // 当前宿舍数据
       count_hostel : 1,      //宿舍统计数据
       searchKeyword : null,
-      buildingNumber: 1,   // 当前宿舍所属楼号，默认是1号楼
-      floors: []           // 楼号数据列表
+      buildingNumber: 1,     // 当前宿舍所属楼号，默认是1号楼
+      floors: []             // 楼号数据列表
     }
   },
   created() {
