@@ -1,5 +1,5 @@
-.venv/
-.idea/
+.venv
+.idea
 manager-vue/node_modules
 
 # 日志文件
