@@ -1,0 +1,11 @@
+.venv/
+.idea/
+manager-vue/node_modules
+
+# 日志文件
+ManagerApi/logs/
+
+# 排除模型迁移日志
+ManagerApi/apps/users/migrations
+ManagerApi/apps/teacher/migrations
+
