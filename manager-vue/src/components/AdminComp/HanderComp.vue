@@ -7,7 +7,7 @@ export default {
       option:0,                                                      // 选择标志
       name:'',                                                       // 用户名
       first_name:'',                                                 // 性
-      user_type:'',                                                   // 用户类型
+      user_type:'',                                                  // 用户类型
       token:'',                                                      // 登入令牌
       refresh:'',                                                    // 刷新令牌
     }
