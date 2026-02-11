@@ -1,5 +1,6 @@
 <script>
 // 宿舍申请审批
+import settings from "@/settings.js";
 import ApplyInfoCard from "@/components/publicComp/ApplyInfoCard.vue"; // 申请记录卡片
 
 export default {
@@ -9,51 +10,81 @@ export default {
   },
   data() {
     return {
-      applyInfos: [
-        {
-          id: 1,
-          teacher_name : '测试老师1',
-          apply_state : '待审核',
-          apply_time : '2025-01-01 10:00:00',
-          hostel_name: '1号楼101宿舍'
-        },
-        {
-          id: 2,
-          teacher_name : '测试老师2',
-          apply_state : '已通过',
-          apply_time : '2025-01-02 14:30:00',
-          hostel_name: '2号楼202宿舍'
-        },
-        {
-          id: 3,
-          teacher_name : '测试老师3',
-          apply_state : '已拒绝',
-          apply_time : '2025-01-03 09:15:00',
-          hostel_name: '3号楼303宿舍'
-        }
-      ],
+      applyInfos: [],
       loading: false,
       selectedState: '',
       states: [
         { value: '', label: '全部状态' },
         { value: '待审核', label: '待审核' },
-        { value: '已通过', label: '已通过' },
-        { value: '已拒绝', label: '已拒绝' }
-      ]
+        { value: '通过', label: '已通过' },
+        { value: '拒绝', label: '已拒绝' }
+      ],
+      totalCount: 0,
+      // 用户数据
+      token: sessionStorage.getItem('token') || localStorage.getItem('token'),
+      refresh: sessionStorage.getItem('refresh') || localStorage.getItem('refresh')
     }
   },
   // 函数方法
   methods: {
+    // 获取申请列表数据
+    async getApplyInfo() {
+      this.loading = true;
+      try {
+        // 构建请求URL
+        let url = `${settings.Host}/users/getall/hostellogs`;
+        
+        // 发送请求
+        const response = await this.$axios.get(url, {
+          headers: {
+            'Authorization': `Hander ${this.token}`
+          }
+        });
+        
+        // 保存总记录数
+        this.totalCount = response.data.length;
+        
+        // 映射API返回的字段到组件期望的字段名
+        const allResults = response.data.map(item => ({
+          id: item.id,
+          teacher_name: item.teacher, // 将teacher映射为teacher_name
+          hostel_name: item.hostel,   // 将hostel映射为hostel_name
+          apply_state: item.apply_state,
+          apply_time: item.apply_time
+        }));
+        
+        // 前端过滤数据
+        this.applyInfos = this.filterData(allResults);
+      } catch (error) {
+        console.error('获取申请列表失败:', error);
+        this.applyInfos = [];
+        this.totalCount = 0;
+      } finally {
+        this.loading = false;
+      }
+    },
+    
+    // 前端过滤数据
+    filterData(data) {
+      if (!this.selectedState) {
+        return data;
+      }
+      return data.filter(item => item.apply_state === this.selectedState);
+    },
+    
     // 处理状态筛选变化
     handleStateChange() {
-      // 这里可以添加筛选逻辑
       console.log('筛选状态:', this.selectedState);
+      // 重新获取数据并过滤
+      this.getApplyInfo();
     },
+    
     // 处理同意按钮点击
     handleApprove(item) {
       console.log('同意申请:', item);
       // 这里可以添加同意申请的逻辑
     },
+    
     // 处理拒绝按钮点击
     handleReject(item) {
       console.log('拒绝申请:', item);
@@ -62,6 +93,7 @@ export default {
   },
   // 页面创建启动方法
   created() {
+    this.getApplyInfo();
   }
 }
 </script>
@@ -79,6 +111,9 @@ export default {
       <select v-model="selectedState" @change="handleStateChange" class="filter-select">
         <option v-for="state in states" :key="state.value" :value="state.value">{{ state.label }}</option>
       </select>
+      <div class="total-count">
+        共 {{ totalCount }} 条记录
+      </div>
     </div>
     
     <!-- 申请列表区域 -->
@@ -164,6 +199,15 @@ export default {
   box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
 }
 
+/* 总记录数显示 */
+.total-count {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
 /* 申请列表区域 */
 .apply-list {
   display: flex;
@@ -204,6 +248,8 @@ export default {
   border-radius: 12px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.04);
 }
+
+
 
 /* 响应式设计 */
 @media (max-width: 768px) {

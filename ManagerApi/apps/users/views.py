@@ -352,8 +352,12 @@ class AddManagerToHostelView(APIView):
 
 # 获取所有宿舍申请记录
 class GetAllHostelLogsView(ListAPIView):
-    queryset = HostelApply.objects.all()
+    queryset = HostelApply.objects.select_related(
+        'teacher',           # 使用字段名，不是模型名
+        'hostel__floor'      # 预加载宿舍及其楼层
+    ).all()
     serializer_class = GetAllHostelLogsSerializer
+    pagination_class = None
     ordering = ('-created_at',)
 
 

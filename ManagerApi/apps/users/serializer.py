@@ -159,6 +159,16 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 # 获取所有宿舍申请计入序列化器
 class GetAllHostelLogsSerializer(serializers.ModelSerializer):
+    teacher = serializers.SerializerMethodField()
+    hostel = serializers.SerializerMethodField()
     class Meta:
         model = HostelApply
-        fields = '__all__'
+        fields = ['id','teacher','hostel','apply_state','apply_time']
+    def get_teacher(self, obj):
+        teacher = obj.teacher
+        teacher_name = teacher.last_name + teacher.first_name
+        return teacher_name
+    def get_hostel(self, obj):
+        hostel = obj.hostel
+        hostel_name = hostel.floor.floor_name + '-' + hostel.hostel_number
+        return hostel_name
