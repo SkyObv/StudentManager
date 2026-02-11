@@ -1,7 +1,7 @@
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializer import (CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,
                          HostelStudentSerializer, CreateHostelViewSerializer, GetAllTeachersSerializer,
-                         CreateUserSerializer)
+                         CreateUserSerializer, GetAllHostelLogsSerializer)
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import User, Floor, Hostel
 from .filters import StudentFilter, HostelFilter, TeachersFilter
 from django.db import transaction # 导入事务
+from teacher.models import HostelApply
 
 
 # 重写登入视图
@@ -348,6 +349,12 @@ class AddManagerToHostelView(APIView):
                 },
                 status=404
             )
+
+# 获取所有宿舍申请记录
+class GetAllHostelLogsView(ListAPIView):
+    queryset = HostelApply.objects.all()
+    serializer_class = GetAllHostelLogsSerializer
+    ordering = ('-created_at',)
 
 
 

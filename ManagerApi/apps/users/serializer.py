@@ -1,4 +1,5 @@
 from .models import User,Floor,Hostel
+from teacher.models import HostelApply
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from rest_framework_simplejwt.exceptions import AuthenticationFailed
@@ -155,3 +156,9 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user.set_password(password)  # 关键：对密码进行哈希处理
         user.save()
         return user
+
+# 获取所有宿舍申请计入序列化器
+class GetAllHostelLogsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HostelApply
+        fields = '__all__'
