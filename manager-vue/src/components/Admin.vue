@@ -1,8 +1,9 @@
 <script>
-import HanderComp from "@/components/AdminComp/HanderComp.vue"
-import FloorManage from "@/components/AdminComp/FloorManage.vue"
-import HostelManage from "@/components/AdminComp/HostelManage.vue"
-import TeacherManage from "@/components/AdminComp/TeacherManage.vue"
+import HanderComp from "@/components/AdminComp/HanderComp.vue"       // 导航栏
+import FloorManage from "@/components/AdminComp/FloorManage.vue"     // 楼层管理
+import HostelManage from "@/components/AdminComp/HostelManage.vue"   // 宿舍管理
+import TeacherManage from "@/components/AdminComp/TeacherManage.vue" // 账号管理
+import HostelLog from "@/components/AdminComp/HostelLog.vue";        // 宿舍申请审批
 export default {
   name: 'AdminPage',
   data() {
@@ -16,6 +17,7 @@ export default {
     getOption(option) {
       this.option = option
       this.floorId = null
+      console.log(this.option)
     },
     // 楼层卡片点击详情页组件显示
     handleFloorClick(floorId) {
@@ -34,6 +36,7 @@ export default {
     FloorManage: FloorManage,
     HostelManage,
     TeacherManage,
+    HostelLog,
   }
 }
 </script>
@@ -42,11 +45,17 @@ export default {
   <div>
     <!-- 导航栏 -->
     <HanderComp  @update-option="getOption"></HanderComp>
+
     <!-- 宿舍管理 -->
     <FloorManage v-if="option === 0" @FloorClick="handleFloorClick"></FloorManage>
     <HostelManage v-if="floorId" @goBack="handleGoBack" :floorId="floorId"></HostelManage>
+
     <!-- 教师账号管理 -->
     <TeacherManage v-if="option === 1"></TeacherManage>
+
+    <!-- 宿舍申请审批 -->
+    <HostelLog v-if="option === 3"></HostelLog>
+
     <!-- 学生宿舍外出信息可视化 -->
     <h1 v-if="option === 2"></h1>
   </div>

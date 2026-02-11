@@ -58,6 +58,7 @@ export default {
       <!-- 中间导航菜单 -->
       <nav class="main-nav">
         <ul class="nav-menu">
+          <!-- 宿舍管理 -->
           <li :class="changeCss(0)" @click="changeOption(0)">
             <a href="#scores" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -71,6 +72,8 @@ export default {
               <span>宿舍管理</span>
             </a>
           </li>
+
+          <!-- 老师账号管理 -->
           <li :class="changeCss(1)" @click="changeOption(1)">
             <a href="#dashboard" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -80,6 +83,21 @@ export default {
               <span>老师账号管理</span>
             </a>
           </li>
+          
+          <!-- 宿舍申请审批 -->
+          <li :class="changeCss(3)" @click="changeOption(3)">
+            <a href="#courses" class="nav-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <polyline points="10 15 15 10 20 15"></polyline>
+                <path d="M12 3v4"></path>
+                <path d="M16 3v4"></path>
+              </svg>
+           <span>宿舍申请审批</span>
+            </a>
+         </li>
+
+          <!-- 学生宿舍外出信息可视化 -->
           <li :class="changeCss(2)" @click="changeOption(2)">
             <a href="#students" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -92,17 +110,7 @@ export default {
               <span>学生外出信息可视化</span>
             </a>
           </li>
-<!--          <li :class="changeCss(3)" @click="changeOption(3)">-->
-<!--            <a href="#courses" class="nav-link">-->
-<!--              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
-<!--                <path d="M12 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3 3 3 0 0 0 3-3V5a3 3 0 0 0-3-3z"></path>-->
-<!--                <line x1="12" y1="10" x2="12" y2="16"></line>-->
-<!--                <line x1="8" y1="13" x2="16" y2="13"></line>-->
-<!--                <path d="M12 2v4"></path>-->
-<!--              </svg>-->
-<!--              <span>学生宿舍外出管理</span>-->
-<!--            </a>-->
-<!--          </li>-->
+
         </ul>
       </nav>
 
