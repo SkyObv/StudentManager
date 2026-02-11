@@ -89,15 +89,18 @@ export default {
 <style scoped>
 /* 容器样式 */
 .apply-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 32px;
   min-height: 100vh;
   background-color: #f8fafc;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* 标题区域 */
 .page-header {
+  text-align: center;
   margin-bottom: 3rem;
   color: #1e293b;
 }
@@ -109,16 +112,15 @@ export default {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0 0 8px 0;
-  letter-spacing: 0.5px;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .page-subtitle {
-  font-size: 16px;
-  color: #909399;
-  margin: 0;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 /* 搜索过滤区域 */
@@ -156,6 +158,18 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 确保卡片宽度与容器一致 */
+.apply-list :deep(.apply-info-card) {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* 无数据状态 */
@@ -221,6 +235,18 @@ export default {
   .search-filter {
     gap: 12px;
     padding: 12px;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
