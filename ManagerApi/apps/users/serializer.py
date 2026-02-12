@@ -157,7 +157,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-# 获取所有宿舍申请计入序列化器
+# 获取所有宿舍申请记录序列化器
 class GetAllHostelLogsSerializer(serializers.ModelSerializer):
     teacher = serializers.SerializerMethodField()
     hostel = serializers.SerializerMethodField()

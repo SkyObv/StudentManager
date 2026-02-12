@@ -12,14 +12,7 @@ export default {
     return {
       applyInfos: [],
       loading: false,
-      selectedState: '',
-      states: [
-        { value: '', label: '全部状态' },
-        { value: '待审核', label: '待审核' },
-        { value: '通过', label: '已通过' },
-        { value: '拒绝', label: '已拒绝' }
-      ],
-      totalCount: 0,
+      totalCount: 0,                                                 // 总记录数
       // 用户数据
       token: sessionStorage.getItem('token') || localStorage.getItem('token'),
       refresh: sessionStorage.getItem('refresh') || localStorage.getItem('refresh')
@@ -54,7 +47,7 @@ export default {
         }));
         
         // 前端过滤数据
-        this.applyInfos = this.filterData(allResults);
+        this.applyInfos = allResults;
       } catch (error) {
         console.error('获取申请列表失败:', error);
         this.applyInfos = [];
@@ -63,33 +56,6 @@ export default {
         this.loading = false;
       }
     },
-    
-    // 前端过滤数据
-    filterData(data) {
-      if (!this.selectedState) {
-        return data;
-      }
-      return data.filter(item => item.apply_state === this.selectedState);
-    },
-    
-    // 处理状态筛选变化
-    handleStateChange() {
-      console.log('筛选状态:', this.selectedState);
-      // 重新获取数据并过滤
-      this.getApplyInfo();
-    },
-    
-    // 处理同意按钮点击
-    handleApprove(item) {
-      console.log('同意申请:', item);
-      // 这里可以添加同意申请的逻辑
-    },
-    
-    // 处理拒绝按钮点击
-    handleReject(item) {
-      console.log('拒绝申请:', item);
-      // 这里可以添加拒绝申请的逻辑
-    }
   },
   // 页面创建启动方法
   created() {
@@ -108,9 +74,6 @@ export default {
     
     <!-- 筛选区域 -->
     <div class="search-filter">
-      <select v-model="selectedState" @change="handleStateChange" class="filter-select">
-        <option v-for="state in states" :key="state.value" :value="state.value">{{ state.label }}</option>
-      </select>
       <div class="total-count">
         共 {{ totalCount }} 条记录
       </div>

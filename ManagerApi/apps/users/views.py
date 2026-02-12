@@ -355,7 +355,7 @@ class GetAllHostelLogsView(ListAPIView):
     queryset = HostelApply.objects.select_related(
         'teacher',           # 使用字段名，不是模型名
         'hostel__floor'      # 预加载宿舍及其楼层
-    ).all()
+    ).filter(apply_state="待审核")
     serializer_class = GetAllHostelLogsSerializer
     pagination_class = None
     ordering = ('-created_at',)
