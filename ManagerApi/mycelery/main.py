@@ -8,4 +8,4 @@ app = Celery("student")                                           # 为Celery起
 # 从Django的设置文件中加载Celery配置
 app.config_from_object("mycelery.config")                         # 加载连接配置文件 config.py
 # 自动发现任务
-app.autodiscover_tasks([])                             # 任务文件夹
+app.autodiscover_tasks([])                                        # 任务文件夹
