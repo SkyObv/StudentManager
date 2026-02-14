@@ -89,3 +89,13 @@ class GetAllApplySerializer(serializers.ModelSerializer):
     def get_hostel_name(self, obj):
         hostel_name = obj.hostel.floor.floor_name + '-' + obj.hostel.hostel_number
         return hostel_name
+# 管理员更新记录
+class UpdateApplyViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HostelApply
+        fields = ['id','apply_state']
+# 删除申请记录
+class DeleteApplyViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HostelApply
+        fields = '__all__'

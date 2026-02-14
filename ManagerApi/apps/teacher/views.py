@@ -2,7 +2,7 @@ import os
 import random
 import time
 from django.conf import settings
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,10 +10,11 @@ from users.models import User,Floor,Hostel
 from rest_framework_simplejwt.authentication import JWTAuthentication                    # 导入JWT认证
 from rest_framework.permissions import IsAuthenticated                                   # 内置权限
 from .models import HostelApply
-from .permissions import IsTeacher
+from .permissions import IsTeacher,IsAdmin
 from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
-                         CreateHostelApplyViewSerializer,GetAllApplySerializer)
+                         CreateHostelApplyViewSerializer,GetAllApplySerializer,UpdateApplyViewSerializer
+                         ,DeleteApplyViewSerializer)
 from mycelery.manager_task.create_student import create_student
 
 # 获取所有学生
@@ -108,5 +109,15 @@ class GetApplyRecordView(ListAPIView):
             teacher_id=teacher_id,
         )
         return queryset
-
-
+# 管理员修改申请记录
+class ApplyRecordView(UpdateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsAdmin]
+    queryset = HostelApply.objects.filter(apply_state="待审核")
+    serializer_class = UpdateApplyViewSerializer
+# 删除申请记录
+class DeleteApplyRecordView(DestroyAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher, IsAdmin]
+    queryset = HostelApply.objects.exclude(apply_state="待审核")             # 排除待审核记录
+    serializer_class = DeleteApplyViewSerializer

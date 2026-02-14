@@ -1,6 +1,6 @@
 from django.urls import path,include
 from .views import (GetStudentListView, ImportStudentsView, GetTaskResultView, GetDormitoryListView,
-                    ApplyHostelView, GetApplyRecordView)
+                    ApplyHostelView, GetApplyRecordView, ApplyRecordView, DeleteApplyRecordView)
 
 urlpatterns = [
     path('get/allStudents/', GetStudentListView.as_view()),                               # 获取所有学生
@@ -12,5 +12,7 @@ urlpatterns = [
     path('apply/hostel/', ApplyHostelView.as_view()),                                     # 申请宿舍
 
     # 申请记录
-    path('get/applyRecord/', GetApplyRecordView.as_view())                                # 获取申请记录
+    path('get/applyRecord/', GetApplyRecordView.as_view()),                               # 获取申请记录
+    path('apply/upadte/<int:pk>/', ApplyRecordView.as_view()),                            # 记录更新
+    path('apply/delete/<int:pk>/',DeleteApplyRecordView.as_view()),                        # 删除记录
 ]
