@@ -11,7 +11,7 @@ Vue.prototype.$settings = settings;
 Vue.prototype.$axios = axios;
 axios.defaults.withCredentials = true;
 Vue.use(ElementUI);
-
+document.title = '宿舍管理系统';
 new Vue({
   router,
   render: h => h(App),
