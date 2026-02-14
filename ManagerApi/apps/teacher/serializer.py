@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from users.models import User,Floor,Hostel
 from .models import HostelApply
+from django.db import transaction  # 引入事务
 
 # 获取老师所有学生序列化器
 class GetAllStudentsSerializer(serializers.ModelSerializer):
@@ -94,6 +95,20 @@ class UpdateApplyViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = HostelApply
         fields = ['id','apply_state']
+    # 如果为通过给老师关联宿舍外键
+    def update(self, instance, validated_data):
+        with transaction.atomic():
+            # 更新申请记录的状态
+            instance = super().update(instance, validated_data)
+            # 判断状态是否为"通过"
+            if instance.apply_state == '通过':
+                # 获取关联的宿舍对象
+                hostel = instance.hostel
+                # 将申请的老师设置为宿舍管理员
+                hostel.manager = instance.teacher
+                # x保存宿舍信息 (只更新 manager 字段，提高效率)
+                hostel.save(update_fields=['manager'])
+        return instance
 # 删除申请记录
 class DeleteApplyViewSerializer(serializers.ModelSerializer):
     class Meta:

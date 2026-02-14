@@ -54,6 +54,10 @@ export default {
     handleStateChange() {
       this.getApplyList();
     },
+    // 刷新数据
+    reshLogs() {
+      this.getApplyList();
+    }
   }
 };
 </script>
@@ -79,6 +83,7 @@ export default {
         v-for="item in applyInfos" 
         :key="item.id" 
         :applyInfo="item"
+        @refresh="reshLogs"
       ></ApplyInfoCard>
       <div v-if="loading" class="loading">加载中...</div>
       <div v-else-if="applyInfos.length === 0" class="empty-data">暂无申请数据</div>

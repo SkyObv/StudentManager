@@ -56,6 +56,10 @@ export default {
         this.loading = false;
       }
     },
+    // 更新数据
+    reshLogs() {
+      this.getApplyInfo()
+    }
   },
   // 页面创建启动方法
   created() {
@@ -86,8 +90,7 @@ export default {
         :key="item.id" 
         :applyInfo="item"
         :showActionButtons="true"
-        @approve="handleApprove"
-        @reject="handleReject"
+        @refresh="reshLogs"
       ></ApplyInfoCard>
       <div v-if="loading" class="loading">加载中...</div>
       <div v-else-if="applyInfos.length === 0" class="empty-data">暂无申请数据</div>

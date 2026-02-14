@@ -118,6 +118,6 @@ class ApplyRecordView(UpdateAPIView):
 # 删除申请记录
 class DeleteApplyRecordView(DestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated, IsTeacher, IsAdmin]
-    queryset = HostelApply.objects.exclude(apply_state="待审核")             # 排除待审核记录
+    permission_classes = [IsAuthenticated]
+    queryset = HostelApply.objects.all()
     serializer_class = DeleteApplyViewSerializer

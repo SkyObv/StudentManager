@@ -1,4 +1,6 @@
 <script>
+import settings from "@/settings";
+
 export default {
   name: 'ApplyInfoCard',
   // 父组件向子组件传递的数据
@@ -42,16 +44,103 @@ export default {
       });
     },
     // 处理同意按钮点击
-    handleApprove() {
-      this.$emit('approve', this.applyInfo);
+    async handleApprove() {
+      var apply_id = this.applyInfo.id;         // 获取当前申请的ID
+      const token = settings.getToken();        // 获取token
+      // 构建请求URL
+      const url = `${settings.Host}/teacher/apply/upadte/${apply_id}/`;
+      // 准备请求头
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Hander ${token}`
+      };
+      // 准备请求体
+      const data = {
+        "apply_state": "通过"
+      };
+      try {
+        // 发送PATCH请求
+        const response = await fetch(url, {
+          method: 'PATCH',
+          headers: headers,
+          body: JSON.stringify(data)
+        });
+        // 检查响应状态
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        this.$message.success('同意申请成功');
+        this.$emit('refresh');
+      } catch (error) {
+        this.$message.error('同意申请失败，请重试');
+      }
     },
     // 处理拒绝按钮点击
-    handleReject() {
-      this.$emit('reject', this.applyInfo);
+    async handleReject() {
+      var apply_id = this.applyInfo.id;         // 获取当前申请的ID
+      const token = settings.getToken();        // 获取token
+      // 构建请求URL
+      const url = `${settings.Host}/teacher/apply/upadte/${apply_id}/`;
+      // 准备请求头
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Hander ${token}`
+      };
+      // 准备请求体
+      const data = {
+        "apply_state": "拒绝"
+      };
+      try {
+        // 发送PATCH请求
+        const response = await fetch(url, {
+          method: 'PATCH',
+          headers: headers,
+          body: JSON.stringify(data)
+        });
+        // 检查响应状态
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        this.$message.success('拒绝申请成功');
+        this.$emit('refresh');
+      } catch (error) {
+        this.$message.error('拒绝申请失败，请重试');
+      }
     },
     // 处理已读/删除/撤销按钮点击
-    handleReadDelete() {
-      this.$emit('read-delete', this.applyInfo);
+    async handleReadDelete() {
+      var apply_id = this.applyInfo.id;         // 获取当前申请的ID
+      const token = settings.getToken();        // 获取token
+      
+      // 检查令牌是否存在
+      if (!token) {
+        this.$message.error('请先登录获取令牌');
+        return;
+      }
+      
+      // 构建请求URL
+      const url = `${settings.Host}/teacher/apply/delete/${apply_id}/`;
+      // 准备请求头
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Hander ${token}`
+      };
+      try {
+        // 发送DELETE请求
+        const response = await fetch(url, {
+          method: 'DELETE',
+          headers: headers,
+        });
+        // 检查响应状态
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        this.$message.success('删除成功');
+        this.$emit('refresh');
+      } catch (error) {
+        console.error('删除失败:', error);
+        this.$message.error('删除失败，请重试');
+      }
     }
   }
 }
