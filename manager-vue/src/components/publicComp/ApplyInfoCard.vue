@@ -1,4 +1,6 @@
 <script>
+// 宿舍申请记录卡片
+
 import settings from "@/settings";
 
 export default {

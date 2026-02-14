@@ -1,4 +1,5 @@
 <script>
+// 老师宿舍申请卡片
 export default {
   name: 'ApplyHostelCard',
   props: {
