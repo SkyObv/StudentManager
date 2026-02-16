@@ -3,6 +3,7 @@ import HeaderComp from '@/components/TeacherComp/HeaderComp.vue'
 import MyStudents from '@/components/TeacherComp/Mystudents.vue'
 import ApplyHostelLogs from '@/components/TeacherComp/ApplyHostelLogs.vue'
 import ApplyHostel from '@/components/TeacherComp/ApplyHostel.vue'
+import MyHostels from "@/components/TeacherComp/MyHostels.vue";
 export default {
   name: 'TeachersPage',
   data() {
@@ -21,6 +22,7 @@ export default {
     ApplyHostel,                            // 申请宿舍
     ApplyHostelLogs,                        // 申请记录
     HeaderComp,                             // 老师头部导航
+    MyHostels,                              // 我的宿舍
     MyStudents,                             // 我的学生
   }
 }
@@ -31,7 +33,7 @@ export default {
     <HeaderComp @update-option="handleHeaderClick"></HeaderComp>
     <ApplyHostel v-if="this.options === 0">宿舍申请</ApplyHostel>
     <ApplyHostelLogs  v-if="this.options === 1">申请记录</ApplyHostelLogs >
-    <h1 v-if="this.options === 2">我的宿舍</h1>
+    <MyHostels v-if="this.options === 2">我的宿舍</MyHostels>
     <MyStudents v-if="this.options === 3"></MyStudents>
     <h1 v-if="this.options === 4">宿舍分配</h1>
   </div>
