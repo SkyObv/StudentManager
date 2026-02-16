@@ -11,11 +11,12 @@ from rest_framework_simplejwt.authentication import JWTAuthentication           
 from rest_framework.permissions import IsAuthenticated                                   # 内置权限
 from .models import HostelApply
 from .permissions import IsTeacher,IsAdmin
-from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter
+from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter,GetMyHostelFilter
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
                          CreateHostelApplyViewSerializer,GetAllApplySerializer,UpdateApplyViewSerializer
-                         ,DeleteApplyViewSerializer)
+                         ,DeleteApplyViewSerializer, GetAllMyHostelSerializer)
 from mycelery.manager_task.create_student import create_student
+from django.db.models import Prefetch
 
 # 获取所有学生
 class GetStudentListView(ListAPIView):
@@ -121,3 +122,28 @@ class DeleteApplyRecordView(DestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = HostelApply.objects.all()
     serializer_class = DeleteApplyViewSerializer
+
+# 我的宿舍
+# 获取所有宿舍以及学生信息
+class GetAllMyHostelView(ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher]
+    serializer_class = GetAllMyHostelSerializer
+    filterset_class = GetMyHostelFilter
+    pagination_class = None
+
+    def get_queryset(self):
+        teacher_id = self.request.user.id
+        queryset = Hostel.objects.filter(
+            manager=teacher_id,
+            is_deleted=False
+        ).select_related(
+            'floor'                                   # 优化 obj.floor 的访问，一对一
+        ).prefetch_related(
+            # 'students_house',                       # 优化 obj.students_house.all() 的访问 一对多
+            Prefetch(
+                'students_house',
+                queryset=User.objects.only('id', 'first_name', 'last_name', 'gender')
+            )
+        )
+        return queryset

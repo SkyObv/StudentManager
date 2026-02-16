@@ -114,3 +114,25 @@ class DeleteApplyViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = HostelApply
         fields = '__all__'
+
+# 我的宿舍
+# 获取围殴的宿舍学生信息
+class GetMyStudent(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['id','name','gender']
+    def get_name(self, obj):
+        return obj.last_name + obj.first_name
+# 获取我的所有宿舍信息
+class GetAllMyHostelSerializer(serializers.ModelSerializer):
+    students = GetMyStudent(
+        source='students_house',
+        many=True
+    )
+    floor = serializers.SerializerMethodField()
+    class Meta:
+        model = Hostel
+        fields = ['id','floor','hostel_number','gender','students']
+    def get_floor(self, obj):
+        return obj.floor.floor_name

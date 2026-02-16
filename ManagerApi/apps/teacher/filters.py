@@ -30,3 +30,17 @@ class GetHostelFilter(django_filters.FilterSet):
 # 老师申请宿舍记录过滤器
 class GetApplyFilter(django_filters.FilterSet):
     apply_state = django_filters.CharFilter(field_name='apply_state', lookup_expr='iexact')
+
+# 我的宿舍过滤
+class GetMyHostelFilter(django_filters.FilterSet):
+    floor = django_filters.CharFilter(                       # 根据楼层过滤
+        field_name='floor__floor_name',
+        lookup_expr='iexact'
+    )
+    gender = django_filters.CharFilter(                      # 根据性别过滤
+        field_name='gender',
+        lookup_expr='iexact'
+    )
+    class Meta:
+        model = Hostel
+        fields = []
