@@ -136,3 +136,12 @@ class GetAllMyHostelSerializer(serializers.ModelSerializer):
         fields = ['id','floor','hostel_number','gender','students']
     def get_floor(self, obj):
         return obj.floor.floor_name
+# 从宿舍中删除学生
+class DeleteStudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id','house_number']
+    def update(self, instance, validated_data):
+        instance.house_number = None
+        instance.save()
+        return instance

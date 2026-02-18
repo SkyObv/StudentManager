@@ -1,7 +1,7 @@
-from django.urls import path,include
+from django.urls import path
 from .views import (GetStudentListView, ImportStudentsView, GetTaskResultView, GetDormitoryListView,
                     ApplyHostelView, GetApplyRecordView, ApplyRecordView, DeleteApplyRecordView
-                    ,GetAllMyHostelView)
+                    ,GetAllMyHostelView, DeleteStudentView)
 
 urlpatterns = [
     path('get/allStudents/', GetStudentListView.as_view()),                               # 获取所有学生
@@ -19,4 +19,5 @@ urlpatterns = [
 
     # 我的宿舍
     path('myhostel/allget/',GetAllMyHostelView.as_view()),                                # 获取我的宿舍所有信息(学生)
+    path('myhostel/delete/studentTohostel/',DeleteStudentView.as_view()),                 # 删除宿舍学生
 ]

@@ -31,7 +31,20 @@ export default {
       alert('添加学生')
     },
     deleteStudent (student) {                                        // 删除单个学生
-      alert(`删除学生 ： ${student.name}`)
+      let params = {pk: student.id}
+      this.$axios({
+        url: `${this.$settings.Host}/teacher/myhostel/delete/studentTohostel/`,
+        method: 'put',
+        params: params,
+        headers: {Authorization: `Hander ${this.$settings.getToken()}`}
+      }).then(response => {
+        this.$message.success('删除成功')
+        console.log(response.data)
+        this.refreshData()
+      }).catch(error => {
+        this.$message.error('删除失败')
+        console.log(error.response)
+      })
     },
     clickHostelCard (hostel) {                                       // 点击宿舍卡片
       this.selectedHostel = hostel

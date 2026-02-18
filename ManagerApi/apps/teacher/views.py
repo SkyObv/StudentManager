@@ -1,6 +1,7 @@
 import os
 import random
 import time
+from typing import override
 from django.conf import settings
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.views import APIView
@@ -14,7 +15,7 @@ from .permissions import IsTeacher,IsAdmin
 from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter,GetMyHostelFilter
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
                          CreateHostelApplyViewSerializer,GetAllApplySerializer,UpdateApplyViewSerializer
-                         ,DeleteApplyViewSerializer, GetAllMyHostelSerializer)
+                         ,DeleteApplyViewSerializer, GetAllMyHostelSerializer, DeleteStudentSerializer)
 from mycelery.manager_task.create_student import create_student
 from django.db.models import Prefetch
 
@@ -147,3 +148,17 @@ class GetAllMyHostelView(ListAPIView):
             )
         )
         return queryset
+# 从宿舍中删除学生
+class DeleteStudentView(UpdateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher]
+    serializer_class = DeleteStudentSerializer
+
+    def get_queryset(self):
+        teacher = self.request.user
+        return User.objects.filter(teacher_id=teacher.id)
+    def get_object(self):
+        pk = self.request.query_params.get('pk')
+        queryset = self.get_queryset()
+        obj = queryset.get(pk=pk)
+        return obj
