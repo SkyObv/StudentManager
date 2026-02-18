@@ -10,15 +10,8 @@ export default {
   data () {
     return {
       hostelinfo : [],                                               // 宿舍卡片信息数据
-      // 静态楼号数据
-      floors: [
-        { id: 1, name: '1楼' },
-        { id: 2, name: '2楼' },
-        { id: 3, name: '3楼' },
-        { id: 4, name: '4楼' },
-        { id: 5, name: '5楼' }
-      ],
-      selectedFloor: 1,
+      floors: [],                                                    // 楼号数据
+      selectedFloor: null,                                           // 选中的楼层
       // 学生列表显示状态
       showMyStudents: false,
       // 静态学生数据
@@ -46,6 +39,8 @@ export default {
         ]
       },
     ]
+
+    this.getAllFloors()
   },
   methods : {
     // 添加学生
@@ -56,6 +51,15 @@ export default {
     deleteStudent (student) {
       alert(`删除学生 ： ${student.name}`)
     },
+    getAllFloors(){       // 获取所有楼层数据
+      this.$axios.get(`${this.$settings.Host}/users/floors/`).then(res => {
+        this.selectedFloor = res.data[0].id
+        this.floors = res.data
+      }).catch(error=>{
+        console.log(error);
+        this.$message.error("楼层数据获取失败！")
+      })
+    }
   }
 }
 </script>
@@ -73,7 +77,7 @@ export default {
           <select id="floor-select" v-model="selectedFloor" class="floor-select">
             <option value="">全部楼层</option>
             <option v-for="floor in floors" :key="floor.id" :value="floor.id">
-              {{ floor.name }}
+              {{ floor.floor_name}}号楼
             </option>
           </select>
           
