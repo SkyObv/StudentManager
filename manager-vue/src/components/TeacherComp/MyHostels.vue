@@ -14,7 +14,10 @@ export default {
       myStudents: [],                                                // 我的学生的数据
 
       selectedFloor: null,                                           // 选中的楼层
-      gender: null,                                                  // 选中的性别 
+      gender: null,                                                  // 选中的性别
+      selectedHostel: null,                                          // 选中的宿舍
+      selectedStudents: [],                                          // 选中的学生列表
+
       showMyStudents: false,                                         // 是否显示我的学生
     }
   },
@@ -24,13 +27,34 @@ export default {
     this.getStudents()                                               // 获取所有学生
   },
   methods : {
-    // 添加学生
-    addStudent () {
+    addStudent () {                                                  // 添加单个学生
       alert('添加学生')
     },
-    // 删除学生
-    deleteStudent (student) {
+    deleteStudent (student) {                                        // 删除单个学生
       alert(`删除学生 ： ${student.name}`)
+    },
+    clickHostelCard (hostel) {                                       // 点击宿舍卡片
+      this.selectedHostel = hostel
+    },
+    toggleStudentSelection (student) {                               // 切换学生选中状态
+      const index = this.selectedStudents.findIndex(s => s.id === student.id)
+      if (index > -1) {
+        this.selectedStudents.splice(index, 1)
+      } else {
+        this.selectedStudents.push(student)
+      }
+    },
+    addSelectedStudentsToHostel () {                                 // 将选中学生添加到当前宿舍
+      if (!this.selectedHostel) {
+        alert('请先选择一个宿舍')
+        return
+      }
+      if (this.selectedStudents.length === 0) {
+        alert('请先选择学生')
+        return
+      }
+      console.log('Selected Students:', this.selectedStudents)
+      alert(`已将 ${this.selectedStudents.length} 名学生添加到 ${this.selectedHostel.hostel_number} 宿舍`)
     },
     getAllFloors(){                                                  // 获取所有楼层数据
       this.$axios.get(`${this.$settings.Host}/users/floors/`).then(res => {
@@ -130,8 +154,10 @@ export default {
           v-for="hostel in hostelinfo"
           :key="hostel.id"
           :hostel="hostel"
+          :isSelected="selectedHostel && selectedHostel.id === hostel.id"
           @addStudent="addStudent"
           @deleteStudent="deleteStudent"
+          @myClick="clickHostelCard"
         >
         </HostelInfoCard>
         
@@ -145,13 +171,43 @@ export default {
       <div class="my-students-section" v-if="showMyStudents">
         <div class="section-header">
           <h3 class="section-title">我的学生</h3>
+          <div class="selected-hostel-info" v-if="selectedHostel">
+            <span class="selected-label">当前选中：</span>
+            <span class="selected-hostel">{{ selectedHostel.hostel_number }}宿舍</span>
+          </div>
         </div>
         <div class="students-list-vertical">
-          <div class="student-item" v-for="student in myStudents" :key="student.id">
+          <div 
+            class="student-item" 
+            v-for="student in myStudents" 
+            :key="student.id"
+            :class="{ 'student-item-selected': selectedStudents.some(s => s.id === student.id) }"
+            @click="toggleStudentSelection(student)"
+          >
+            <div class="student-checkbox">
+              <div class="checkbox-inner" :class="{ 'checked': selectedStudents.some(s => s.id === student.id) }">
+                <span v-if="selectedStudents.some(s => s.id === student.id)">✓</span>
+              </div>
+            </div>
             <span class="student-name">{{ student.name }}</span>
             <span class="student-gender" :class="student.gender">
               {{ student.gender === 'male' ? '♂' : '♀' }}
             </span>
+          </div>
+        </div>
+        
+        <!-- 底部按钮 -->
+        <div class="section-footer" v-if="selectedHostel">
+          <button 
+            class="add-to-hostel-button"
+            @click="addSelectedStudentsToHostel"
+            :disabled="selectedStudents.length === 0"
+          >
+            <span class="button-icon">🏠</span>
+            将学生添加到 {{ selectedHostel.hostel_number }} 宿舍
+          </button>
+          <div class="selected-count" v-if="selectedStudents.length > 0">
+            已选择 {{ selectedStudents.length }} 名学生
           </div>
         </div>
       </div>
@@ -327,6 +383,14 @@ export default {
   border-bottom: 2px solid #f1f5f9;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .section-header .section-title {
   font-size: 18px;
   font-weight: 700;
@@ -335,6 +399,30 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* 选中宿舍信息 */
+.selected-hostel-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border: 2px solid #3b82f6;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.selected-label {
+  color: #64748b;
+}
+
+.selected-hostel {
+  color: #1d4ed8;
+  font-weight: 700;
 }
 
 .section-header .section-title::before {
@@ -386,6 +474,108 @@ export default {
 
 .students-list-vertical .student-gender.female {
   color: #db2777;
+}
+
+/* 学生项选中状态 */
+.students-list-vertical .student-item {
+  cursor: pointer;
+  position: relative;
+  padding-left: 40px;
+}
+
+/* 学生复选框 */
+.student-checkbox {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.checkbox-inner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.checkbox-inner.checked {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* 学生项选中样式 */
+.student-item-selected {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2) !important;
+}
+
+.student-item-selected:hover {
+  border-color: #3b82f6 !important;
+}
+
+/* 底部按钮区域 */
+.section-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* 添加到宿舍按钮 */
+.add-to-hostel-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  justify-content: center;
+  line-height: 20px;
+  min-height: 44px;
+}
+
+.add-to-hostel-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.add-to-hostel-button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 已选择学生数量 */
+.selected-count {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d4ed8;
+  padding: 8px 16px;
+  background: #f8fafc;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
 }
 
 /* 动画效果 */

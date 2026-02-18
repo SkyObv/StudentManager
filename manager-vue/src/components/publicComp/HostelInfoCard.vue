@@ -20,6 +20,10 @@ export default {
     hostel: {
         type: Object,
         required: true
+    },
+    isSelected: {                                                    // 是否被选中
+        type: Boolean,
+        default: false
     }
   },
   computed: {
@@ -53,13 +57,16 @@ export default {
     // 发送删除学生事件
     deleteStudent(student) {
       this.$emit('deleteStudent',student);
+    },
+    myClick() {                                                      // 我被点击了
+      this.$emit('myClick', this.hostel);
     }
   }
 };
 </script>
 
 <template>
-  <div class="hostel-card">
+  <div class="hostel-card" :class="{ 'hostel-card-selected': isSelected }" @click="myClick">
     <!-- 卡片头部 -->
     <div class="card-header">
       <h3 class="hostel-number">{{ hostel.hostel_number }}</h3>
@@ -152,6 +159,32 @@ export default {
 .hostel-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* 选中状态的卡片 */
+.hostel-card-selected {
+  border: 4px solid #3b82f6;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+  transform: translateY(-3px);
+  animation: pulse-border 2s infinite;
+}
+
+.hostel-card-selected::before {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  height: 6px;
+}
+
+/* 边框脉冲动画 */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(59, 130, 246, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+  }
 }
 
 /* 卡片头部 */
