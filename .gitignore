@@ -6,6 +6,7 @@
 *.iml
 manager-vue/node_modules
 __pycache__/
+.vscode/
 
 # 日志文件
 ManagerApi/logs
