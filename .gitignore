@@ -5,6 +5,7 @@
 # 忽略 IntelliJ 项目文件
 *.iml
 manager-vue/node_modules
+__pycache__/
 
 # 日志文件
 ManagerApi/logs
