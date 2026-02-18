@@ -11,13 +11,7 @@ export default {
     return {
       hostelinfo : [],                                               // 宿舍卡片信息数据
       floors: [],                                                    // 楼号数据
-      // 静态学生数据
-      myStudents: [
-        { id: 1, name: '奥特曼银河', gender: 'male' },
-        { id: 2, name: '迪迦奥特曼', gender: 'male' },
-        { id: 3, name: '赛罗奥特曼', gender: 'male' },
-        { id: 4, name: '高斯奥特曼', gender: 'male' }
-      ],
+      myStudents: [],                                                // 我的学生的数据
 
       selectedFloor: null,                                           // 选中的楼层
       gender: null,                                                  // 选中的性别 
@@ -27,6 +21,7 @@ export default {
   created() {
     this.getAllFloors()                                              // 获取所有楼号
     this.getHostels()                                                // 获取所有宿舍
+    this.getStudents()                                               // 获取所有学生
   },
   methods : {
     // 添加学生
@@ -67,10 +62,28 @@ export default {
         }
       )
     },
-  //   getStudents(){                                                   // 获取我的学生
-  //     let params = {}
-  //     if (this.gender){params.gender = this.gender}
-  //  }
+    getStudents(){                                                   // 获取我的学生
+      let params = {is_hostel:false}
+      if (this.gender){params.gender = this.gender}
+      this.$axios({
+        url: `${this.$settings.Host}/teacher/get/allStudents/`,
+        method: 'get',
+        params: params,
+        headers: {
+          Authorization: `Hander ${this.$settings.getToken()}`
+        }
+      }).then(res => {
+        this.myStudents = res.data
+      }).catch(error=>{
+        console.log(error);
+        this.$message.error("学生数据获取失败！")
+        }
+      )
+    },
+    refreshData() {                                                  // 刷新数据
+      this.getHostels()
+      this.getStudents()
+    },
   }
 }
 </script>
@@ -85,7 +98,7 @@ export default {
       <div class="floor-selector-container">
         <div class="floor-selector">
           <label for="floor-select">选择楼层：</label>
-          <select id="floor-select" v-model="selectedFloor" class="floor-select" @change="getHostels">
+          <select id="floor-select" v-model="selectedFloor" class="floor-select" @change="refreshData">
             <option value="">全部楼层</option>
             <option v-for="floor in floors" :key="floor.id" :value="floor.id">
               {{ floor.floor_name}}号楼
@@ -94,7 +107,7 @@ export default {
           
           <!-- 性别筛选下拉框 -->
           <label for="gender-select">选择性别：</label>
-          <select id="gender-select" v-model="gender" class="gender-select" @change="getHostels">
+          <select id="gender-select" v-model="gender" class="gender-select" @change="refreshData">
             <option :value="null">全部性别</option>
             <option value="male">男生</option>
             <option value="female">女生</option>

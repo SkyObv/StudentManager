@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin):
     继承 Django 内置的 UserAdmin 以保留所有用户管理功能
     """
     # 在列表页显示哪些字段
-    list_display = ('id','username', 'user_type', 'first_name','last_name','get_teacher', 'get_hostel', 'is_staff','is_active')
+    list_display = ('id','username', 'user_type', 'gender', 'first_name','last_name','get_teacher', 'get_hostel', 'is_staff','is_active')
     # 在列表页添加过滤器
     list_filter = ('user_type', 'is_staff', 'is_active', 'groups')
     # 搜索框支持按哪些字段搜索
@@ -38,7 +38,7 @@ class UserAdmin(BaseUserAdmin):
     # 自定义字段集，用于组织编辑页面的布局
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('个人信息', {'fields': ('first_name', 'last_name', 'email')}),
+        ('个人信息', {'fields': ('first_name', 'last_name', 'email', 'gender')}),
         ('权限信息', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('重要日期', {'fields': ('last_login', 'date_joined')}),
         ('自定义信息', {'fields': ('user_type', 'teacher_id', 'house_number')}),
