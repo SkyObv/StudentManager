@@ -11,36 +11,22 @@ export default {
     return {
       hostelinfo : [],                                               // 宿舍卡片信息数据
       floors: [],                                                    // 楼号数据
-      selectedFloor: null,                                           // 选中的楼层
-      // 学生列表显示状态
-      showMyStudents: false,
       // 静态学生数据
       myStudents: [
         { id: 1, name: '奥特曼银河', gender: 'male' },
         { id: 2, name: '迪迦奥特曼', gender: 'male' },
         { id: 3, name: '赛罗奥特曼', gender: 'male' },
         { id: 4, name: '高斯奥特曼', gender: 'male' }
-      ]
+      ],
+
+      selectedFloor: null,                                           // 选中的楼层
+      gender: null,                                                  // 选中的性别 
+      showMyStudents: false,                                         // 是否显示我的学生
     }
   },
   created() {
-    this.hostelinfo = [
-      {
-        "id": 1,
-        "floor": "1",
-        "hostel_number": "101",
-        "gender": "male",
-        "students": [
-            {
-                "id": 3,
-                "name": "奥特曼银河",
-                "gender": "male"
-            },
-        ]
-      },
-    ]
-
-    this.getAllFloors()
+    this.getAllFloors()                                              // 获取所有楼号
+    this.getHostels()                                                // 获取所有宿舍
   },
   methods : {
     // 添加学生
@@ -51,7 +37,7 @@ export default {
     deleteStudent (student) {
       alert(`删除学生 ： ${student.name}`)
     },
-    getAllFloors(){       // 获取所有楼层数据
+    getAllFloors(){                                                  // 获取所有楼层数据
       this.$axios.get(`${this.$settings.Host}/users/floors/`).then(res => {
         this.selectedFloor = res.data[0].id
         this.floors = res.data
@@ -59,7 +45,32 @@ export default {
         console.log(error);
         this.$message.error("楼层数据获取失败！")
       })
-    }
+    },
+    getHostels(){                                                    // 获取单独楼层宿舍数据
+      let params = {}                                                // 请求参数
+      if(this.selectedFloor){params.floor = this.selectedFloor}
+      if(this.gender){params.gender = this.gender}
+      this.$axios(
+        {
+          url: `${this.$settings.Host}/teacher/myhostel/allget/`,
+          method: 'get',
+          params: params,
+          headers: {
+            Authorization: `Hander ${this.$settings.getToken()}`
+          }
+        }
+      ).then(res => {
+        this.hostelinfo = res.data
+      }).catch(error=>{
+        console.log(error);
+        this.$message.error("宿舍数据获取失败！")
+        }
+      )
+    },
+  //   getStudents(){                                                   // 获取我的学生
+  //     let params = {}
+  //     if (this.gender){params.gender = this.gender}
+  //  }
   }
 }
 </script>
@@ -74,11 +85,19 @@ export default {
       <div class="floor-selector-container">
         <div class="floor-selector">
           <label for="floor-select">选择楼层：</label>
-          <select id="floor-select" v-model="selectedFloor" class="floor-select">
+          <select id="floor-select" v-model="selectedFloor" class="floor-select" @change="getHostels">
             <option value="">全部楼层</option>
             <option v-for="floor in floors" :key="floor.id" :value="floor.id">
               {{ floor.floor_name}}号楼
             </option>
+          </select>
+          
+          <!-- 性别筛选下拉框 -->
+          <label for="gender-select">选择性别：</label>
+          <select id="gender-select" v-model="gender" class="gender-select" @change="getHostels">
+            <option :value="null">全部性别</option>
+            <option value="male">男生</option>
+            <option value="female">女生</option>
           </select>
           
           <!-- 我的学生按钮 -->
@@ -201,6 +220,26 @@ export default {
 }
 
 .floor-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* 性别选择下拉框 */
+.gender-select {
+  padding: 8px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-width: 120px;
+}
+
+.gender-select:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
@@ -438,6 +477,11 @@ export default {
   }
   
   .floor-select {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .gender-select {
     width: 100%;
     min-width: unset;
   }

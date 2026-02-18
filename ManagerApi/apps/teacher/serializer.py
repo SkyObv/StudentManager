@@ -9,7 +9,7 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
     house_number = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['id', 'username', 'name', 'gender', 'is_active','user_type','house_number']
+        fields = ['id', 'username', 'name', 'gender','user_type','house_number']
     def get_name(self, obj):
         return obj.last_name + obj.first_name
     def get_house_number(self, obj):
