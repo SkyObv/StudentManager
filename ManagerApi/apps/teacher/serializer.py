@@ -121,7 +121,7 @@ class GetMyStudent(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['id','name','gender']
+        fields = ['id','name','username','gender']
     def get_name(self, obj):
         return obj.last_name + obj.first_name
 # 获取我的所有宿舍信息
@@ -145,3 +145,40 @@ class DeleteStudentSerializer(serializers.ModelSerializer):
         instance.house_number = None
         instance.save()
         return instance
+# 添加学生到宿舍
+class AddStudentSerializer(serializers.Serializer):
+    hostel_id = serializers.IntegerField()
+    student_ids = serializers.ListField(child=serializers.IntegerField())
+    def validate_hostel_id(self, value):
+        try:
+            hostel = Hostel.objects.get(id=value)
+        except Hostel.DoesNotExist:
+            raise serializers.ValidationError("宿舍不存在")
+        request = self.context.get('request')
+        user = request.user
+        if hostel.manager != user:
+                raise serializers.ValidationError("您无权操作此宿舍")
+        return hostel
+    def validate_student_ids(self, value):
+        request = self.context.get('request')
+        user = request.user
+        students = User.objects.filter(id__in=value,teacher_id=user.id)
+        if students.count() != len(value):
+            raise serializers.ValidationError("部分学生不存在")
+        return students
+    def validate(self, data):
+        hostel = data['hostel_id']
+        students = data['student_ids']
+        student_count = hostel.student_count + students.count()
+        if student_count > 6:
+            raise serializers.ValidationError("宿舍人数超过限制")
+        return data
+    def save(self, **kwargs):
+        hostel = self.validated_data['hostel_id']
+        students = self.validated_data['student_ids']
+        with transaction.atomic():
+            update_count = students.update(house_number=hostel)
+            return {
+                "messgae": "修改成功",
+                "count": update_count,
+            }

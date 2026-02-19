@@ -13,6 +13,7 @@ export default {
     //             "id": 3,
     //             "name": "奥特曼银河",
     //             "gender": "male"
+    //             "userneam": "123456"
     //         }
     //     ]
     //   }

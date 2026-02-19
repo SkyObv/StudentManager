@@ -27,9 +27,6 @@ export default {
     this.getStudents()                                               // 获取所有学生
   },
   methods : {
-    addStudent () {                                                  // 添加单个学生
-      alert('添加学生')
-    },
     deleteStudent (student) {                                        // 删除单个学生
       let params = {pk: student.id}
       this.$axios({
@@ -66,8 +63,24 @@ export default {
         alert('请先选择学生')
         return
       }
-      console.log('Selected Students:', this.selectedStudents)
-      alert(`已将 ${this.selectedStudents.length} 名学生添加到 ${this.selectedHostel.hostel_number} 宿舍`)
+      let responseData = {                                           // 请求体
+        hostel_id : this.selectedHostel.id,                          // 添加的宿舍id
+        student_ids: this.selectedStudents.map(student => student.id)// 添加的学生id列表
+      }
+      this.$axios({
+        url: `${this.$settings.Host}/teacher/myhostel/add/studentTohostel/`,
+        method: 'post',
+        data: responseData,
+        headers: {
+            Authorization: `Hander ${this.$settings.getToken()}`
+          }
+      }).then(response => {
+        responseData = response.data['count']
+        this.$message.success(`${responseData}名学生添加成功`)
+        this.refreshData()
+      }).catch(error => {
+        this.$message.error(`${error.request.responseText}`)
+      })
     },
     getAllFloors(){                                                  // 获取所有楼层数据
       this.$axios.get(`${this.$settings.Host}/users/floors/`).then(res => {
@@ -168,7 +181,7 @@ export default {
           :key="hostel.id"
           :hostel="hostel"
           :isSelected="selectedHostel && selectedHostel.id === hostel.id"
-          @addStudent="addStudent"
+          @addStudent="showMyStudents = true"
           @deleteStudent="deleteStudent"
           @myClick="clickHostelCard"
         >
@@ -225,6 +238,8 @@ export default {
         </div>
       </div>
     </div>
+    
+
   </div>
 </template>
 
@@ -590,6 +605,8 @@ export default {
   border-radius: 20px;
   border: 1px solid #e2e8f0;
 }
+
+
 
 /* 动画效果 */
 @keyframes slideInRight {

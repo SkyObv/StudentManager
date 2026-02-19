@@ -15,7 +15,8 @@ from .permissions import IsTeacher,IsAdmin
 from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter,GetMyHostelFilter
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
                          CreateHostelApplyViewSerializer,GetAllApplySerializer,UpdateApplyViewSerializer
-                         ,DeleteApplyViewSerializer, GetAllMyHostelSerializer, DeleteStudentSerializer)
+                         ,DeleteApplyViewSerializer, GetAllMyHostelSerializer, DeleteStudentSerializer
+                         ,AddStudentSerializer)
 from mycelery.manager_task.create_student import create_student
 from django.db.models import Prefetch
 
@@ -161,3 +162,13 @@ class DeleteStudentView(UpdateAPIView):
         queryset = self.get_queryset()
         obj = queryset.get(pk=pk)
         return obj
+# 将学生添加到宿舍中
+class AddStudentView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher]
+    serializer_class = AddStudentSerializer
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data,context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        a = serializer.save()
+        return Response(a,status=status.HTTP_200_OK)
