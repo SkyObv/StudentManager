@@ -8,6 +8,7 @@ export default {
       MyStudents: [],                                                // 我的学生
       studentFile: null,                                             // 学生文件
       showUpdateDialog: false,                                       // 是否显示更新弹窗
+      gender: '',                                                    // 选中的性别
     }
   },
   components:{
@@ -19,10 +20,15 @@ export default {
   },
   methods: {
     getMyStudents() {                                                // 获取我的学生
+      let params = {};                                               // 请求参数
+      if (this.gender) {                                             // 如果选择了性别，添加到参数中
+        params.gender = this.gender;
+      }
+      
       this.$axios({
         url: `${this.$settings.Host}/teacher/get/allStudents/`,
         method: 'get',
-        params: {},                                                 // 显式指定params为空对象
+        params: params,                                              // 使用带有性别筛选的参数
         headers: {
           'Authorization': `Hander ${this.$settings.getToken()}`
         },
@@ -82,6 +88,16 @@ export default {
     
     <!-- 功能按钮区域 -->
     <div class="action-container">
+      <!-- 性别筛选 -->
+      <div class="filter-container">
+        <label for="gender-select">性别筛选：</label>
+        <select id="gender-select" v-model="gender" class="gender-select" @change="getMyStudents">
+          <option value="">全部性别</option>
+          <option value="male">男生</option>
+          <option value="female">女生</option>
+        </select>
+      </div>
+      
       <button class="action-button" @click="showUpdateDialog = true">
         <span class="button-icon">🔄</span>
         更新我的学生
@@ -186,8 +202,38 @@ export default {
   margin: 0 auto 2rem;
   padding: 0 24px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #606266;
+}
+
+.gender-select {
+  padding: 8px 12px;
+  border: 1px solid #dcdfe6;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  color: #606266;
+  transition: all 0.3s;
+  min-width: 100px;
+}
+
+.gender-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
 }
 
 .action-button {
