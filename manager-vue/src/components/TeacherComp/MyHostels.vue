@@ -13,7 +13,7 @@ export default {
       floors: [],                                                    // 楼号数据
       myStudents: [],                                                // 我的学生的数据
 
-      selectedFloor: null,                                           // 选中的楼层
+      selectedFloor: '',                                            // 选中的楼层
       gender: null,                                                  // 选中的性别
       selectedHostel: null,                                          // 选中的宿舍
       selectedStudents: [],                                          // 选中的学生列表
@@ -84,7 +84,6 @@ export default {
     },
     getAllFloors(){                                                  // 获取所有楼层数据
       this.$axios.get(`${this.$settings.Host}/users/floors/`).then(res => {
-        this.selectedFloor = res.data[0].id
         this.floors = res.data
       }).catch(error=>{
         console.log(error);
