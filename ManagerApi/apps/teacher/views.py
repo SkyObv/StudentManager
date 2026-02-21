@@ -154,6 +154,7 @@ class DeleteStudentView(UpdateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated, IsTeacher]
     serializer_class = DeleteStudentSerializer
+    @override
     def get_queryset(self):
         teacher = self.request.user
         return User.objects.filter(teacher_id=teacher.id)
