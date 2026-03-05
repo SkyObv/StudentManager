@@ -85,7 +85,6 @@ export default {
       <!-- 用户类型选择 -->
       <div class="user-type-section">
         <el-radio-group v-model="identity" size="medium">
-          <el-radio-button label="student">学生</el-radio-button>
           <el-radio-button label="teacher">教师</el-radio-button>
           <el-radio-button label="admin">管理者</el-radio-button>
         </el-radio-group>
