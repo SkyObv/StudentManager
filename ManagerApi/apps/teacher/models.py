@@ -30,3 +30,16 @@ class HostelApply(models.Model):
         verbose_name_plural = verbose_name
         ordering = ['-apply_time']
         unique_together = ('teacher','hostel')
+
+# 门禁卡模型
+class TripsLog(models.Model):
+    number = models.CharField(max_length=100,verbose_name='卡号',db_index=True,unique=True)
+    in_hostel = models.BooleanField(default=False,verbose_name='是否在宿舍')
+    update_time = models.DateTimeField(auto_now=True,verbose_name='刷卡时间')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    key_card_state = models.BooleanField(verbose_name='门禁卡状态', default=True)
+    class Meta:
+        verbose_name = '门禁卡'
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return self.number

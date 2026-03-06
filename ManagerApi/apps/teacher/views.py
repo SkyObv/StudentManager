@@ -10,7 +10,7 @@ from rest_framework import status
 from users.models import User,Floor,Hostel
 from rest_framework_simplejwt.authentication import JWTAuthentication                    # 导入JWT认证
 from rest_framework.permissions import IsAuthenticated                                   # 内置权限
-from .models import HostelApply
+from .models import HostelApply,TripsLog
 from .permissions import IsTeacher,IsAdmin
 from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter,GetMyHostelFilter
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
@@ -35,6 +35,10 @@ class GetStudentListView(ListAPIView):
             teacher_id=teacher_id,
             user_type='student',
             is_active=True,
+        ).select_related(
+            'key',
+            'house_number',
+            'house_number__floor'
         )
         return queryset
 # 导入学生生成学生用户视图

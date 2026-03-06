@@ -41,7 +41,6 @@ export default {
         console.error(err);
       })
     },
-    
     closeDialog() {                                                  // 关闭弹窗
       this.showUpdateDialog = false;
     },
@@ -74,6 +73,12 @@ export default {
       // 重置文件
       this.removeFile();
     },
+    updateKey(s){                                                    // 更新学生门禁卡
+      console.log('===== 开始更新学生门禁卡信息 =====');
+      console.log('学生ID:', s.id);
+      console.log('门禁ID:', s.key_number);
+      console.log('门禁卡状态:', s.key_state ? '正常' : '禁用');
+    }
   },
 }
 </script>
@@ -112,6 +117,7 @@ export default {
     <div class="table-container">
       <StudentsTable 
       :students="MyStudents"
+      @update-key='updateKey'
       ></StudentsTable>
     </div>
     

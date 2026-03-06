@@ -30,6 +30,14 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,                                   # 删除时设置为NULL
         related_name='students_house',                               # 反向查询
     )
+    # 学生门禁卡
+    key = models.OneToOneField(
+        'teacher.TripsLog',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='student',
+    )
     # 用户性别
     gender = models.CharField(max_length=10,verbose_name='性别',choices=(('male','男'),('female','女')),default='male')
 

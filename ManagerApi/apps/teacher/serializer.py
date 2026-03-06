@@ -7,9 +7,11 @@ from django.db import transaction  # 引入事务
 class GetAllStudentsSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     house_number = serializers.SerializerMethodField()
+    key_number = serializers.SerializerMethodField()
+    key_state = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['id', 'username', 'name', 'gender','user_type','house_number']
+        fields = ['id', 'username', 'name', 'gender','user_type','house_number','key_number','key_state']
     def get_name(self, obj):
         return obj.last_name + obj.first_name
     def get_house_number(self, obj):
@@ -17,6 +19,14 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
             house_number = obj.house_number.floor.floor_name + '-' + obj.house_number.hostel_number
             return house_number
         return "无"
+    def get_key_number(self, obj):
+        if obj.key:
+            return obj.key.number
+        return '未绑定'
+    def get_key_state(self, obj):
+        if obj.key:
+            return obj.key.key_card_state
+        return '未绑定'
 # 上传文件字段验证序列化器
 class FileFieldSerializer(serializers.ModelSerializer):
     teacher_id = serializers.SlugRelatedField(
