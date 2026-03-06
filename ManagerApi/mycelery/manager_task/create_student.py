@@ -1,4 +1,6 @@
+import time
 from teacher.serializer import FileFieldSerializer
+from users.models import User
 from rest_framework import serializers
 import pandas
 from ..main import app
@@ -49,3 +51,8 @@ def handle_xlsx(file_xlsx):
     }
     file_xlsx.rename(columns=new_columns, inplace=True)
     return file_xlsx
+
+@app.task(name="text")
+def text():
+    users = User.objects.get(id=1)                                                  # 在celery中使用orm
+    return {"users": users.user_type}
