@@ -73,11 +73,10 @@ export default {
       // 重置文件
       this.removeFile();
     },
-    updateKey(s){                                                    // 更新学生门禁卡
-      console.log('===== 开始更新学生门禁卡信息 =====');
-      console.log('学生ID:', s.id);
-      console.log('门禁ID:', s.key_number);
-      console.log('门禁卡状态:', s.key_state ? '正常' : '禁用');
+    updateKey(key){                                                  // 更新学生门禁卡
+      console.log('学生ID:', key.id);
+      console.log('门禁ID:', key.key_number);
+      console.log('门禁卡状态:', key.key_state ? '正常' : '禁用');
     }
   },
 }

@@ -40,13 +40,8 @@ class FileFieldSerializer(serializers.ModelSerializer):
             'password':{'write_only': True,'default':'123456'},
             'user_type':{'default': 'student'},
         }
-    def validate_username(self, value):
-        """验证用户名是否已存在"""
-        if User.objects.filter(username=value).exists():
-            raise serializers.ValidationError('用户名已存在。')
-        return value
     def create(self, validated_data):
-        """创建用户"""
+        """批量创建用户"""
         password = validated_data.pop('password')
         user = User.objects.create_user(**validated_data)
         user.set_password(password)

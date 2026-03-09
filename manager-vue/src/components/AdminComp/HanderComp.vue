@@ -101,13 +101,13 @@ export default {
           <li :class="changeCss(2)" @click="changeOption(2)">
             <a href="#students" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                <line x1="15" y1="13" x2="21" y2="13"></line>
+                <rect x="5" y="6" width="14" height="12" rx="2"></rect>
+                <path d="M10 10h4"></path>
+                <path d="M10 14h4"></path>
+                <rect x="7" y="8" width="2" height="8" rx="1"></rect>
+                <circle cx="12" cy="12" r="1"></circle>
               </svg>
-              <span>学生外出信息可视化</span>
+              <span>门禁卡管理</span>
             </a>
           </li>
 

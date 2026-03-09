@@ -4,6 +4,7 @@ import FloorManage from "@/components/AdminComp/FloorManage.vue"     // 楼层�
 import HostelManage from "@/components/AdminComp/HostelManage.vue"   // 宿舍管理
 import TeacherManage from "@/components/AdminComp/TeacherManage.vue" // 账号管理
 import HostelLog from "@/components/AdminComp/HostelLog.vue";        // 宿舍申请审批
+import CardIDManage from "@/components/AdminComp/CardIDManage.vue";  // 门禁卡管理
 export default {
   name: 'AdminPage',
   data() {
@@ -37,6 +38,7 @@ export default {
     HostelManage,
     TeacherManage,
     HostelLog,
+    CardIDManage,
   }
 }
 </script>
@@ -56,8 +58,8 @@ export default {
     <!-- 宿舍申请审批 -->
     <HostelLog v-if="option === 3"></HostelLog>
 
-    <!-- 学生宿舍外出信息可视化 -->
-    <h1 v-if="option === 2"></h1>
+    <!-- 门禁卡管理 -->
+    <CardIDManage v-if="option === 2"></CardIDManage>
   </div>
 </template>
 

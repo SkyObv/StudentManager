@@ -69,45 +69,51 @@ export default {
 </script>
 
 <template>
-  <div class="apply-container">
-    <!-- 标题区域 -->
-    <div class="page-header">
-      <h1 class="page-title">宿舍申请审批</h1>
-      <p class="page-subtitle">管理和审批教师的宿舍申请</p>
-    </div>
-    
-    <!-- 筛选区域 -->
-    <div class="search-filter">
-      <div class="total-count">
-        共 {{ totalCount }} 条记录
+  <div class="hostel-log-container">
+    <div class="content-container">
+      <!-- 标题区域 -->
+      <div class="page-header">
+        <h1 class="page-title">宿舍申请审批</h1>
+        <p class="page-subtitle">管理和审批教师的宿舍申请</p>
       </div>
-    </div>
-    
-    <!-- 申请列表区域 -->
-    <div class="apply-list">
-      <ApplyInfoCard 
-        v-for="item in applyInfos" 
-        :key="item.id" 
-        :applyInfo="item"
-        :showActionButtons="true"
-        @refresh="reshLogs"
-      ></ApplyInfoCard>
-      <div v-if="loading" class="loading">加载中...</div>
-      <div v-else-if="applyInfos.length === 0" class="empty-data">暂无申请数据</div>
+      
+      <!-- 筛选区域 -->
+      <div class="search-filter">
+        <div class="total-count">
+          共 {{ totalCount }} 条记录
+        </div>
+      </div>
+      
+      <!-- 申请列表区域 -->
+      <div class="apply-list">
+        <ApplyInfoCard 
+          v-for="item in applyInfos" 
+          :key="item.id" 
+          :applyInfo="item"
+          :showActionButtons="true"
+          @refresh="reshLogs"
+        ></ApplyInfoCard>
+        <div v-if="loading" class="loading">加载中...</div>
+        <div v-else-if="applyInfos.length === 0" class="empty-data">暂无申请数据</div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* 容器样式 */
-.apply-container {
+/* 页面容器 */
+.hostel-log-container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  animation: pageFadeIn 0.6s ease-out;
+}
+
+/* 内容容器 */
+.content-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px;
-  min-height: 100vh;
-  background-color: #f8fafc;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 /* 标题区域 */
@@ -270,6 +276,15 @@ export default {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
