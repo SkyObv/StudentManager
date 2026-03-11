@@ -107,7 +107,7 @@ export default {
                 <rect x="7" y="8" width="2" height="8" rx="1"></rect>
                 <circle cx="12" cy="12" r="1"></circle>
               </svg>
-              <span>门禁卡管理</span>
+              <span>没想好</span>
             </a>
           </li>
 

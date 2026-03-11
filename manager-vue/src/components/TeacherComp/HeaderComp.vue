@@ -107,7 +107,7 @@ export default {
                 <path d="M3 9h18"></path>
                 <path d="M3 15h18"></path>
               </svg>
-              <span>宿舍分配</span>
+              <span>门禁卡管理</span>
             </a>
           </li>
         </ul>
