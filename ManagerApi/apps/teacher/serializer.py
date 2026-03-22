@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from users.models import User,Floor,Hostel
-from .models import HostelApply
+from .models import HostelApply,TripsLog
 from django.db import transaction  # 引入事务
 
 # 获取老师所有学生序列化器
@@ -187,3 +187,26 @@ class AddStudentSerializer(serializers.Serializer):
                 "messgae": "修改成功",
                 "count": update_count,
             }
+
+# 门禁卡管理
+# 获取所有门禁卡
+class ManagerTeacherSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['id','name','user_type','is_active']
+    def get_name(self, obj):
+        return obj.last_name + obj.first_name
+class StudentSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['id','name','username','gender']
+    def get_name(self, obj):
+        return obj.last_name + obj.first_name
+class GetAllTripsSerializer(serializers.ModelSerializer):
+    manager_teacher = ManagerTeacherSerializer(read_only=True)
+    student = StudentSerializer(read_only=True)
+    class Meta:
+        model = TripsLog
+        fields = ['id','number','manager_teacher','in_hostel','update_time','create_time','key_card_state','student']
