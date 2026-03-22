@@ -16,7 +16,7 @@ from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter,GetMyHost
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
                          CreateHostelApplyViewSerializer,GetAllApplySerializer,UpdateApplyViewSerializer
                          ,DeleteApplyViewSerializer, GetAllMyHostelSerializer, DeleteStudentSerializer
-                         ,AddStudentSerializer,GetAllTripsSerializer)
+                         ,AddStudentSerializer,GetAllTripsSerializer,UpdateTripsSerializer)
 from mycelery.manager_task.create_student import create_student, text
 from django.db.models import Prefetch
 
@@ -193,7 +193,17 @@ class GetAllTripsView(ListAPIView):
             manager_teacher=teacher_id,
         ).select_related('manager_teacher','student')
         return trips
-
+# 更新门禁卡状态
+class UpdateTripStateView(UpdateAPIView):
+    queryset = TripsLog.objects.all()
+    serializer_class = UpdateTripsSerializer
+    permission_classes = [IsAuthenticated, IsTeacher]
+    authentication_classes = [JWTAuthentication]
+    def get_object(self):
+        pk = self.request.query_params.get('id')
+        queryset = self.get_queryset()
+        obj = queryset.get(pk=pk)
+        return obj
 
 # ===========================测试接口======================================
 class TextCeleryView(APIView):

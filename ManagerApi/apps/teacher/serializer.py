@@ -210,3 +210,7 @@ class GetAllTripsSerializer(serializers.ModelSerializer):
     class Meta:
         model = TripsLog
         fields = ['id','number','manager_teacher','in_hostel','update_time','create_time','key_card_state','student']
+class UpdateTripsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TripsLog
+        fields = '__all__'

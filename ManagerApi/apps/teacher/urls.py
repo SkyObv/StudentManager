@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import (GetStudentListView, ImportStudentsView, GetTaskResultView, GetDormitoryListView,
                     ApplyHostelView, GetApplyRecordView, ApplyRecordView, DeleteApplyRecordView
-                    ,GetAllMyHostelView, DeleteStudentView, AddStudentView, TextCeleryView, GetAllTripsView)
+                    ,GetAllMyHostelView, DeleteStudentView, AddStudentView, TextCeleryView, GetAllTripsView,
+                    UpdateTripStateView)
 
 urlpatterns = [
     path('get/allStudents/', GetStudentListView.as_view()),                               # 获取所有学生
@@ -24,7 +25,7 @@ urlpatterns = [
 
     # 门禁卡管理
     path('trips/get/all',GetAllTripsView.as_view()),                                      # 查询我的门禁卡
-
+    path('trips/update/',UpdateTripStateView.as_view()),                                  # 更新门禁状态
     # celery任务测试接口
     path('text/celery/',TextCeleryView.as_view())                                         # celery测试接口
 ]

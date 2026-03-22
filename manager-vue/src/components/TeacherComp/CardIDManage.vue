@@ -1,11 +1,13 @@
 <script>
 import TripsCard from '@/components/publicComp/TripsCard.vue'
+import TripsCardAdd from '@/components/publicComp/TripsCardAdd.vue'
 // 门禁卡管理组件
 export default {
   name: 'CardIDManage',
   data() {
     return {
       tripscards: [],
+      isEdit: false,                                                                     // 是否编辑状态
     }
   },
   created() {
@@ -13,11 +15,24 @@ export default {
   },
   methods: {
     getTripsCards() {                                                                    // http请求获取所有门禁卡信息
-      console.log('获取所有门禁卡信息')
+        this.$axios({
+          url: `${this.$settings.Host}/teacher/trips/get/all`,
+          method: 'get',
+          headers: {Authorization: `Hander ${this.$settings.getToken()}`}
+      }).then(res => {
+        this.tripscards = res.data
+      }).catch(err => {
+        console.log(err)
+        this.$message.error('获取门禁卡信息失败')
+      })
+    },
+    editCard() {                                                                         // 编辑门禁卡
+    this.isEdit = !this.isEdit
     },
   },
   components: {
     TripsCard,
+    TripsCardAdd,
   }
 }
 </script>
@@ -32,6 +47,14 @@ export default {
         <p class="page-subtitle">管理学生的门禁卡信息</p>
       </div>
 
+      <!-- 功能区域 -->
+      <div class="function-area">
+        <button class="action-button edit-button" @click="editCard">
+          <span class="button-icon">✏️</span>
+          添加门禁卡
+        </button>
+      </div>
+
       <!-- 提示区域 -->
       <div class="card-stats">
         <div class="stats-item">
@@ -41,11 +64,19 @@ export default {
       </div>
       
       <!-- 门禁卡卡片区域 -->
-      <div class="card-container">
+      <div class="card-container" v-if="isEdit===false">
         <TripsCard 
         v-for="card in tripscards" 
         :key="card.id" 
-        :keyCard="card"></TripsCard>
+        :keyCard="card"
+        @updateCard="getTripsCards"></TripsCard>
+      </div>
+
+      <!-- 编辑门禁卡卡片区域 -->
+      <div v-if="isEdit===true" class="edit-card-container">
+        <div class="edit-card-wrapper">
+          <TripsCardAdd></TripsCardAdd>
+        </div>
       </div>
       
     </div>
@@ -68,6 +99,60 @@ export default {
   margin: 0 auto;
   width: 100%;
   padding: 0 20px;
+}
+
+/* 功能区域 */
+.function-area {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  min-width: 120px;
+  justify-content: center;
+  line-height: 20px;
+  min-height: 40px;
+}
+
+.action-button:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.button-icon {
+  font-size: 14px;
+}
+
+/* 编辑门禁卡容器 */
+.edit-card-container {
+  margin-top: 24px;
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.edit-card-wrapper {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 24px;
+  margin-bottom: 32px;
 }
 
 /* 标题区域 */

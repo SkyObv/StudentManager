@@ -48,6 +48,26 @@ export default {
         minute: '2-digit',
         second: '2-digit'
       });
+    },
+    handleCardAction() {                                                                 // 处理门禁卡操作按钮(更新门禁状态)
+      this.$axios({
+        url : `${this.$settings.Host}/teacher/trips/update/`,
+        method: 'patch',
+        data: {
+          "key_card_state": !this.keyCard.key_card_state
+        },
+        params:{
+          "id": this.keyCard.id
+        },
+        headers: {Authorization: `Hander ${this.$settings.getToken()}`}
+      }).then(res => {
+        console.log(res.data)
+        this.$message.success('操作成功')
+        this.$emit('updateCard')
+      }).catch(err => {
+        console.log(err)
+        this.$message.error('操作失败')
+      })
     }
   }
 }
@@ -101,6 +121,18 @@ export default {
           </span>
         </div>
       </div>
+    </div>
+    
+    <!-- 功能按钮 -->
+    <div class="card-actions">
+      <button 
+        class="action-button" 
+        :class="keyCard.key_card_state ? 'report-button' : 'restore-button'"
+        @click="handleCardAction"
+      >
+        <span class="button-icon">{{ keyCard.key_card_state ? '📵' : '🔄' }}</span>
+        {{ keyCard.key_card_state ? '挂失' : '恢复' }}
+      </button>
     </div>
   </div>
 </template>
@@ -293,6 +325,56 @@ export default {
 .no-student {
   color: #9ca3af;
   font-style: italic;
+}
+
+/* 功能按钮 */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: 16px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.report-button {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.report-button:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.restore-button {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.restore-button:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+.button-icon {
+  font-size: 14px;
 }
 
 @keyframes fadeInUp {
