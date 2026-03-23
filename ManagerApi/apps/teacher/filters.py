@@ -10,6 +10,10 @@ class GetStudentFilter(django_filters.FilterSet):
         label="搜索"
     )
     gender = django_filters.CharFilter(field_name='gender', lookup_expr='iexact')
+    key = django_filters.BooleanFilter(
+        method='filter_by_key',
+        label='是否有门禁卡'
+    )
     is_hostel = django_filters.BooleanFilter(
         method='filter_by_is_hostel',
         label="是否拥有宿舍"
@@ -34,6 +38,10 @@ class GetStudentFilter(django_filters.FilterSet):
                 house_number__isnull=True
             )
             return queryset
+    def filter_by_key(self, queryset, name, value):
+        if value:
+            return queryset.filter(key__isnull=False)
+        return queryset.filter(key__isnull=True)
 
 # 获取可申请宿舍过滤器
 class GetHostelFilter(django_filters.FilterSet):

@@ -26,7 +26,7 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
         return '未绑定'
     def get_key_state(self, obj):
         if hasattr(obj, 'key'):
-            return obj.key.number
+            return obj.key.key_card_state
         return '未绑定'
 # 上传文件字段验证序列化器
 class FileFieldSerializer(serializers.ModelSerializer):

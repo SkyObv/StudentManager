@@ -25,7 +25,9 @@ export default {
       this.$axios({
         url: `${this.$settings.Host}/teacher/get/allStudents/`,
         method: 'get',
-        params: {},
+        params: {
+          "key":false
+        },
         headers: {
           Authorization: `Hander ${this.$settings.getToken()}`
         }
