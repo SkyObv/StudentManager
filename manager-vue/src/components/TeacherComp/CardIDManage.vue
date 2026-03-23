@@ -1,13 +1,14 @@
 <script>
 import TripsCard from '@/components/publicComp/TripsCard.vue'
-import TripsCardAdd from '@/components/publicComp/TripsCardAdd.vue'
+import StudentSelect from '@/components/publicComp/StudentSelect.vue'
 // 门禁卡管理组件
 export default {
   name: 'CardIDManage',
   data() {
     return {
       tripscards: [],
-      isEdit: false,                                                                     // 是否编辑状态
+      cardId: NaN,                                                                       // 正在绑定学生的门禁卡 id
+      studentId: NaN,                                                                    // 选择的学生 id（确认后用于请求）
     }
   },
   created() {
@@ -26,13 +27,44 @@ export default {
         this.$message.error('获取门禁卡信息失败')
       })
     },
-    editCard() {                                                                         // 编辑门禁卡
-    this.isEdit = !this.isEdit
+    bindStudent(id) {                                                                     // 打开选择学生面板
+      this.cardId = id
+    },
+    closeBindStudent() {                                                                  // 取消绑定
+      this.cardId = NaN
+      this.studentId = NaN
+    },
+    onBindStudentConfirm(studentId) {                                                     // 确定所选学生绑定门禁卡
+      this.studentId = studentId
+      const keyCardId = this.cardId
+      this.$axios({
+        url : `${this.$settings.Host}/teacher/trips/update/`,
+        method: 'patch',
+        data: {
+          "student": studentId
+        },
+        params:{
+          "id": keyCardId
+        },
+        headers: {Authorization: `Hander ${this.$settings.getToken()}`}
+      }).then(res => {
+        console.log(res.data)
+        this.$message.success('操作成功')
+        this.getTripsCards()                                                                // 重新拉取门禁卡列表，展示最新绑定结果
+        this.$emit('updateCard')
+      }).catch(err => {
+        console.log(err)
+        this.$message.error('操作失败')
+      })
+      this.closeBindStudent()
+    },
+    editCard() {                                                                         // 编辑门禁卡（占位）
+      console.log('编辑门禁卡')
     },
   },
   components: {
     TripsCard,
-    TripsCardAdd,
+    StudentSelect,
   }
 }
 </script>
@@ -51,7 +83,7 @@ export default {
       <div class="function-area">
         <button class="action-button edit-button" @click="editCard">
           <span class="button-icon">✏️</span>
-          添加门禁卡
+          按钮
         </button>
       </div>
 
@@ -64,20 +96,22 @@ export default {
       </div>
       
       <!-- 门禁卡卡片区域 -->
-      <div class="card-container" v-if="isEdit===false">
+      <div class="card-container">
         <TripsCard 
         v-for="card in tripscards" 
         :key="card.id" 
         :keyCard="card"
+        @bindStudent="bindStudent"
         @updateCard="getTripsCards"></TripsCard>
       </div>
 
-      <!-- 编辑门禁卡卡片区域 -->
-      <div v-if="isEdit===true" class="edit-card-container">
-        <div class="edit-card-wrapper">
-          <TripsCardAdd></TripsCardAdd>
-        </div>
-      </div>
+      <!-- 绑定学生：点击卡片「绑定学生」后出现 -->
+      <StudentSelect
+        v-if="Number.isFinite(cardId)"
+        :card-id="cardId"
+        @confirm="onBindStudentConfirm"
+        @cancel="closeBindStudent"
+      />
       
     </div>
   </div>

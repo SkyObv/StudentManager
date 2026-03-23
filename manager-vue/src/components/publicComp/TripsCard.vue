@@ -20,6 +20,10 @@ export default {
     keyCard: {
       type: Object,
       default: () => ({})
+    },
+    type: {
+      type: String,
+      default: 'teacher'
     }
   },
   computed: {
@@ -68,6 +72,15 @@ export default {
         console.log(err)
         this.$message.error('操作失败')
       })
+    },
+    handleBindStudent() {                                                                // 绑定学生信号
+      this.$emit('bindStudent', this.keyCard.id)
+    },
+    handleBindTeacher() {
+      console.log('绑定老师', this.keyCard)
+    },
+    handleDeleteCard() {
+      console.log('删除门禁卡', this.keyCard)
     }
   }
 }
@@ -123,16 +136,45 @@ export default {
       </div>
     </div>
     
-    <!-- 功能按钮 -->
+    <!-- 功能按钮：根据身份显示不同操作 -->
     <div class="card-actions">
-      <button 
-        class="action-button" 
-        :class="keyCard.key_card_state ? 'report-button' : 'restore-button'"
-        @click="handleCardAction"
-      >
-        <span class="button-icon">{{ keyCard.key_card_state ? '📵' : '🔄' }}</span>
-        {{ keyCard.key_card_state ? '挂失' : '恢复' }}
-      </button>
+
+      <!-- teacher: 绑定学生、挂失/恢复 -->
+      <template v-if="type === 'teacher'">
+        <button 
+          class="action-button bind-button"
+          @click="handleBindStudent"
+        >
+          <span class="button-icon">👤</span>
+          绑定学生
+        </button>
+        <button 
+          class="action-button" 
+          :class="keyCard.key_card_state ? 'report-button' : 'restore-button'"
+          @click="handleCardAction"
+        >
+          <span class="button-icon">{{ keyCard.key_card_state ? '📵' : '🔄' }}</span>
+          {{ keyCard.key_card_state ? '挂失' : '恢复' }}
+        </button>
+      </template>
+
+      <!-- admin: 绑定老师、删除门禁卡 -->
+      <template v-else-if="type === 'admin'">
+        <button 
+          class="action-button bind-button"
+          @click="handleBindTeacher"
+        >
+          <span class="button-icon">👨‍🏫</span>
+          绑定老师
+        </button>
+        <button 
+          class="action-button delete-button"
+          @click="handleDeleteCard"
+        >
+          <span class="button-icon">🗑️</span>
+          删除门禁卡
+        </button>
+      </template>
     </div>
   </div>
 </template>
@@ -331,6 +373,8 @@ export default {
 .card-actions {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   margin-top: 16px;
@@ -371,6 +415,24 @@ export default {
 
 .restore-button:hover {
   background: linear-gradient(135deg, #059669, #047857);
+}
+
+.bind-button {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.bind-button:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.delete-button {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #4b5563, #374151);
 }
 
 .button-icon {
