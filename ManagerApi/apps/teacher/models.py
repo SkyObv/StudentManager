@@ -43,6 +43,15 @@ class TripsLog(models.Model):
         limit_choices_to={'user_type': 'teacher'},     # 限制可选项为教师类型
         verbose_name='门禁卡管理者老师'
     )
+    student = models.OneToOneField(
+        'users.User',
+        related_name='key',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        limit_choices_to={'user_type': 'student'},
+        verbose_name='关联学生'
+    )
     in_hostel = models.BooleanField(default=False,verbose_name='是否在宿舍')
     update_time = models.DateTimeField(auto_now=True,verbose_name='刷卡时间')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')

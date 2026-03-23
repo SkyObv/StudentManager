@@ -73,6 +73,26 @@ export default {
         this.$message.error('操作失败')
       })
     },
+    handleCancelBindStudent() {                                                         // 取消门禁卡绑定的学生
+      this.$axios({
+        url : `${this.$settings.Host}/teacher/trips/update/`,
+        method: 'patch',
+        data: {
+          "student": null
+        },
+        params:{
+          "id": this.keyCard.id
+        },
+        headers: {Authorization: `Hander ${this.$settings.getToken()}`}
+      }).then(res => {
+        console.log(res.data)
+        this.$message.success('取消绑定成功')
+        this.$emit('updateCard')
+      }).catch(err => {
+        console.log(err)
+        this.$message.error('取消绑定失败')
+      })
+    },
     handleBindStudent() {                                                                // 绑定学生信号
       this.$emit('bindStudent', this.keyCard.id)
     },
@@ -147,6 +167,14 @@ export default {
         >
           <span class="button-icon">👤</span>
           绑定学生
+        </button>
+        <button
+          v-if="keyCard.student"
+          class="action-button delete-button"
+          @click="handleCancelBindStudent"
+        >
+          <span class="button-icon">🚫</span>
+          取消绑定
         </button>
         <button 
           class="action-button" 

@@ -195,7 +195,7 @@ class GetAllTripsView(ListAPIView):
         return trips
 # 更新门禁卡状态
 class UpdateTripStateView(UpdateAPIView):
-    queryset = TripsLog.objects.all()
+    queryset = TripsLog.objects.all().select_related('manager_teacher','student')
     serializer_class = UpdateTripsSerializer
     permission_classes = [IsAuthenticated, IsTeacher]
     authentication_classes = [JWTAuthentication]

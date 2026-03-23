@@ -10,5 +10,5 @@ class HostelApplyAdmin(admin.ModelAdmin):
 # 门禁卡id
 @admin.register(TripsLog)
 class TripsLogAdmin(admin.ModelAdmin):
-    list_display = ['id','number','in_hostel','update_time','create_time','key_card_state']
+    list_display = ['id','number','student','in_hostel','update_time','create_time','key_card_state']
     list_filter = ['key_card_state']

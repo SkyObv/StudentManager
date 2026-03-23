@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 from users.models import User,Floor,Hostel
 from .models import HostelApply,TripsLog
 from django.db import transaction  # 引入事务
@@ -20,12 +21,12 @@ class GetAllStudentsSerializer(serializers.ModelSerializer):
             return house_number
         return "无"
     def get_key_number(self, obj):
-        if obj.key:
+        if hasattr(obj, 'key'):
             return obj.key.number
         return '未绑定'
     def get_key_state(self, obj):
-        if obj.key:
-            return obj.key.key_card_state
+        if hasattr(obj, 'key'):
+            return obj.key.number
         return '未绑定'
 # 上传文件字段验证序列化器
 class FileFieldSerializer(serializers.ModelSerializer):
