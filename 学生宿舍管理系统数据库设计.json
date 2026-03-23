@@ -33,19 +33,6 @@
           "size": 1
         },
         {
-          "id": "ceyJoH0a5GnZI0ZgsaSq9",
-          "name": "gender",
-          "type": "CHAR",
-          "default": "male",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "性别（male，男）（female，女）",
-          "size": 1
-        },
-        {
           "id": "aFvQcn2ZxSxnB6FRDyZ2e",
           "name": " teacher_id",
           "type": "INT",
@@ -81,8 +68,8 @@
     {
       "id": "1oMJG6CjIDSmsDBJaCXCn",
       "name": "Hostel 宿舍模型",
-      "x": -148,
-      "y": -440,
+      "x": -122.06915054092394,
+      "y": -319.25970013523096,
       "locked": false,
       "fields": [
         {
@@ -215,8 +202,8 @@
     {
       "id": "2EFm4E6TyVjUD-Q0U4b9D",
       "name": "floor 楼模型",
-      "x": 188.9999999999999,
-      "y": -431,
+      "x": 343.36929374999966,
+      "y": -296.889131385231,
       "locked": false,
       "fields": [
         {
@@ -266,8 +253,8 @@
     {
       "id": "cEH6zGWLKyJMlP6ACUV0y",
       "name": " HostelApply 宿舍申请记录表",
-      "x": -710,
-      "y": -91.99999999999989,
+      "x": -770.7753125,
+      "y": 19.82657500000016,
       "locked": false,
       "fields": [
         {
@@ -321,6 +308,127 @@
           "notNull": true,
           "increment": false,
           "comment": "申请宿舍",
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a"
+    },
+    {
+      "id": "VHPVhUh2K0YSEhZLh8aE2",
+      "name": "TripsLog 门禁卡模型",
+      "x": -208.93892998028184,
+      "y": 187.6573128944636,
+      "locked": false,
+      "fields": [
+        {
+          "name": "id",
+          "type": "INT",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": "5e9UaYWWUA_Is7YXShneo"
+        },
+        {
+          "id": "YQcyYD2NgsbPJQLPeMxsl",
+          "name": "number",
+          "type": "CHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "卡号",
+          "size": 50
+        },
+        {
+          "id": "Qi_nTk4CXcCN9b0uYp3-L",
+          "name": "manager_teacher",
+          "type": "INT",
+          "default": "None",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "管理员",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "3fY7VJZZ8I6bM83cx3RZE",
+          "name": "student",
+          "type": "INT",
+          "default": "None",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "学生",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "oiHfAa5nG-oJ8jndkoTJ2",
+          "name": "in_hostel",
+          "type": "BOOLEAN",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "kqQzRZVokrV0BFs2anCAE",
+          "name": "update_time",
+          "type": "DATETIME",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "DLHupLa9FoUbyF56SueIn",
+          "name": "create_time",
+          "type": "DATETIME",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "size": "",
+          "values": []
+        },
+        {
+          "id": "WLu2Bv7-OdBRi7Lz7zQ55",
+          "name": "key_card_state",
+          "type": "BOOLEAN",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
           "size": "",
           "values": []
         }
@@ -397,6 +505,28 @@
       "deleteConstraint": "Cascade",
       "name": "申请的宿舍",
       "id": "NduRLUsbBZWc5gfPqL3yx"
+    },
+    {
+      "startTableId": "VHPVhUh2K0YSEhZLh8aE2",
+      "startFieldId": "Qi_nTk4CXcCN9b0uYp3-L",
+      "endTableId": "NxXd0lAfagl1dMBOJxrr-",
+      "endFieldId": "eRIcfT2TipEUwJc3Fwv4H",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "管理员",
+      "id": "OASN-rkT-kFUr9P59Qzq0"
+    },
+    {
+      "startTableId": "VHPVhUh2K0YSEhZLh8aE2",
+      "startFieldId": "3fY7VJZZ8I6bM83cx3RZE",
+      "endTableId": "NxXd0lAfagl1dMBOJxrr-",
+      "endFieldId": "eRIcfT2TipEUwJc3Fwv4H",
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "绑定学生",
+      "id": "9ECzA_ftgQXdP0eeIDl5Q"
     }
   ],
   "notes": [],
