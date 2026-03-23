@@ -100,12 +100,11 @@ export default {
           <li :class="changeCss(4)" @click="changeOption(4)">
             <a href="#dorm-allocation" class="nav-link">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"></path>
-                <path d="M9 9h6v6"></path>
-                <path d="M9 15v-6"></path>
-                <path d="M15 9h-6v6"></path>
-                <path d="M3 9h18"></path>
-                <path d="M3 15h18"></path>
+                <rect x="5" y="6" width="14" height="12" rx="2"></rect>
+                <path d="M10 10h4"></path>
+                <path d="M10 14h4"></path>
+                <rect x="7" y="8" width="2" height="8" rx="1"></rect>
+                <circle cx="12" cy="12" r="1"></circle>
               </svg>
               <span>门禁卡管理</span>
             </a>
