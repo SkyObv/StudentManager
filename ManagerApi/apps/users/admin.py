@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin):
     继承 Django 内置的 UserAdmin 以保留所有用户管理功能
     """
     # 在列表页显示哪些字段
-    list_display = ('id','username', 'user_type', 'gender', 'first_name','last_name','get_teacher', 'get_hostel', 'is_staff','is_active','key')
+    list_display = ('id','username', 'user_type', 'gender', 'first_name','last_name','get_teacher', 'get_hostel', 'is_staff','is_active','get_key')
     # 在列表页添加过滤器
     list_filter = ('user_type', 'is_staff', 'is_active', 'groups')
     # 搜索框支持按哪些字段搜索
@@ -41,7 +41,7 @@ class UserAdmin(BaseUserAdmin):
         ('个人信息', {'fields': ('first_name', 'last_name', 'email', 'gender')}),
         ('权限信息', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('重要日期', {'fields': ('last_login', 'date_joined')}),
-        ('自定义信息', {'fields': ('user_type', 'teacher_id', 'house_number','key')}),
+        ('自定义信息', {'fields': ('user_type', 'teacher_id', 'house_number')}),
     )
     # 创建新用户时的字段集
     add_fieldsets = (
@@ -64,4 +64,8 @@ class UserAdmin(BaseUserAdmin):
             return str(obj.house_number)  # 调用 Hostel 的 __str__ 方法
         return "无"
     get_hostel.short_description = '宿舍'  # 设置列表页的表头
+    def get_key(self, obj):
+        if hasattr(obj,"key"):
+            return obj.key.number
+        return None
 
