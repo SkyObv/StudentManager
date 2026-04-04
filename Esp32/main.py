@@ -1,18 +1,11 @@
-from machine import Pin
-import time
+from connect_wifi import Connect_WiFI
+from server import Server
 
-led = Pin(2, Pin.OUT, value=0)                            
-led2 = Pin(19,Pin.OUT, value=0)
+# 连接wifi
+conn = Connect_WiFI()
+print(f"当前ip : {conn.ip}")
 
-led2.value(1)
-print("蜂鸣器输出")
-time.sleep(5)
-led2.value(0)
+# 服务路由
 
-while True:
-    led.value(1)
-    print("灯亮")
-    time.sleep(5)
-    led.value(0)
-    print("灯灭")
-    time.sleep(2)
+# 开启服务
+server = Server(ip=conn.ip)
