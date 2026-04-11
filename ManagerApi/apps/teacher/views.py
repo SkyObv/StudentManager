@@ -43,10 +43,11 @@ class GetStudentListView(ListAPIView):
         return queryset
 # 导入学生生成学生用户视图
 class ImportStudentsView(APIView):
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated, IsTeacher]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsTeacher]
     serializer_class = FileFieldSerializer
     def post(self, request):
+        teacher = request.user.id
         file_xlsx = request.FILES.get('file')
         if not file_xlsx:
             return Response({"error": "请上传文件"}, status=status.HTTP_400_BAD_REQUEST)
@@ -59,7 +60,7 @@ class ImportStudentsView(APIView):
                 for chunk in file_xlsx.chunks():
                     f.write(chunk)
             # 创建任务
-            task = create_student.delay(file_path)
+            task = create_student.delay(file_path=file_path,teacher=teacher)
             return Response(
                 {
                     "message": "任务创建成功",

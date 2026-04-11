@@ -208,7 +208,7 @@ USE_TZ = True
 
 # 静态文件和上传文件配置
 STATIC_URL = 'static/'                                               # 静态文件路由
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]                # 静态文件目录
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]              # 静态文件目录
 MEDIA_URL = '/media/'                                                # 上传文件路由
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')                       # 上传文件目录
 
