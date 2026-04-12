@@ -1144,7 +1144,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   margin-bottom: 24px;
 }
