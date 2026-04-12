@@ -9,6 +9,9 @@ export default {
       studentFile: null,                                             // 学生文件
       showUpdateDialog: false,                                       // 是否显示更新弹窗
       gender: '',                                                    // 选中的性别
+      taskId: null,                                                  // 任务ID
+      isLoading: false,                                              // 是否显示加载动画
+      checkTaskInterval: null                                        // 任务检查定时器
     }
   },
   components:{
@@ -16,7 +19,21 @@ export default {
   },
   
   created() {
-    this.getMyStudents();                                            // 获取我的学生
+    // 检查本地存储中是否有任务ID
+    const savedTaskId = localStorage.getItem('studentImportTaskId');
+    if (savedTaskId) {
+      this.taskId = savedTaskId;
+      this.isLoading = true;
+      this.startCheckingTask();
+    } else {
+      this.getMyStudents();                                            // 获取我的学生
+    }
+  },
+  beforeDestroy() {
+    // 清除定时器
+    if (this.checkTaskInterval) {
+      clearInterval(this.checkTaskInterval);
+    }
   },
   methods: {
     getMyStudents() {                                                // 获取我的学生
@@ -52,7 +69,10 @@ export default {
     },
     removeFile() {                                                   // 删除选中的文件
       this.studentFile = null;
-      this.$refs.fileInput.value = '';
+      // 只有当 fileInput 存在时才设置其 value
+      if (this.$refs.fileInput) {
+        this.$refs.fileInput.value = '';
+      }
     },
     selectFile() {                                                   // 选择文件
       if (!this.studentFile) {
@@ -64,14 +84,96 @@ export default {
       this.closeDialog();
     },
     executeUpdate() {                                                // 执行更新操作
-      // 使用console.log模拟请求
-      console.log('===== 开始模拟更新学生数据请求 =====');
-      console.log('文件名:', this.studentFile.name);
-      console.log('文件大小:', this.studentFile.size);
-      console.log('文件类型:', this.studentFile.type);
-      console.log('最后修改时间:', new Date(this.studentFile.lastModified));
-      // 重置文件
-      this.removeFile();
+      if (!this.studentFile) {
+        this.$message.warning('请先选择文件');
+        return;
+      }
+      
+      // 创建FormData对象
+      const formData = new FormData();
+      formData.append('file', this.studentFile);
+      
+      // 发送请求
+      this.$axios({
+        url: `${this.$settings.Host}/teacher/import/students/`,
+        method: 'post',
+        data: formData,
+        headers: {
+          'Authorization': `Hander ${this.$settings.getToken()}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(res => {
+        console.log('任务创建成功:', res.data);
+        this.$message.success('任务创建成功，正在处理中...');
+        // 保存任务ID到本地存储
+        this.taskId = res.data.task_id;
+        localStorage.setItem('studentImportTaskId', res.data.task_id);
+        // 显示加载动画
+        this.isLoading = true;
+        // 开始检查任务状态
+        this.startCheckingTask();
+        // 重置文件
+        this.removeFile();
+      }).catch(err => {
+        console.error('创建任务失败:', err);
+        this.$message.error('创建任务失败，请重试');
+        // 重置文件
+        this.removeFile();
+      });
+    },
+    startCheckingTask() {                                             // 开始检查任务状态
+      // 立即检查一次
+      this.checkTaskStatus();
+      // 然后每5秒检查一次
+      this.checkTaskInterval = setInterval(() => {
+        this.checkTaskStatus();
+      }, 5000);
+    },
+    checkTaskStatus() {                                               // 检查任务状态
+      if (!this.taskId) return;
+      
+      this.$axios({
+        url: `${this.$settings.Host}/teacher/get/task/result/`,
+        method: 'get',
+        params: { task_id: this.taskId },
+        headers: {
+          'Authorization': `Hander ${this.$settings.getToken()}`
+        }
+      }).then(res => {
+        console.log('任务状态:', res.data);
+        // 检查任务状态
+        if (res.data.error) {
+          // 任务失败
+          this.$message.error('任务处理失败');
+          this.clearTaskId();
+          // 重新获取学生列表
+          this.getMyStudents();
+        } else if (res.data.message === '任务正在处理中') {
+          // 任务仍在处理中，继续检查
+          console.log('任务仍在处理中...');
+        } else {
+          // 任务成功
+          this.$message.success('学生数据更新成功');
+          this.clearTaskId();
+          // 重新获取学生列表
+          this.getMyStudents();
+        }
+      }).catch(err => {
+        console.error('检查任务状态失败:', err);
+        this.$message.error('检查任务状态失败');
+        this.clearTaskId();
+        // 重新获取学生列表
+        this.getMyStudents();
+      });
+    },
+    clearTaskId() {                                                  // 清除任务ID
+      this.taskId = null;
+      this.isLoading = false;
+      localStorage.removeItem('studentImportTaskId');
+      if (this.checkTaskInterval) {
+        clearInterval(this.checkTaskInterval);
+        this.checkTaskInterval = null;
+      }
     },
     updateKey(key){                                                  // 更新学生门禁卡
       console.log('学生ID:', key.id);
@@ -114,9 +216,16 @@ export default {
     
     <!-- 学生列表表格 -->
     <div class="table-container">
+      <!-- 加载动画 -->
+      <div v-if="isLoading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">正在处理学生数据，请稍候...</p>
+      </div>
+      <!-- 学生表格 -->
       <StudentsTable 
-      :students="MyStudents"
-      @update-key='updateKey'
+        v-else
+        :students="MyStudents"
+        @update-key='updateKey'
       ></StudentsTable>
     </div>
     
@@ -498,6 +607,40 @@ export default {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* 加载动画样式 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  border-top-color: #667eea;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  font-size: 16px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>

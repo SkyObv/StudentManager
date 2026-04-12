@@ -66,7 +66,6 @@ export default {
           <th>宿舍</th>
           <th>门禁id</th>
           <th>门禁卡状态</th>
-          <th>操作</th>
         </tr>
       </thead>
       <tbody>
@@ -82,11 +81,6 @@ export default {
             <span :class="getKeyStateClass(student.key_state)">
               {{ getKeyStateText(student.key_state) }}
             </span>
-          </td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-edit" @click="startEdit(student)">编辑</button>
-            </div>
           </td>
         </tr>
       </tbody>
