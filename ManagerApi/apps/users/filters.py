@@ -1,5 +1,6 @@
 import django_filters
 from .models import User,Hostel
+from teacher.models import HostelApply,TripsLog
 from django.db.models import Q
 from django.db.models import Value
 from django.db.models.functions import Concat
@@ -113,3 +114,23 @@ class TeachersFilter(django_filters.FilterSet):
             )
             return annotated_queryset.filter(student_full_name__icontains=value).distinct()
         return queryset
+
+"""门禁卡管理"""
+# 门禁卡过滤器
+class TripsLogLogsFilter(django_filters.FilterSet):
+    has_manager = django_filters.BooleanFilter(
+        method='filter_by_has_manager'
+    )                                                                          # 是否有管理员
+    number = django_filters.CharFilter(
+        field_name='number',
+        lookup_expr='iexact'
+    )
+    class Meta:
+        model = TripsLog
+        fields = ['number', 'has_manager']
+    def filter_by_has_manager(self, queryset, name, value):
+        print(value)
+        if value:
+            return queryset.filter(manager_teacher__isnull=False)
+        else:
+            return queryset.filter(manager_teacher__isnull=True)

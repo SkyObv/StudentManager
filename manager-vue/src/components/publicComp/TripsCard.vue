@@ -129,13 +129,13 @@ export default {
         
         <div class="info-item">
           <span class="info-label">管理教师：</span>
-          <span class="info-value teacher-name">{{ keyCard.manager_teacher.name }}</span>
+          <span class="info-value teacher-name">{{ keyCard.manager_teacher ? keyCard.manager_teacher.name : '未绑定' }}</span>
         </div>
         
         <div class="info-item">
           <span class="info-label">教师状态：</span>
-          <span class="info-value" :class="keyCard.manager_teacher.is_active ? 'teacher-active' : 'teacher-inactive'">
-            {{ keyCard.manager_teacher.is_active ? '在职' : '离职' }}
+          <span class="info-value" :class="(keyCard.manager_teacher && keyCard.manager_teacher.is_active) ? 'teacher-active' : 'teacher-inactive'">
+            {{ keyCard.manager_teacher ? (keyCard.manager_teacher.is_active ? '在职' : '离职') : '未绑定' }}
           </span>
         </div>
         
@@ -188,13 +188,6 @@ export default {
 
       <!-- admin: 绑定老师、删除门禁卡 -->
       <template v-else-if="type === 'admin'">
-        <button 
-          class="action-button bind-button"
-          @click="handleBindTeacher"
-        >
-          <span class="button-icon">👨‍🏫</span>
-          绑定老师
-        </button>
         <button 
           class="action-button delete-button"
           @click="handleDeleteCard"

@@ -1,15 +1,19 @@
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializer import (CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,
                          HostelStudentSerializer, CreateHostelViewSerializer, GetAllTeachersSerializer,
-                         CreateUserSerializer, GetAllHostelLogsSerializer)
+                         CreateUserSerializer, GetAllHostelLogsSerializer,GetAllCardsSerializer,CreateAllCardsSerializer)
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Floor, Hostel
-from .filters import StudentFilter, HostelFilter, TeachersFilter
+from .filters import StudentFilter, HostelFilter, TeachersFilter, TripsLogLogsFilter
 from django.db import transaction # 导入事务
-from teacher.models import HostelApply
+from teacher.models import HostelApply,TripsLog
+from teacher.permissions import IsAdmin
+from rest_framework_simplejwt.authentication import JWTAuthentication                    # 导入JWT认证
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 
 
 # 重写登入视图
@@ -360,6 +364,24 @@ class GetAllHostelLogsView(ListAPIView):
     pagination_class = None
     ordering = ('-created_at',)
 
-
-
-
+"""门禁卡管理"""
+# 获取所有门禁卡
+class GetAllCardsView(ListAPIView):
+    queryset = TripsLog.objects.select_related(
+        'manager_teacher',
+        'student',
+    ).all()
+    serializer_class = GetAllCardsSerializer
+    filterset_class = TripsLogLogsFilter
+# 添加门禁卡(可批量添加)
+class CreateCardsView(CreateAPIView):
+    queryset = TripsLog.objects.all()
+    serializer_class = CreateAllCardsSerializer
+    authentication_classes = [JWTAuthentication]                               # 登入JWT认证
+    permission_classes = [IsAuthenticated, IsAdmin]                            # 必须是登入用户和老师身份
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data,many=True)            # 列表批量创建
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)  # 默认返回资源URL头
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

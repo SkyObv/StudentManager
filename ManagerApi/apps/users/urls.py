@@ -3,7 +3,8 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from .views import (CustomTokenObtainPairView, StudentListView,FloorListView,HostelListView,CreateFloorView,
                     FloorDeleteView, CreateHostelView,HostelDeleteView, DeleteStudentFromHostelView,
                     AssignStudentToHostelView, TeacherListView, DeleteTeacherView, CreateUserView, RestoreTeacherView
-                    , DeleteTeacherPermanentlyView, AddManagerToHostelView, GetAllHostelLogsView)
+                    , DeleteTeacherPermanentlyView, AddManagerToHostelView, GetAllHostelLogsView,GetAllCardsView,
+                    CreateCardsView)
 
 urlpatterns = [
     path('login/',CustomTokenObtainPairView.as_view()),              # 登入
@@ -30,5 +31,9 @@ urlpatterns = [
 
     path('add/hostel/manager/', AddManagerToHostelView.as_view()),   # 添加宿舍管理员
 
-    path('getall/hostellogs', GetAllHostelLogsView.as_view())        # 获取所有宿舍申请记录
+    path('getall/hostellogs', GetAllHostelLogsView.as_view()),       # 获取所有宿舍申请记录
+
+    # 门禁卡管理
+    path('card/all/',GetAllCardsView.as_view()),                     # 获取所有门禁卡
+    path('card/creates/',CreateCardsView.as_view())                  # 创建门禁卡
 ]

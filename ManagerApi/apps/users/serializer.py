@@ -1,8 +1,9 @@
 from .models import User,Floor,Hostel
-from teacher.models import HostelApply
+from teacher.models import HostelApply,TripsLog
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from rest_framework_simplejwt.exceptions import AuthenticationFailed
+from rest_framework.validators import UniqueValidator
 
 # 自定义 JWT 认证返回结果
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -172,3 +173,38 @@ class GetAllHostelLogsSerializer(serializers.ModelSerializer):
         hostel = obj.hostel
         hostel_name = hostel.floor.floor_name + '-' + hostel.hostel_number
         return hostel_name
+
+"""门禁卡管理"""
+# 获取我的所有门禁卡
+class GetAllCardsSerializer(serializers.ModelSerializer):
+    manager_teacher = serializers.SerializerMethodField()
+    student = serializers.SerializerMethodField()
+    class Meta:
+        model = TripsLog
+        fields = '__all__'
+    def get_manager_teacher(self, obj):
+        if not obj.manager_teacher:
+            return None
+        manager_teacher = {}
+        manager_teacher['id'] = obj.manager_teacher.id
+        manager_teacher['name'] = obj.manager_teacher.last_name + obj.manager_teacher.first_name
+        manager_teacher['user_type'] = obj.manager_teacher.user_type
+        manager_teacher['is_active'] = obj.manager_teacher.is_active
+        return manager_teacher
+    def get_student(self, obj):
+        if not obj.student:
+            return None
+        student = {}
+        student['id'] = obj.student.id
+        student['name'] = obj.student.last_name + obj.student.first_name
+        student['username'] = obj.student.username
+        student['gender'] = obj.student.gender
+        return student
+# 创建门禁卡(可批量创建)
+class CreateAllCardsSerializer(serializers.ModelSerializer):
+    number = serializers.CharField(
+        validators=[UniqueValidator(queryset=TripsLog.objects.all(), message="该卡号已存在")]
+    )
+    class Meta:
+        model = TripsLog
+        fields = '__all__'
