@@ -97,6 +97,9 @@ class TeachersFilter(django_filters.FilterSet):
     is_active = django_filters.BooleanFilter(
         field_name='is_active'
     )
+    username = django_filters.CharFilter(
+        field_name='username'
+    )
 
     def filter_by_name(self, queryset, name, value):
         if value:

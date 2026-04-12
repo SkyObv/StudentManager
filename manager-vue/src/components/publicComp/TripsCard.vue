@@ -100,7 +100,37 @@ export default {
       console.log('绑定老师', this.keyCard)
     },
     handleDeleteCard() {
-      console.log('删除门禁卡', this.keyCard)
+      // 弹出确认对话框
+      this.$confirm({
+        title: '确认删除',
+        message: '确定要删除该门禁卡吗？',
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 发送删除请求
+        this.$axios({
+          url: `${this.$settings.Host}/users/card/delete/`,
+          method: 'delete',
+          params: {
+            card_id: this.keyCard.id
+          },
+          headers: {
+            'Authorization': `Hander ${this.$settings.getToken()}`
+          }
+        }).then(res => {
+          console.log('删除门禁卡成功:', res.data);
+          this.$message.success(res.data.message || '删除门禁卡成功');
+          // 触发更新事件
+          this.$emit('updateCard');
+        }).catch(err => {
+          console.error('删除门禁卡失败:', err);
+          this.$message.error('删除门禁卡失败，请重试');
+        });
+      }).catch(() => {
+        // 取消删除
+        console.log('取消删除');
+      });
     }
   }
 }
@@ -206,14 +236,16 @@ export default {
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: 16px 20px;
-  margin: 0 8px 16px;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   border: 1px solid rgba(255, 255, 255, 0.5);
   position: relative;
-  overflow: hidden;
-  width: calc(33.333% - 16px);
-  flex: 0 0 calc(33.333% - 16px);
-  max-width: 384px;
+  box-sizing: border-box;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
 }
 
 .trips-card::before {
@@ -322,12 +354,14 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
 .info-item {

@@ -97,12 +97,13 @@ export default {
       
       <!-- 门禁卡卡片区域 -->
       <div class="card-container">
-        <TripsCard 
-        v-for="card in tripscards" 
-        :key="card.id" 
-        :keyCard="card"
-        @bindStudent="bindStudent"
-        @updateCard="getTripsCards"></TripsCard>
+        <div v-for="card in tripscards" :key="card.id" class="card-wrapper">
+          <TripsCard 
+            :keyCard="card"
+            @bindStudent="bindStudent"
+            @updateCard="getTripsCards"
+          ></TripsCard>
+        </div>
       </div>
 
       <!-- 绑定学生：点击卡片「绑定学生」后出现 -->
@@ -218,9 +219,33 @@ export default {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
   justify-content: flex-start;
   width: 100%;
+}
+
+/* 门禁卡包装器 */
+.card-wrapper {
+  position: relative;
+  width: calc(33.333% - 8px);
+  max-width: 384px;
+  flex: 0 0 calc(33.333% - 8px);
+  box-sizing: border-box;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+  .card-wrapper {
+    width: calc(50% - 6px);
+    flex: 0 0 calc(50% - 6px);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    width: 100%;
+    flex: 0 0 100%;
+  }
 }
 
 /* 提示区域 */

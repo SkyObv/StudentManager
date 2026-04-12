@@ -4,7 +4,7 @@ from .views import (CustomTokenObtainPairView, StudentListView,FloorListView,Hos
                     FloorDeleteView, CreateHostelView,HostelDeleteView, DeleteStudentFromHostelView,
                     AssignStudentToHostelView, TeacherListView, DeleteTeacherView, CreateUserView, RestoreTeacherView
                     , DeleteTeacherPermanentlyView, AddManagerToHostelView, GetAllHostelLogsView,GetAllCardsView,
-                    CreateCardsView)
+                    CreateCardsView,UpdateCardsManagerView, DeleteCardView)
 
 urlpatterns = [
     path('login/',CustomTokenObtainPairView.as_view()),              # 登入
@@ -35,5 +35,7 @@ urlpatterns = [
 
     # 门禁卡管理
     path('card/all/',GetAllCardsView.as_view()),                     # 获取所有门禁卡
-    path('card/creates/',CreateCardsView.as_view())                  # 创建门禁卡
+    path('card/creates/',CreateCardsView.as_view()),                 # 创建门禁卡
+    path('card/update/manager',UpdateCardsManagerView.as_view()),    # 跟新门禁管理员
+    path('card/delete/',DeleteCardView.as_view())                   # 删除门禁卡
 ]

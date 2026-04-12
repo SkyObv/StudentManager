@@ -1,8 +1,10 @@
+from django.http import Http404
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializer import (CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,
                          HostelStudentSerializer, CreateHostelViewSerializer, GetAllTeachersSerializer,
-                         CreateUserSerializer, GetAllHostelLogsSerializer,GetAllCardsSerializer,CreateAllCardsSerializer)
-from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
+                         CreateUserSerializer, GetAllHostelLogsSerializer,GetAllCardsSerializer,CreateAllCardsSerializer,
+                         UpdateCardsManagerSerializer)
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -385,3 +387,37 @@ class CreateCardsView(CreateAPIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)  # 默认返回资源URL头
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+# 批量更新门禁卡管理员
+class UpdateCardsManagerView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated,IsAdmin]
+    def post(self, request, *args, **kwargs):
+        card_ids = request.data.get('card_ids', [])
+        teacher_id = request.data.get('teacher_id')
+        if not card_ids or not isinstance(card_ids, list):
+            return Response({"error": "card_ids 必须是一个非空列表"}, status=status.HTTP_400_BAD_REQUEST)
+        if not teacher_id:
+            return Response({"error": "teacher_id 不能为空"}, status=status.HTTP_400_BAD_REQUEST)
+        teacher_obj = User.objects.get(id=teacher_id)
+        teacher_id = teacher_obj.id
+        updated_count = TripsLog.objects.filter(id__in=card_ids).update(manager_teacher=teacher_id)
+        return Response({
+            "message": f"成功更新 {updated_count} 张门禁卡的管理员",
+        }, status=status.HTTP_200_OK)
+# 删除门禁卡
+class DeleteCardView(DestroyAPIView):
+    queryset = TripsLog.objects.all()
+    serializer_class = GetAllCardsSerializer
+    permission_classes = [IsAuthenticated,IsAdmin]
+    authentication_classes = [JWTAuthentication]
+    def get_object(self):
+        card_id = self.request.query_params.get('card_id')
+        if not card_id:
+            raise Http404
+        obj = self.queryset.get(id=card_id)
+        return obj
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "门禁卡删除成功"}, status=status.HTTP_200_OK)

@@ -208,3 +208,10 @@ class CreateAllCardsSerializer(serializers.ModelSerializer):
     class Meta:
         model = TripsLog
         fields = '__all__'
+# 批量更新门禁管理员
+class UpdateCardsManagerSerializer(serializers.ModelSerializer):
+    cards = serializers.SerializerMethodField()
+    teacher = serializers.SerializerMethodField()
+    class Meta:
+        model = TripsLog
+        fields = '__all__'

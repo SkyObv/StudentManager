@@ -25,7 +25,14 @@ export default {
       batchCreateDialog: false, // 批量创建对话框显示状态
       batchCardNumbers: [{ number: '' }], // 批量创建的卡号列表
       maxCardCount: 50, // 最大批量创建数量
-      batchCreating: false // 批量创建加载状态
+      batchCreating: false, // 批量创建加载状态
+      // 批量绑定老师相关
+      editMode: false, // 编辑模式状态
+      selectedCards: [], // 选中的门禁卡
+      teacherUsername: '', // 老师账号
+      searchTeacherLoading: false, // 搜索老师加载状态
+      foundTeacher: null, // 找到的老师信息
+      searchError: '' // 搜索错误信息
     }
   },
   mounted() {
@@ -212,6 +219,122 @@ export default {
     handleBindStudent(cardId) {
       console.log('绑定学生:', cardId);
       // 这里可以实现绑定学生的逻辑
+    },
+    /**
+     * 切换编辑模式
+     */
+    toggleEditMode() {
+      this.editMode = !this.editMode;
+      // 重置选中的门禁卡
+      this.selectedCards = [];
+      // 重置老师搜索相关数据
+      this.teacherUsername = '';
+      this.foundTeacher = null;
+      this.searchError = '';
+    },
+    /**
+     * 搜索老师
+     */
+    searchTeacher() {
+      if (!this.teacherUsername.trim()) {
+        this.$message.error('请输入老师账号');
+        return;
+      }
+      
+      this.searchTeacherLoading = true;
+      this.searchError = '';
+      
+      this.$axios({
+        url: `${this.$settings.Host}/users/teachers/`,
+        method: 'get',
+        params: {
+          username: this.teacherUsername.trim()
+        },
+        headers: {
+          'Authorization': `Hander ${this.$settings.getToken()}`
+        }
+      }).then(res => {
+        console.log('搜索老师结果:', res.data);
+        if (res.data && res.data.length > 0) {
+          this.foundTeacher = res.data[0];
+          this.searchError = '';
+          this.$message.success(`找到老师: ${this.foundTeacher.name}`);
+        } else {
+          this.foundTeacher = null;
+          this.searchError = '未找到该老师账号';
+          this.$message.error('未找到该老师账号');
+        }
+      }).catch(err => {
+        console.error('搜索老师失败:', err);
+        this.foundTeacher = null;
+        this.searchError = '搜索老师失败，请重试';
+        this.$message.error('搜索老师失败，请重试');
+      }).finally(() => {
+        this.searchTeacherLoading = false;
+      });
+    },
+    /**
+     * 选择/取消选择门禁卡
+     * @param {number} cardId - 门禁卡ID
+     */
+    toggleCardSelection(cardId) {
+      const index = this.selectedCards.indexOf(cardId);
+      if (index > -1) {
+        // 取消选择
+        this.selectedCards.splice(index, 1);
+      } else {
+        // 选择
+        this.selectedCards.push(cardId);
+      }
+    },
+    /**
+     * 批量绑定老师
+     */
+    batchBindTeacher() {
+      if (this.selectedCards.length === 0) {
+        this.$message.error('请至少选择一张门禁卡');
+        return;
+      }
+      
+      if (!this.foundTeacher) {
+        this.$message.error('请先搜索并选择老师');
+        return;
+      }
+      
+      this.batchCreating = true;
+      
+      // 构建请求数据
+      const requestData = {
+        card_ids: this.selectedCards,
+        teacher_id: this.foundTeacher.id
+      };
+      
+      // 发送批量绑定老师请求
+      this.$axios({
+        url: `${this.$settings.Host}/users/card/update/manager`,
+        method: 'post',
+        data: requestData,
+        headers: {
+          'Authorization': `Hander ${this.$settings.getToken()}`
+        }
+      }).then(res => {
+        console.log('批量绑定老师成功:', res.data);
+        this.$message.success(res.data.message || '批量绑定老师成功');
+        // 重置状态
+        this.editMode = false;
+        this.selectedCards = [];
+        this.teacherUsername = '';
+        this.foundTeacher = null;
+        this.searchError = '';
+        // 重新获取门禁卡列表
+        this.getCardList();
+      }).catch(err => {
+        console.error('批量绑定老师失败:', err);
+        this.$message.error('批量绑定老师失败，请重试');
+      }).finally(() => {
+        // 隐藏加载状态
+        this.batchCreating = false;
+      });
     }
   }
 }
@@ -224,8 +347,16 @@ export default {
       <div class="page-header">
         <h1 class="page-title">门禁卡管理</h1>
         <p class="page-subtitle">管理所有的门禁卡信息</p>
-        <!-- 批量创建按钮 -->
+        <!-- 操作按钮 -->
         <div class="header-actions">
+          <button 
+            class="edit-mode-button" 
+            :class="{ 'active': editMode }"
+            @click="toggleEditMode"
+          >
+            <span class="button-icon">{{ editMode ? '✓' : '✏️' }}</span>
+            {{ editMode ? '退出编辑' : '编辑模式' }}
+          </button>
           <button class="batch-create-button" @click="openBatchCreateDialog">
             <span class="button-icon">➕</span>
             批量创建门禁卡
@@ -274,6 +405,52 @@ export default {
         </div>
       </div>
 
+      <!-- 老师搜索区域（编辑模式下显示） -->
+      <div v-if="editMode" class="teacher-search-container">
+        <div class="search-header">
+          <h3 class="search-title">批量绑定老师</h3>
+          <p class="search-subtitle">请搜索并选择老师，然后选择要绑定的门禁卡</p>
+        </div>
+        <div class="search-form">
+          <div class="search-item">
+            <label for="teacher-username">老师账号：</label>
+            <input 
+              type="text" 
+              id="teacher-username"
+              v-model="teacherUsername"
+              placeholder="请输入老师账号"
+              class="search-input"
+            >
+            <button 
+              class="search-button" 
+              :disabled="searchTeacherLoading"
+              @click="searchTeacher"
+            >
+              <span v-if="searchTeacherLoading" class="loading-spinner small"></span>
+              {{ searchTeacherLoading ? '搜索中...' : '搜索' }}
+            </button>
+          </div>
+          <div v-if="foundTeacher" class="teacher-info">
+            <p class="teacher-name">找到老师：{{ foundTeacher.name }} ({{ foundTeacher.username }})</p>
+          </div>
+          <div v-if="searchError" class="search-error">
+            {{ searchError }}
+          </div>
+          <div class="selected-info">
+            <p>已选择 {{ selectedCards.length }} 张门禁卡</p>
+            <button 
+              v-if="selectedCards.length > 0 && foundTeacher"
+              class="bind-button"
+              :disabled="batchCreating"
+              @click="batchBindTeacher"
+            >
+              <span v-if="batchCreating" class="loading-spinner small"></span>
+              {{ batchCreating ? '绑定中...' : '批量绑定老师' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- 错误提示 -->
       <div v-if="error" class="error-message">
         {{ error }}
@@ -287,14 +464,24 @@ export default {
 
       <!-- 门禁卡列表 -->
       <div v-else class="card-container">
-        <TripsCard 
-          v-for="card in tripscards" 
-          :key="card.id" 
-          :keyCard="card"
-          :type="'admin'"
-          @updateCard="handleUpdateCard"
-          @bindStudent="handleBindStudent"
-        ></TripsCard>
+        <div v-for="card in tripscards" :key="card.id" class="card-wrapper">
+          <!-- 选择复选框（编辑模式下显示） -->
+          <div v-if="editMode" class="card-checkbox">
+            <input 
+              type="checkbox" 
+              :id="`card-${card.id}`"
+              :checked="selectedCards.includes(card.id)"
+              @change="toggleCardSelection(card.id)"
+            >
+            <label :for="`card-${card.id}`"></label>
+          </div>
+          <TripsCard 
+            :keyCard="card"
+            :type="'admin'"
+            @updateCard="handleUpdateCard"
+            @bindStudent="handleBindStudent"
+          ></TripsCard>
+        </div>
         
         <!-- 无数据状态 -->
         <div v-if="tripscards.length === 0" class="empty-container">
@@ -435,6 +622,9 @@ export default {
 /* 标题区域按钮 */
 .header-actions {
   margin-top: 1rem;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
 
 .batch-create-button {
@@ -458,6 +648,262 @@ export default {
 
 .batch-create-button .button-icon {
   font-size: 16px;
+}
+
+/* 编辑模式按钮 */
+.edit-mode-button {
+  padding: 10px 20px;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-mode-button:hover {
+  background-color: #e2e8f0;
+}
+
+.edit-mode-button.active {
+  background-color: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.edit-mode-button.active:hover {
+  background-color: #059669;
+}
+
+.edit-mode-button .button-icon {
+  font-size: 16px;
+}
+
+/* 老师搜索区域 */
+.teacher-search-container {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.search-header {
+  margin-bottom: 16px;
+}
+
+.search-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+}
+
+.search-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.search-item label {
+  font-weight: 500;
+  white-space: nowrap;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 200px;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-button {
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-button:hover {
+  background-color: #2563eb;
+}
+
+.search-button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.teacher-info {
+  padding: 12px;
+  background-color: #d1fae5;
+  border-radius: 6px;
+  border: 1px solid #a7f3d0;
+}
+
+.teacher-name {
+  margin: 0;
+  color: #065f46;
+  font-size: 14px;
+}
+
+.search-error {
+  padding: 12px;
+  background-color: #fee2e2;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.selected-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.selected-info p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.bind-button {
+  padding: 8px 16px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bind-button:hover {
+  background-color: #059669;
+}
+
+.bind-button:disabled {
+  background-color: #6ee7b7;
+  cursor: not-allowed;
+}
+
+/* 小加载动画 */
+.loading-spinner.small {
+  width: 12px;
+  height: 12px;
+  border-width: 1px;
+}
+
+/* 门禁卡包装器 */
+.card-wrapper {
+  position: relative;
+  width: calc(33.333% - 16px);
+  max-width: 384px;
+  flex: 0 0 calc(33.333% - 16px);
+}
+
+/* 卡片复选框 */
+.card-checkbox {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+}
+
+.card-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.card-checkbox label {
+  display: block;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.card-checkbox label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 2px solid #3b82f6;
+  border-radius: 4px;
+}
+
+.card-checkbox input[type="checkbox"]:checked + label::before {
+  background-color: #3b82f6;
+}
+
+.card-checkbox label::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.card-checkbox input[type="checkbox"]:checked + label::after {
+  display: block;
 }
 
 /* 对话框样式 */
@@ -697,10 +1143,34 @@ export default {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 24px;
+}
+
+/* 门禁卡包装器 */
+.card-wrapper {
+  position: relative;
+  width: calc(33.333% - 8px);
+  max-width: 384px;
+  flex: 0 0 calc(33.333% - 8px);
+  box-sizing: border-box;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+  .card-wrapper {
+    width: calc(50% - 6px);
+    flex: 0 0 calc(50% - 6px);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    width: 100%;
+    flex: 0 0 100%;
+  }
 }
 
 /* 提示区域 */
