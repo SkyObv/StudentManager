@@ -1,3 +1,5 @@
+import json
+
 from django.http import Http404
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializer import (CustomTokenObtainPairSerializer, GetAllStudentsSerializer,FloorSerializer,
@@ -16,6 +18,7 @@ from teacher.permissions import IsAdmin
 from rest_framework_simplejwt.authentication import JWTAuthentication                    # 导入JWT认证
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+import socket
 
 
 # 重写登入视图
@@ -421,3 +424,29 @@ class DeleteCardView(DestroyAPIView):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response({"message": "门禁卡删除成功"}, status=status.HTTP_200_OK)
+
+"""硬件控制"""
+# led开灯
+class OpenLedView(APIView):
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated,IsAdmin]
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        host_id = data.get('hostel_id')                                        # 操作宿舍列表
+        instruction = data.get('instruction')                                  # 操作指令
+        if host_id == "all":
+            all_hostels = Hostel.objects.filter(is_active=True)
+            # all_hostels.update(led_status=instruction)                       # 更新状态
+        else:
+            all_hostels = Hostel.objects.filter(id__in=host_id)
+            gpio = all_hostels.first().led_GPIO
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)              # 创建客户端嵌套字
+            s.connect(('10.118.140.203', 8080))
+            data = {
+                "GPIO": gpio,
+                "value": 1 if instruction else 0,
+            }
+            s.send(bytes(json.dumps(data), 'utf-8'))                           # 开灯
+            all_hostels.update(led_status=instruction)                         # 更新状态
+        return Response("ok", status=status.HTTP_200_OK)
+

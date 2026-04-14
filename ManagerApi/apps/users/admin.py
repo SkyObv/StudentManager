@@ -17,7 +17,7 @@ class HostelAdmin(admin.ModelAdmin):
     """
     宿舍模型的后台管理配置
     """
-    list_display = ('id','hostel_number', 'floor', 'capacity', 'manager','student_count', 'is_full', 'is_deleted')
+    list_display = ('id','hostel_number', 'floor', 'capacity', 'manager','student_count', 'is_full', 'is_deleted', 'led_GPIO', 'led_status')
     # list_display 中可以直接使用 @property 定义的虚拟字段
     list_filter = ('floor', 'is_deleted')        # 按宿舍楼和删除状态过滤
     search_fields = ('hostel_number', 'floor__floor_name') # 支持按门牌号和宿舍楼名搜索

@@ -41,5 +41,3 @@ class Server:
         
         pin = Pin(GPIO, Pin.OUT, value=0)
         pin.value(value)
-        time.sleep(3)
-        pin.value(0)

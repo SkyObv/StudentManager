@@ -63,6 +63,16 @@ class Hostel(models.Model):
         verbose_name='床位数',
         default=6
     )
+    # 配置灯光
+    led_GPIO = models.IntegerField(
+        verbose_name='GPIO引脚编号',
+        null = True,
+        blank = True,
+    )
+    led_status = models.BooleanField(
+        verbose_name='灯光状态',
+        default=False
+    )
     # 用户性别
     gender = models.CharField(max_length=10, verbose_name='性别', choices=(('male', '男'), ('female', '女')),default='male')
     is_deleted = models.BooleanField(default=False,verbose_name='是否删除')

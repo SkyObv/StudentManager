@@ -1,6 +1,7 @@
 import network
 import gc
 import time
+import settings
 
 
 """
@@ -68,6 +69,50 @@ class Connect_WiFI:
         print(f"   子网掩码: {self.wlan.ifconfig()[1]}")
         print(f"   网关:     {self.wlan.ifconfig()[2]}")
         print(f"   DNS:      {self.wlan.ifconfig()[3]}")
+
+# 根据配置文件自动链接wifi
+class AutoConnect_Wifi:
+    ip = None                                              # 连接成功后的ip地址
+    wlan = None                                            # wlan 对象
+    timeout = 15                                           # 连接超时时间
+    
+    def __init__(self):
+        gc.collect()                                       # 手动触发垃圾回收
+        print("空闲内存:", gc.mem_free(), "字节")           # 显示当前空闲内存
+        self.wlan = network.WLAN(network.STA_IF)           # 创建wlan对象
+        self.wlan.active(True)                             # 开启wifi
+        self.connect()                                     # 开始连接wifi
+    
+    """连接wifi"""
+    def connect(self):
+        wifi_name = settings.WIFINAME
+        password = settings.WIFIPASSWORD
+        print(f"开始连接wifi名称是：{wifi_name}")
+        
+        self.wlan.disconnect()
+        time.sleep(1)
+        self.wlan.active(False)
+        time.sleep(1)
+        self.wlan.active(True)
+        time.sleep(2)                                       # 等WiFi模块初始化完成
+        
+        self.wlan.connect(wifi_name,password)
+        
+        start_time = time.time()
+        while not self.wlan.isconnected():
+            if time.time() - start_time > self.timeout:
+                print("连接超时")
+                return
+            print("连接中...")
+            time.sleep(2)
+
+        self.ip = self.wlan.ifconfig()[0]
+        print(f"   IP 地址: {self.wlan.ifconfig()[0]}")
+        print(f"   子网掩码: {self.wlan.ifconfig()[1]}")
+        print(f"   网关:     {self.wlan.ifconfig()[2]}")
+        print(f"   DNS:      {self.wlan.ifconfig()[3]}")
+    
+    
 
 if __name__ == "__main__":
     connect = Connect_WiFI()

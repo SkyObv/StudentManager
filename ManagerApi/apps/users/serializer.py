@@ -54,7 +54,8 @@ class HostelStudentSerializer(HostelSerializer):
     manager = serializers.SerializerMethodField()
     class Meta:
         model = Hostel
-        fields = ['id','hostel_number','floor','student_count','is_full','gender','manager','students']
+        fields = ['id','hostel_number','floor','student_count','is_full','gender','manager','students',
+                  'led_GPIO','led_status']
     def get_manager(self, obj):
         """获取宿舍楼管理员"""
         if obj.manager:
