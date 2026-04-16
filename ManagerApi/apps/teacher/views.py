@@ -16,7 +16,7 @@ from .filters import GetStudentFilter, GetApplyFilter, GetHostelFilter,GetMyHost
 from .serializer import (GetAllStudentsSerializer, FileFieldSerializer, GetDormitoryHostelSerializer,
                          CreateHostelApplyViewSerializer,GetAllApplySerializer,UpdateApplyViewSerializer
                          ,DeleteApplyViewSerializer, GetAllMyHostelSerializer, DeleteStudentSerializer
-                         ,AddStudentSerializer,GetAllTripsSerializer,UpdateTripsSerializer)
+                         ,AddStudentSerializer,GetAllTripsSerializer,UpdateTripsSerializer,A)
 from mycelery.manager_task.create_student import create_student, text
 from django.db.models import Prefetch
 
@@ -185,7 +185,7 @@ class AddStudentView(APIView):
 # 获取所有门禁卡
 class GetAllTripsView(ListAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated, IsTeacher]
+    permission_classes = [IsAuthenticated]
     serializer_class = GetAllTripsSerializer
     pagination_class = None
     def get_queryset(self):
@@ -198,13 +198,30 @@ class GetAllTripsView(ListAPIView):
 class UpdateTripStateView(UpdateAPIView):
     queryset = TripsLog.objects.all().select_related('manager_teacher','student')
     serializer_class = UpdateTripsSerializer
-    permission_classes = [IsAuthenticated, IsTeacher]
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
     def get_object(self):
-        pk = self.request.query_params.get('id')
         queryset = self.get_queryset()
-        obj = queryset.get(pk=pk)
+        try:
+            pk = self.request.query_params['id']
+            obj = self.queryset.get(id=pk)
+        except:
+            pk = self.request.query_params['number']
+            obj = self.queryset.get(number=pk)
         return obj
+# 获取单个门径卡信息
+class GetOneTripView(APIView):
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
+    queryset = TripsLog.objects.filter(key_card_state=True)
+    serializer_class = A
+    def get(self, request):
+        number= request.query_params.get('number')
+        try:
+            obj = self.queryset.get(number=number)
+        except:
+            return Response({"number": number}, status=status.HTTP_404_NOT_FOUND)
+        serializer = self.serializer_class(obj)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 # ===========================测试接口======================================
 class TextCeleryView(APIView):

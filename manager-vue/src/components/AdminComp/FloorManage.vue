@@ -20,7 +20,13 @@ export default {
       },
       // 删除楼层对话框相关数据
       showDeleteFloorForm: false,
-      selectedFloor: null
+      selectedFloor: null,
+      // 刷卡功能相关
+      showCardReaderModal: false,
+      cardNumber: '',
+      isScanning: false,
+      scanResult: null,
+      scanError: null
     }
   },
   created() {
@@ -212,6 +218,110 @@ export default {
       } catch (error) {
         console.error('一键响铃失败:', error);
       }
+    },
+    
+    /**
+     * 打开刷卡模态框
+     */
+    openCardReaderModal() {
+      this.showCardReaderModal = true;
+      this.cardNumber = '';
+      this.isScanning = true;
+      this.scanResult = null;
+      this.scanError = null;
+      // 聚焦到输入框，准备接收刷卡输入
+      this.$nextTick(() => {
+        document.getElementById('card-number-input').focus();
+      });
+    },
+    
+    /**
+     * 开始扫描卡片
+     */
+    startScanning() {
+      this.cardNumber = '';
+      this.isScanning = true;
+      this.scanResult = null;
+      this.scanError = null;
+      // 聚焦到输入框
+      this.$nextTick(() => {
+        document.getElementById('card-number-input').focus();
+      });
+    },
+    
+    /**
+     * 处理卡片输入
+     */
+    handleCardInput() {
+      if (this.cardNumber.length >= 8) { // 假设卡号至少8位
+        this.processCardScan();
+      }
+    },
+    
+    /**
+     * 处理卡片扫描
+     */
+    async processCardScan() {
+      try {
+        this.isScanning = false;
+        
+        // 先获取卡片信息，检查当前状态
+        const cardResponse = await this.$axios.get(`${this.$settings.Host}/teacher/aa/a?number=${this.cardNumber}`, {
+          headers: {
+            'Authorization': `Hander ${this.token}`
+          }
+        });
+        
+        if (cardResponse.data) {
+          const card = cardResponse.data;
+          
+          // 构建请求数据，设置相反的in_hostel状态
+          const requestData = {
+            in_hostel: !card.in_hostel
+          };
+          
+          // 发送PATCH请求到后端API
+          const response = await this.$axios.patch(`${this.$settings.Host}/teacher/trips/update/?id=${card.id}`, requestData, {
+            headers: {
+              'Authorization': `Hander ${this.token}`
+            }
+          });
+          
+          console.log('刷卡成功:', response.data);
+          this.scanResult = response.data;
+          
+          // 显示成功提示
+          this.$message.success(`刷卡成功！学生 ${response.data.student.name} 已${response.data.in_hostel ? '进入' : '离开'}宿舍`);
+          
+          // 3秒后自动重置，等待下一个学生刷卡
+          setTimeout(() => {
+            this.startScanning();
+          }, 3000);
+        } else {
+          this.scanError = '未找到该卡片信息';
+          this.$message.error('未找到该卡片信息');
+        }
+      } catch (error) {
+        console.error('刷卡失败:', error);
+        this.scanError = '刷卡失败，请重试';
+        this.$message.error('刷卡失败，请重试');
+        
+        // 错误后也自动重置，等待下一个学生刷卡
+        setTimeout(() => {
+          this.startScanning();
+        }, 3000);
+      }
+    },
+    
+    /**
+     * 关闭刷卡模态框
+     */
+    closeCardReaderModal() {
+      this.showCardReaderModal = false;
+      this.isScanning = false;
+      this.cardNumber = '';
+      this.scanResult = null;
+      this.scanError = null;
     }
   },
   mounted() {
@@ -264,6 +374,14 @@ export default {
           <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"></path>
         </svg>
         一键响铃
+      </button>
+      <button class="card-reader-button" @click="openCardReaderModal">
+        <svg class="button-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.29 7 12 12 20.71 7"></polyline>
+          <line x1="12" y1="22" x2="12" y2="12"></line>
+        </svg>
+        刷卡功能
       </button>
     </div>
     
@@ -407,6 +525,72 @@ export default {
           <div class="form-actions">
             <button type="button" class="cancel-button" @click="closeDeleteFloorForm">取消</button>
             <button type="button" class="delete-confirm-button" @click="confirmDeleteFloor">确认删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 刷卡功能模态框 -->
+    <div class="modal" v-if="showCardReaderModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>刷卡功能</h3>
+          <button class="close-button" @click="closeCardReaderModal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="card-reader-content">
+            <!-- 刷卡区域 -->
+            <div class="scan-area">
+              <h4>{{ isScanning ? '请刷卡' : '刷卡完成' }}</h4>
+              <input 
+                type="text" 
+                id="card-number-input"
+                v-model="cardNumber"
+                @input="handleCardInput"
+                @keyup.enter="processCardScan"
+                :disabled="!isScanning"
+                placeholder="请刷卡或手动输入卡号"
+                class="card-number-input"
+              >
+              <div v-if="isScanning" class="scan-hint">
+                <p>请将卡片靠近刷卡设备</p>
+                <div class="scan-animation"></div>
+              </div>
+            </div>
+            
+            <!-- 扫描结果 -->
+            <div v-if="scanResult" class="scan-result">
+              <h4>刷卡结果</h4>
+              <div class="result-item">
+                <span class="result-label">学生姓名：</span>
+                <span class="result-value">{{ scanResult.student.name }}</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">学号：</span>
+                <span class="result-value">{{ scanResult.student.username }}</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">状态：</span>
+                <span class="result-value" :class="scanResult.in_hostel ? 'status-in' : 'status-out'">
+                  {{ scanResult.in_hostel ? '已进入宿舍' : '已离开宿舍' }}
+                </span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">更新时间：</span>
+                <span class="result-value">{{ new Date(scanResult.update_time).toLocaleString() }}</span>
+              </div>
+            </div>
+            
+            <!-- 错误信息 -->
+            <div v-if="scanError" class="scan-error">
+              <h4>错误信息</h4>
+              <p>{{ scanError }}</p>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="cancel-button" @click="closeCardReaderModal">关闭</button>
+            <button type="button" class="reset-button" @click="startScanning">重新扫描</button>
           </div>
         </div>
       </div>
@@ -714,6 +898,168 @@ export default {
 
 .ring-all-button:active {
   transform: translateY(0);
+}
+
+/* 刷卡功能按钮样式 */
+.card-reader-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.card-reader-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.card-reader-button:active {
+  transform: translateY(0);
+}
+
+/* 刷卡功能模态框样式 */
+.card-reader-content {
+  margin-bottom: 2rem;
+}
+
+.scan-area {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.scan-area h4 {
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.card-number-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.card-number-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.scan-hint {
+  margin-top: 1rem;
+}
+
+.scan-hint p {
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.scan-animation {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.scan-result {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.scan-result h4 {
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.result-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.result-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.result-value {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.status-in {
+  color: #10b981;
+}
+
+.status-out {
+  color: #ef4444;
+}
+
+.scan-error {
+  background: #fef2f2;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #fee2e2;
+}
+
+.scan-error h4 {
+  margin-bottom: 1rem;
+  color: #7f1d1d;
+}
+
+.scan-error p {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.reset-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 /* 楼层卡片 */

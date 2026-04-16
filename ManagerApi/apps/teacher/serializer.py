@@ -212,6 +212,12 @@ class GetAllTripsSerializer(serializers.ModelSerializer):
         model = TripsLog
         fields = ['id','number','manager_teacher','in_hostel','update_time','create_time','key_card_state','student']
 class UpdateTripsSerializer(serializers.ModelSerializer):
+    manager_teacher = ManagerTeacherSerializer(read_only=True)
+    student = StudentSerializer(read_only=True)
+    class Meta:
+        model = TripsLog
+        fields = ['id','number','manager_teacher','in_hostel','update_time','create_time','key_card_state','student']
+class A(serializers.ModelSerializer):
     class Meta:
         model = TripsLog
         fields = '__all__'
