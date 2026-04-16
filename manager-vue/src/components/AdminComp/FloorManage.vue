@@ -141,6 +141,77 @@ export default {
           console.log(err);
           this.$message.error('删除失败！');
         });
+    },
+    
+    /**
+     * 一键开灯
+     */
+    async turnOnAllLights() {
+      try {
+        // 构建请求数据
+        const requestData = {
+          hostel_id: "all",  // 操作所有宿舍
+          instruction: true  // 开灯指令
+        };
+        
+        // 发送POST请求到后端API
+        const response = await this.$axios.post(`${this.$settings.Host}/users/esp32/led/open`, requestData);
+        
+        console.log('一键开灯成功:', response.data);
+        
+        // 显示成功提示
+        this.$message.success('所有宿舍灯光已开启');
+      } catch (error) {
+        console.error('一键开灯失败:', error);
+        this.$message.error('一键开灯失败，请重试');
+      }
+    },
+    
+    /**
+     * 一键关灯
+     */
+    async turnOffAllLights() {
+      try {
+        // 构建请求数据
+        const requestData = {
+          hostel_id: "all",  // 操作所有宿舍
+          instruction: false  // 关灯指令
+        };
+        
+        // 发送POST请求到后端API
+        const response = await this.$axios.post(`${this.$settings.Host}/users/esp32/led/open`, requestData);
+        
+        console.log('一键关灯成功:', response.data);
+        
+        // 显示成功提示
+        this.$message.success('所有宿舍灯光已关闭');
+      } catch (error) {
+        console.error('一键关灯失败:', error);
+        this.$message.error('一键关灯失败，请重试');
+      }
+    },
+    
+    /**
+     * 一键响铃
+     */
+    async ringAllBells() {
+      try {
+        // 构建请求数据，包含固定的引脚[16]
+        const requestData = {
+          hostel_id: [16],      // 操作所有宿舍
+          instruction: true,    // 响铃指令
+        };
+        
+        // 发送POST请求到后端API
+        const response = await this.$axios.post(`${this.$settings.Host}/users/esp32/led/open`, requestData);
+        
+        console.log('一键响铃成功:', response.data);
+        
+        // 显示成功提示
+        this.$message.success('所有宿舍已响铃');
+      } catch (error) {
+        console.error('一键响铃失败:', error);
+      }
     }
   },
   mounted() {
@@ -168,6 +239,31 @@ export default {
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
         创建楼层
+      </button>
+      
+      <!-- 灯光控制按钮 -->
+      <button class="light-all-on-button" @click="turnOnAllLights">
+        <svg class="button-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          <path d="M19 12H5"></path>
+          <path d="M12 19V5"></path>
+        </svg>
+        一键开灯
+      </button>
+      <button class="light-all-off-button" @click="turnOffAllLights">
+        <svg class="button-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          <path d="M12 19V5"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+        一键关灯
+      </button>
+      <button class="ring-all-button" @click="ringAllBells">
+        <svg class="button-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 12l2 2 4-4"></path>
+          <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"></path>
+        </svg>
+        一键响铃
       </button>
     </div>
     
@@ -504,7 +600,9 @@ export default {
 .action-buttons {
   display: flex;
   justify-content: center;
+  gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .create-button {
@@ -538,6 +636,84 @@ export default {
 
 .create-button:hover .button-icon {
   transform: rotate(90deg);
+}
+
+/* 一键开灯按钮样式 */
+.light-all-on-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.light-all-on-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+.light-all-on-button:active {
+  transform: translateY(0);
+}
+
+/* 一键关灯按钮样式 */
+.light-all-off-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+}
+
+.light-all-off-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(100, 116, 139, 0.4);
+}
+
+.light-all-off-button:active {
+  transform: translateY(0);
+}
+
+/* 一键响铃按钮样式 */
+.ring-all-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.ring-all-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+}
+
+.ring-all-button:active {
+  transform: translateY(0);
 }
 
 /* 楼层卡片 */

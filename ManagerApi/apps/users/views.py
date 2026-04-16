@@ -434,19 +434,23 @@ class OpenLedView(APIView):
         data = request.data
         host_id = data.get('hostel_id')                                        # 操作宿舍列表
         instruction = data.get('instruction')                                  # 操作指令
+        gpio_list = []                                                         # 需要操作的gpio引脚列表
         if host_id == "all":
-            all_hostels = Hostel.objects.filter(is_active=True)
-            # all_hostels.update(led_status=instruction)                       # 更新状态
+            all_hostels = Hostel.objects.filter(is_deleted=False)
+            gpio_list = list(all_hostels.values_list('led_GPIO', flat=True))
         else:
-            all_hostels = Hostel.objects.filter(id__in=host_id)
-            gpio = all_hostels.first().led_GPIO
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)              # 创建客户端嵌套字
-            s.connect(('10.118.140.203', 8080))
-            data = {
-                "GPIO": gpio,
-                "value": 1 if instruction else 0,
-            }
-            s.send(bytes(json.dumps(data), 'utf-8'))                           # 开灯
-            all_hostels.update(led_status=instruction)                         # 更新状态
+            if host_id[0] == 16:
+                gpio_list.append(16)
+            else:
+                all_hostels = Hostel.objects.filter(id__in=host_id)
+                gpio_list.append(all_hostels.first().led_GPIO)
+        # 请求发送
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)              # 创建客户端嵌套字
+        s.connect(('10.118.140.203', 8080))
+        data = {
+            "GPIO": gpio_list,
+            "value": 1 if instruction else 0,
+        }
+        s.send(bytes(json.dumps(data), 'utf-8'))                           # 开灯
+        all_hostels.update(led_status=instruction)                         # 更新状态
         return Response("ok", status=status.HTTP_200_OK)
-

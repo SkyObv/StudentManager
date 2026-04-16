@@ -596,71 +596,7 @@ export default {
       }
     },
     
-    /**
-     * 一键开灯
-     */
-    async turnOnAllLights() {
-      try {
-        // 显示加载状态
-        this.loading = true;
-        
-        // 构建请求数据
-        const requestData = {
-          hostel_id: "all",  // 操作所有宿舍
-          instruction: true  // 开灯指令
-        };
-        
-        // 发送POST请求到后端API
-        const response = await this.$axios.post(`${this.$settings.Host}/users/esp32/led/open`, requestData);
-        
-        console.log('一键开灯成功:', response.data);
-        
-        // 重新加载宿舍数据以更新界面
-        this.loadHostelsData();
-        
-        // 显示成功提示
-        this.$message.success('所有宿舍灯光已开启');
-      } catch (error) {
-        console.error('一键开灯失败:', error);
-        this.$message.error('一键开灯失败，请重试');
-      } finally {
-        // 无论成功或失败，都要重置加载状态
-        this.loading = false;
-      }
-    },
-    
-    /**
-     * 一键关灯
-     */
-    async turnOffAllLights() {
-      try {
-        // 显示加载状态
-        this.loading = true;
-        
-        // 构建请求数据
-        const requestData = {
-          hostel_id: "all",  // 操作所有宿舍
-          instruction: false  // 关灯指令
-        };
-        
-        // 发送POST请求到后端API
-        const response = await this.$axios.post(`${this.$settings.Host}/users/esp32/led/open`, requestData);
-        
-        console.log('一键关灯成功:', response.data);
-        
-        // 重新加载宿舍数据以更新界面
-        this.loadHostelsData();
-        
-        // 显示成功提示
-        this.$message.success('所有宿舍灯光已关闭');
-      } catch (error) {
-        console.error('一键关灯失败:', error);
-        this.$message.error('一键关灯失败，请重试');
-      } finally {
-        // 无论成功或失败，都要重置加载状态
-        this.loading = false;
-      }
-    }
+
   },
 
 }
@@ -716,16 +652,6 @@ export default {
         <button class="add-hostel-button" @click="openAddHostelForm">
           <span class="button-icon">➕</span>
           <span class="button-text">新建宿舍</span>
-        </button>
-        
-        <!-- 灯光控制按钮 -->
-        <button class="light-all-on-button" @click="turnOnAllLights">
-          <span class="button-icon">💡</span>
-          <span class="button-text">一键开灯</span>
-        </button>
-        <button class="light-all-off-button" @click="turnOffAllLights">
-          <span class="button-icon">🌑</span>
-          <span class="button-text">一键关灯</span>
         </button>
       </div>
     </div>
@@ -1506,51 +1432,7 @@ export default {
   box-shadow: 0 2px 8px rgba(100, 116, 139, 0.3);
 }
 
-/* 一键开灯按钮样式 */
-.light-all-on-button {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-}
 
-.light-all-on-button:hover {
-  background: linear-gradient(135deg, #d97706, #b45309);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-}
-
-/* 一键关灯按钮样式 */
-.light-all-off-button {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #64748b, #475569);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(100, 116, 139, 0.3);
-}
-
-.light-all-off-button:hover {
-  background: linear-gradient(135deg, #475569, #334155);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.4);
-}
 
 /* 管理员选择表单样式 */
 .manager-select {
